@@ -1,9 +1,9 @@
 <div class="flex items-center justify-between flex-shrink-0 px-3">
     <!-- Logo -->
-    <a href="{{ route('index') }}" class="inline-flex items-center gap-2">
-        <x-application-logo aria-hidden="true" class="w-10 h-auto" />
+    <a href="{{ route('admin-home') }}" class="inline-flex items-center gap-2">
+        <img src="{{ asset('build/assets/img/logo-full.png') }}" alt="ZTravel" aria-hidden="true" class="w-40 h-auto">
 
-        <span class="sr-only">Dashboard</span>
+        <span class="sr-only">ZTravel</span>
     </a>
 
     <!-- Toggle button -->
