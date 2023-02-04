@@ -26,11 +26,13 @@
 
 <body>
     <div x-data="mainState" class="font-sans antialiased" x-cloak>
-        <div class="flex flex-col min-h-screen text-gray-900 bg-gray-100">
+        @include('layouts.navigation')
+
+        <main class="flex flex-col min-h-screen text-gray-900 bg-gray-100">
             {{ $slot }}
 
             <x-footer />
-        </div>
+        </main>
     </div>
 </body>
 
