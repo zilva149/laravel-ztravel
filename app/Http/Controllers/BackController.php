@@ -8,7 +8,9 @@ class BackController extends Controller
 {
     public function showHome()
     {
-        return view('pages.back.home-admin');
+        $pageTitle = 'Pradinis';
+
+        return view('pages.back.home-admin', compact('pageTitle'));
     }
 
     public function showOrders()
@@ -28,7 +30,9 @@ class BackController extends Controller
 
     public function showCountries()
     {
-        return 'countries page';
+        $pageTitle = 'Šalys';
+
+        return view('pages.back.countries-admin', compact('pageTitle'));
     }
 
     public function showHotels()

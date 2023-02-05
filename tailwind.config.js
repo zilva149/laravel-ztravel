@@ -13,8 +13,8 @@ module.exports = {
     theme: {
         extend: {
             screens: {
-                xs: "500px",
-                sm: "668px",
+                sm: "500px",
+                md: "668px",
                 lg: "992px",
                 xl: "1200px",
                 "2xl": "1440px",

@@ -24,19 +24,22 @@
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.dropdown title="Kelionės" :active="Str::startsWith(
-        request()
-            ->route()
-            ->uri(),
-        'buttons',
-    )">
+    <x-sidebar.link title="Šalys" href="{{ route('admin-countries') }}" :isActive="request()->routeIs('admin-countries')">
+        <x-slot name="icon">
+            <i class="fa-solid fa-globe" aria-hidden="true"></i>
+        </x-slot>
+    </x-sidebar.link>
+
+    <x-sidebar.link title="Viešbučiai" href="{{ route('admin-hotels') }}" :isActive="request()->routeIs('admin-hotels')">
+        <x-slot name="icon">
+            <i class="fa-solid fa-hotel" aria-hidden="true"></i>
+        </x-slot>
+    </x-sidebar.link>
+
+    <x-sidebar.link title="Kelionės" href="{{ route('admin-travels') }}" :isActive="request()->routeIs('admin-travels')">
         <x-slot name="icon">
             <i class="fa-solid fa-plane w-6 text-center" aria-hidden="true"></i>
         </x-slot>
-
-        <x-sidebar.sublink title="Šalys" href="{{ route('admin-countries') }}" :active="request()->routeIs('admin-countries')" />
-        <x-sidebar.sublink title="Viešbučiai" href="{{ route('admin-hotels') }}" :active="request()->routeIs('admin-hotels')" />
-        <x-sidebar.sublink title="Produktai" href="{{ route('admin-travels') }}" :active="request()->routeIs('admin-travels')" />
-    </x-sidebar.dropdown>
+    </x-sidebar.link>
 
 </x-perfect-scrollbar>

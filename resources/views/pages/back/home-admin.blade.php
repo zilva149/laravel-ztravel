@@ -1,4 +1,4 @@
-<x-back-layout>
+<x-back-layout :$pageTitle>
     <x-slot name="header">
         <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <h2 class="text-3xl font-semibold leading-tight">
@@ -8,7 +8,7 @@
     </x-slot>
 
     <section
-        class="mb-6 p-6 rounded-md bg-white shadow-md grid grid-cols-1 gap-4 dark:bg-dark-eval-1 sm:grid-cols-2 2xl:grid-cols-4">
+        class="mb-6 p-6 rounded-md bg-white shadow-md grid grid-cols-1 gap-4 dark:bg-dark-eval-1 md:grid-cols-2 2xl:grid-cols-4">
         <x-back.home-link url="{{ route('admin-countries') }}" title='Šalys' class='bg-red-500 hover:bg-red-600' />
         <x-back.home-link url="{{ route('admin-hotels') }}" title='Viešbučiai' class='bg-green-500 hover:bg-green-600' />
         <x-back.home-link url="{{ route('admin-travels') }}" title='Kelionės' class='bg-sky-500 hover:bg-sky-600' />
