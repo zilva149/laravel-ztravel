@@ -26,13 +26,13 @@
 
     <x-sidebar.link title="Šalys" href="{{ route('admin-countries') }}" :isActive="request()->routeIs('admin-countries')">
         <x-slot name="icon">
-            <i class="fa-solid fa-globe" aria-hidden="true"></i>
+            <i class="fa-solid fa-globe w-6 text-center" aria-hidden="true"></i>
         </x-slot>
     </x-sidebar.link>
 
     <x-sidebar.link title="Viešbučiai" href="{{ route('admin-hotels') }}" :isActive="request()->routeIs('admin-hotels')">
         <x-slot name="icon">
-            <i class="fa-solid fa-hotel" aria-hidden="true"></i>
+            <i class="fa-solid fa-hotel w-6 text-center" aria-hidden="true"></i>
         </x-slot>
     </x-sidebar.link>
 
