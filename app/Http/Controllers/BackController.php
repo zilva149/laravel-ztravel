@@ -8,7 +8,7 @@ class BackController extends Controller
 {
     public function showHome()
     {
-        return view('dashboard');
+        return view('pages.back.home-admin');
     }
 
     public function showOrders()

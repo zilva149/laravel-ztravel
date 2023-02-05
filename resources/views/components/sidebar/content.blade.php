@@ -24,19 +24,19 @@
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.dropdown title="Redagavimas" :active="Str::startsWith(
+    <x-sidebar.dropdown title="Kelionės" :active="Str::startsWith(
         request()
             ->route()
             ->uri(),
         'buttons',
     )">
         <x-slot name="icon">
-            <i class="fa-solid fa-pen-to-square w-6 text-center" aria-hidden="true"></i>
+            <i class="fa-solid fa-plane w-6 text-center" aria-hidden="true"></i>
         </x-slot>
 
         <x-sidebar.sublink title="Šalys" href="{{ route('admin-countries') }}" :active="request()->routeIs('admin-countries')" />
         <x-sidebar.sublink title="Viešbučiai" href="{{ route('admin-hotels') }}" :active="request()->routeIs('admin-hotels')" />
-        <x-sidebar.sublink title="Kelionės" href="{{ route('admin-travels') }}" :active="request()->routeIs('admin-travels')" />
+        <x-sidebar.sublink title="Produktai" href="{{ route('admin-travels') }}" :active="request()->routeIs('admin-travels')" />
     </x-sidebar.dropdown>
 
 </x-perfect-scrollbar>

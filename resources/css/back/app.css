@@ -8,3 +8,13 @@
 .dark .ps__rail-x {
     background-color: transparent !important;
 }
+
+@layer components {
+    .btn {
+        @apply w-full h-10 bg-slate-400 rounded-md transition-all duration-300 hover:bg-slate-500;
+    }
+
+    .btn i {
+        @apply w-full text-center;
+    }
+}

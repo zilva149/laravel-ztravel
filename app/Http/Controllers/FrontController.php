@@ -19,11 +19,11 @@ class FrontController extends Controller
             }
         }
 
-        return view('welcome');
+        return view('pages.front.home-customer');
     }
 
     public function customerHome()
     {
-        return view('welcome');
+        return view('pages.front.home-customer');
     }
 }

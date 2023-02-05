@@ -43,13 +43,13 @@
 
                 <!-- Page Heading -->
                 <header>
-                    <div class="p-4 sm:p-6">
+                    <div class="p-6 sm:p-8">
                         {{ $header }}
                     </div>
                 </header>
 
                 <!-- Page Content -->
-                <main class="px-4 sm:px-6 flex-1">
+                <main class="px-6 sm:px-8 flex-1">
                     {{ $slot }}
                 </main>
 
