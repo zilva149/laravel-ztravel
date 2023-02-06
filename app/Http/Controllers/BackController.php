@@ -15,12 +15,15 @@ class BackController extends Controller
 
     public function showOrders()
     {
-        return 'orders page';
+        $pageTitle = 'Užsakymai';
+
+        return view('pages.back.orders-admin', compact('pageTitle'));
     }
 
-    public function showClients()
+    public function showUsers()
     {
-        return 'clients page';
+        $pageTitle = 'Vartotojai';
+        return view('pages.back.users-admin', compact('pageTitle'));
     }
 
     public function showReviews()
@@ -35,13 +38,30 @@ class BackController extends Controller
         return view('pages.back.countries-admin', compact('pageTitle'));
     }
 
+    public function showAddCountry()
+    {
+        $pageTitle = 'Pridėti šalį';
+
+        return view('pages.back.add-country-admin', compact('pageTitle'));
+    }
+
     public function showHotels()
     {
-        return 'hotels page';
+        $pageTitle = 'Viešbučiai';
+        return view('pages.back.hotels-admin', compact('pageTitle'));
+    }
+
+    public function showAddHotel()
+    {
+        $pageTitle = 'Pridėti viešbutį';
+
+        return view('pages.back.add-hotel-admin', compact('pageTitle'));
     }
 
     public function showTravels()
     {
-        return 'travels page';
+        $pageTitle = 'Užsakymai';
+
+        return view('pages.back.travels-admin', compact('pageTitle'));
     }
 }

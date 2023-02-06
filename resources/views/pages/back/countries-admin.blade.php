@@ -4,8 +4,8 @@
             <h2 class="text-3xl font-semibold leading-tight">
                 Šalys
             </h2>
-            <a href="{{ route('admin-countries') }}"
-                class="btn w-fit px-4 bg-orange-500 hover:bg-orange-600 flex items-center">Pridėti šalį</a>
+            <a href="{{ route('admin-add-country') }}" class="btn-primary">Pridėti
+                šalį</a>
         </div>
     </x-slot>
 

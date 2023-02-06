@@ -12,7 +12,7 @@
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.link title="Klientai" href="{{ route('admin-clients') }}" :isActive="request()->routeIs('admin-clients')">
+    <x-sidebar.link title="Vartotojai" href="{{ route('admin-users') }}" :isActive="request()->routeIs('admin-users')">
         <x-slot name="icon">
             <i class="fa-solid fa-user w-6 text-center" aria-hidden="true"></i>
         </x-slot>

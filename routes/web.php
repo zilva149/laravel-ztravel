@@ -14,10 +14,12 @@ Route::middleware('roles:Customer')->group(function() {
 Route::middleware('roles:Admin|Manager')->prefix('/admin')->group(function() {
     Route::get('/home', [BackController::class, 'showHome'])->name('admin-home');
     Route::get('/orders', [BackController::class, 'showOrders'])->name('admin-orders');
-    Route::get('/clients', [BackController::class, 'showClients'])->name('admin-clients');
+    Route::get('/users', [BackController::class, 'showUsers'])->name('admin-users');
     Route::get('/reviews', [BackController::class, 'showReviews'])->name('admin-reviews');
     Route::get('/countries', [BackController::class, 'showCountries'])->name('admin-countries');
+    Route::get('/countries/add', [BackController::class, 'showAddCountry'])->name('admin-add-country');
     Route::get('/hotels', [BackController::class, 'showHotels'])->name('admin-hotels');
+    Route::get('/hotels/add', [BackController::class, 'showAddHotel'])->name('admin-add-hotel');
     Route::get('/travels', [BackController::class, 'showTravels'])->name('admin-travels');
 });
 
