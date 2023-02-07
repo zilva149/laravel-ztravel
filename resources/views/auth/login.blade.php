@@ -1,79 +1,70 @@
 <x-front-layout>
-    <x-auth-card>
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-slot name="header">
+        <div class="flex gap-8 items-center">
+            <h2 class="w-full text-3xl font-semibold leading-tight text-center">
+                Prisijungti
+            </h2>
+        </div>
+    </x-slot>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <form method="POST" action="{{ route('login') }}">
+    <!-- Validation Errors -->
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+    <section class="flex justify-center">
+        <form method="POST" action="{{ route('login') }}"
+            class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg dark:bg-dark-eval-1 dark:text-white">
             @csrf
 
-            <div class="grid gap-6">
-                <!-- Email Address -->
-                <div class="space-y-2">
-                    <x-form.label for="email" :value="__('Email')" />
+            <!-- Email Address -->
+            <div class="mb-6 flex flex-col gap-2">
+                <x-form.label for="email" :value="__('El. paštas')" />
+                <x-form.input id="email" class="block w-full" type="email" name="email" :value="old('email')"
+                    placeholder="{{ __('') }}" />
+            </div>
 
-                    <x-form.input-with-icon-wrapper>
-                        <x-slot name="icon">
-                            <x-heroicon-o-mail aria-hidden="true" class="w-5 h-5" />
-                        </x-slot>
+            <!-- Password -->
+            <div class="mb-6 flex flex-col gap-2">
+                <x-form.label for="password" :value="__('Slaptažodis')" />
+                <x-form.input id="password" class="block w-full" type="password" name="password"
+                    autocomplete="new-password" placeholder="{{ __('') }}" />
+            </div>
 
-                        <x-form.input withicon id="email" class="block w-full" type="email" name="email"
-                            :value="old('email')" placeholder="{{ __('Email') }}" required autofocus />
-                    </x-form.input-with-icon-wrapper>
-                </div>
+            <!-- Remember Me -->
+            <div class="mb-6 flex items-center justify-between">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox"
+                        class="text-purple-500 border-gray-300 rounded focus:border-purple-300 focus:ring focus:ring-purple-500 dark:border-gray-600 dark:bg-dark-eval-1 dark:focus:ring-offset-dark-eval-1"
+                        name="remember">
 
-                <!-- Password -->
-                <div class="space-y-2">
-                    <x-form.label for="password" :value="__('Password')" />
+                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                        {{ __('Atsiminti slaptažodį') }}
+                    </span>
+                </label>
 
-                    <x-form.input-with-icon-wrapper>
-                        <x-slot name="icon">
-                            <x-heroicon-o-lock-closed aria-hidden="true" class="w-5 h-5" />
-                        </x-slot>
-
-                        <x-form.input withicon id="password" class="block w-full" type="password" name="password"
-                            required autocomplete="current-password" placeholder="{{ __('Password') }}" />
-                    </x-form.input-with-icon-wrapper>
-                </div>
-
-                <!-- Remember Me -->
-                <div class="flex items-center justify-between">
-                    <label for="remember_me" class="inline-flex items-center">
-                        <input id="remember_me" type="checkbox"
-                            class="text-purple-500 border-gray-300 rounded focus:border-purple-300 focus:ring focus:ring-purple-500 dark:border-gray-600 dark:bg-dark-eval-1 dark:focus:ring-offset-dark-eval-1"
-                            name="remember">
-
-                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __('Remember me') }}
-                        </span>
-                    </label>
-
-                    @if (Route::has('password.request'))
-                        <a class="text-sm text-blue-500 hover:underline" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
-                    @endif
-                </div>
-
-                <div>
-                    <x-button class="justify-center w-full gap-2">
-                        <x-heroicon-o-login class="w-6 h-6" aria-hidden="true" />
-
-                        <span>{{ __('Log in') }}</span>
-                    </x-button>
-                </div>
-
-                @if (Route::has('register'))
-                    <p class="text-sm text-gray-600 dark:text-gray-400">
-                        {{ __('Don’t have an account?') }}
-                        <a href="{{ route('register') }}" class="text-blue-500 hover:underline">
-                            {{ __('Register') }}
-                        </a>
-                    </p>
+                @if (Route::has('password.request'))
+                    <a class="text-sm text-blue-500 hover:underline" href="{{ route('password.request') }}">
+                        {{ __('Pamiršai slaptažodį?') }}
+                    </a>
                 @endif
             </div>
+
+            <!-- Submit Button -->
+            <div class="mb-6">
+                <button type="submit" class="btn-primary">Pridėti</button>
+            </div>
+
+            <!-- Register Link -->
+            @if (Route::has('register'))
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    {{ __('Neturi paskyros?') }}
+                    <a href="{{ route('register') }}" class="text-blue-500 hover:underline">
+                        {{ __('Registracija') }}
+                    </a>
+                </p>
+            @endif
         </form>
-    </x-auth-card>
+    </section>
 </x-front-layout>

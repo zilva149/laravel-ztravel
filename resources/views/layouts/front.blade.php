@@ -26,13 +26,21 @@
 
 <body>
     <div x-data="mainState" class="font-sans antialiased" x-cloak>
-        @include('layouts.navigation')
+        <div class="min-h-screen text-gray-900 bg-gray-100">
+            <x-navigation />
 
-        <main class="flex flex-col min-h-screen text-gray-900 bg-gray-100">
-            {{ $slot }}
+            <!-- Page Heading -->
+            <header>
+                <div class="p-6 sm:p-8 bg-gray-100">
+                    {{ $header }}
+                </div>
+            </header>
 
+            <main class="px-6 sm:px-8 flex-1">
+                {{ $slot }}
+            </main>
             <x-footer />
-        </main>
+        </div>
     </div>
 </body>
 
