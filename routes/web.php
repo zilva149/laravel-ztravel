@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
@@ -16,8 +17,14 @@ Route::middleware('roles:Admin|Manager')->prefix('/admin')->group(function() {
     Route::get('/orders', [BackController::class, 'showOrders'])->name('admin-orders');
     Route::get('/users', [BackController::class, 'showUsers'])->name('admin-users');
     Route::get('/reviews', [BackController::class, 'showReviews'])->name('admin-reviews');
-    Route::get('/countries', [BackController::class, 'showCountries'])->name('admin-countries');
-    Route::get('/countries/add', [BackController::class, 'showAddCountry'])->name('admin-add-country');
+
+    Route::get('/countries', [CountryController::class, 'index'])->name('admin-countries');
+    Route::get('/countries/add', [CountryController::class, 'create'])->name('admin-country-create');
+    Route::post('/countries/add', [CountryController::class, 'store'])->name('admin-country-store');
+    Route::get('/countries/edit/{country}', [CountryController::class, 'edit'])->name('admin-country-edit');
+    Route::put('/countries/edit/{country}', [CountryController::class, 'update'])->name('admin-country-update');
+    Route::delete('/countries/delete/{country}', [CountryController::class, 'delete'])->name('admin-country-delete');
+    
     Route::get('/hotels', [BackController::class, 'showHotels'])->name('admin-hotels');
     Route::get('/hotels/add', [BackController::class, 'showAddHotel'])->name('admin-add-hotel');
     Route::get('/travels', [BackController::class, 'showTravels'])->name('admin-travels');

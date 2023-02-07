@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +16,46 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        DB::table('users')->insert([
+            'name' => 'Zilvinas',
+            'role' => '2',
+            'email' => 'zilvinas@gmail.com',
+            'password' => Hash::make('zilvinas123'),
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        DB::table('users')->insert([
+            'name' => 'Monika',
+            'role' => '0',
+            'email' => 'monika@gmail.com',
+            'password' => Hash::make('monika123'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Edvinas',
+            'role' => '0',
+            'email' => 'edvinas@gmail.com',
+            'password' => Hash::make('edvinas123'),
+        ]);
+
+        DB::table('countries')->insert([
+            'name' => 'Makedonija',
+            'continent' => 'Europa',
+            'season_start' => '2023-02-05',
+            'season_end' => '2023-02-11',
+        ]);
+
+        DB::table('countries')->insert([
+            'name' => 'Brazilija',
+            'continent' => 'Pietų Amerika',
+            'season_start' => '2023-06-14',
+            'season_end' => '2023-07-14',
+        ]);
+
+        DB::table('countries')->insert([
+            'name' => 'Portugalija',
+            'continent' => 'Europa',
+            'season_start' => '2023-05-20',
+            'season_end' => '2023-09-14',
+        ]);
     }
 }
