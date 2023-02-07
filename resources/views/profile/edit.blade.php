@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-back-layout :$pageTitle>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
             {{ __('Profile') }}
@@ -24,4 +24,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-back-layout>
