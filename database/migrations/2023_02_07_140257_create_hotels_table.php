@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 30);
             $table->text('desc');
-            $table->string('photo')->nullable();
+            $table->string('image')->nullable();
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

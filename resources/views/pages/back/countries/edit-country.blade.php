@@ -7,46 +7,80 @@
         </div>
     </x-slot>
 
+    @if (session()->has('success'))
+        <p>{{ session('success') }}</p>
+    @endif
+
+    @error('continent')
+        <p>{{ $message }}</p>
+    @enderror
+    @error('season_start')
+        <p>{{ $message }}</p>
+    @enderror
+    @error('season_end')
+        <p>{{ $message }}</p>
+    @enderror
+    @error('image')
+        <p>{{ $message }}</p>
+    @enderror
+
     <section class="flex justify-center">
-        <form class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg dark:bg-dark-eval-1 dark:text-white">
+        <form action="{{ route('admin-country-update', $country->id) }}" method="POST" enctype="multipart/form-data"
+            class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg dark:bg-dark-eval-1 dark:text-white">
+            @csrf
+            @method('PUT')
+
             <div class="mb-6 flex flex-col gap-2">
                 <label for="name">Šalis</label>
                 <input type="text"
                     class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                    name="name" id="name" placeholder="Šalies pavadinimas">
+                    name="name" id="name" value="{{ $country->name }}" placeholder="Šalies pavadinimas">
             </div>
+
             <div class="mb-6 flex flex-col gap-2">
                 <label for="continent">Žemynas</label>
                 <select
                     class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
                     aria-label="continent" name="continent" id="continent" required>
-                    <option value="" selected disabled>-- Rinktis žemyną</option>
-                    <option value="0">Europa</option>
-                    <option value="1">Azija</option>
-                    <option value="2">Afrika</option>
-                    <option value="3">Pietų Amerika</option>
-                    <option value="3">Šiaurės Amerika</option>
-                    <option value="3">Okeanija</option>
+                    <option selected disabled>-- Rinktis žemyną</option>
+                    @foreach ($continents as $continent)
+                        <option value="{{ $continent }}" @if ($continent === $country->continent) selected @endif>
+                            {{ $continent }}</option>
+                    @endforeach
                 </select>
             </div>
+
             <div class="mb-6 flex flex-col gap-2">
-                <label for="dateStart">Sezono pradžia</label>
+                <label for="season_start">Sezono pradžia</label>
                 <input type="date"
                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    name="dateStart" id="dateStart" />
+                    name="season_start" value="{{ $country->season_start }}" id="season_start" />
             </div>
+
             <div class="mb-6 flex flex-col gap-2">
-                <label for="dateEnd">Sezono pabaiga</label>
+                <label for="season_end">Sezono pabaiga</label>
                 <input type="date"
                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    name="dateEnd" id="dateEnd" />
+                    name="season_end" value="{{ $country->season_end }}" id="season_end" />
             </div>
+
+            @if ($country->image !== '/assets/img/logo.png')
+                <div class="mb-6 flex flex-col gap-2">
+                    <div class="w-full rounded-md overflow-hidden">
+                        <img src="{{ $country->image }}" alt="image">
+                    </div>
+                    <button class="btn-primary w-full" type="submit" name="delete_photo" value="1">Trinti
+                        nuotrauką</button>
+                </div>
+            @endif
+
             <div class="mb-6">
                 <input
                     class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                    type="file" name="photo">
+                    type="file" name="image">
             </div>
-            <button type="submit" class="btn-primary">Pridėti</button>
+
+            <button type="submit" class="btn-primary">Redaguoti</button>
         </form>
     </section>
 </x-back-layout>

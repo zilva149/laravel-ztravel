@@ -1,7 +1,7 @@
 <div class="flex items-center justify-between flex-shrink-0 px-3">
     <!-- Logo -->
     <a href="{{ route('admin-home') }}" class="inline-flex items-center gap-2">
-        <img src="{{ asset('build/assets/img/logo-full.png') }}" alt="ZTravel" aria-hidden="true" class="w-40 h-auto">
+        <img src="{{ asset('assets/img/logo-full.png') }}" alt="ZTravel" aria-hidden="true" class="w-40 h-auto">
 
         <span class="sr-only">ZTravel</span>
     </a>

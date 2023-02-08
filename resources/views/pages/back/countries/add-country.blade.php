@@ -20,12 +20,12 @@
     @error('season_end')
         <p>{{ $message }}</p>
     @enderror
-    @error('photo')
+    @error('image')
         <p>{{ $message }}</p>
     @enderror
 
     <section class="flex justify-center">
-        <form action="{{ route('admin-country-store') }}" method="POST"
+        <form action="{{ route('admin-country-store') }}" method="POST" enctype="multipart/form-data"
             class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg dark:bg-dark-eval-1 dark:text-white">
             @csrf
             <div class="mb-6 flex flex-col gap-2">
@@ -38,7 +38,7 @@
                 <label for="continent">Žemynas:</label>
                 <select
                     class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                    aria-label="continent" name="continent" id="continent" required>
+                    aria-label="continent" name="continent" id="continent">
                     <option selected disabled>-- Rinktis žemyną</option>
                     @foreach ($continents as $continent)
                         <option value="{{ $continent }}">{{ $continent }}</option>
@@ -60,7 +60,7 @@
             <div class="mb-6">
                 <input
                     class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                    type="file" name="photo">
+                    type="file" name="image">
             </div>
             <button type="submit" class="btn-primary">Pridėti</button>
         </form>

@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('travel', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30);
-            $table->string('continent', 20);
-            $table->date('season_start');
-            $table->date('season_end');
-            $table->string('image')->nullable();
+            $table->string('name', 50);
+            $table->date('travel_start');
+            $table->date('travel_end');
+            $table->decimal('price', 10, 2)->unsigned();
+            $table->foreignId('country_id')->constrained()->onDelete('cascade');
+            $table->foreignId('hotel_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('travel');
     }
 };

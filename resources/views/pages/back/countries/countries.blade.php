@@ -9,6 +9,10 @@
         </div>
     </x-slot>
 
+    @if (session()->has('success'))
+        <p>{{ session('success') }}</p>
+    @endif
+
     <div class="mb-6 dark:bg-dark-eval-0 dark:text-gray-200">
         <section class="w-full p-6 bg-white rounded-md shadow-md flex flex-col gap-6 dark:bg-dark-eval-1">
             @if (count($countries) !== 0)
@@ -16,7 +20,8 @@
                     <x-back.country-card :$country />
                 @endforeach
             @else
-                <h2>Šalių sąrašas tuščias</h2>
+                <h2 class="text-2xl font-semibold">Šalių sąrašas tuščias</h2>
             @endif
+        </section>
     </div>
 </x-back-layout>

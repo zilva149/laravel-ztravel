@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Country extends Model
 {
@@ -24,8 +25,15 @@ class Country extends Model
         'continent',
         'season_start',
         'season_end',
-        'photo',
+        'image',
     ];
+
+    protected function image(): Attribute
+    {
+        return Attribute::make(get: function($value) {
+            return $value ? "/storage/countries/$value" : '/assets/img/logo.png';
+        });
+    }
 
     public function hotels()
     {

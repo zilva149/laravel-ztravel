@@ -30,24 +30,4 @@ class BackController extends Controller
     {
         return 'reviews page';
     }
-
-    public function showHotels()
-    {
-        $pageTitle = 'Viešbučiai';
-        return view('pages.back.hotels.hotels', compact('pageTitle'));
-    }
-
-    public function showAddHotel()
-    {
-        $pageTitle = 'Pridėti viešbutį';
-
-        return view('pages.back.hotels.add-hotel', compact('pageTitle'));
-    }
-
-    public function showTravels()
-    {
-        $pageTitle = 'Užsakymai';
-
-        return view('pages.back.travels.travels', compact('pageTitle'));
-    }
 }
