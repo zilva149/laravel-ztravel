@@ -22,8 +22,9 @@ class TravelController extends Controller
     {
         $pageTitle = 'Pridėti kelionę';
         $countries = Country::all();
+        $hotels = Hotel::all();
 
-        return view('pages.back.travels.add-travel', compact('pageTitle', 'countries'));
+        return view('pages.back.travels.add-travel', compact('pageTitle', 'countries', 'hotels'));
     }
 
     public function store(Request $request)

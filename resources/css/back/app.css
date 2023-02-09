@@ -23,4 +23,12 @@
     .show {
         @apply max-h-[9999px] !important;
     }
+
+    .modal-sm {
+        @apply w-full p-1 px-4 rounded-md text-white;
+    }
+
+    .modal-sm p {
+        @apply text-sm;
+    }
 }
