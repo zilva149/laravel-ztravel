@@ -6,16 +6,24 @@
             <div
                 class="md:w-3/5 flex flex-col justify-center gap-1 xl:flex-row xl:justify-start text-center md:text-start">
                 <span class="font-semibold">Pavadinimas:</span>
-                <span>{{ $travel['title'] }}</span>
+                <span>{{ $travel->name }}</span>
             </div>
             <div class="md:w-1/5 flex gap-1">
-                <a class="btn-primary bg-green-500 hover:bg-green-600 px-6 text-xl cursor-pointer md:px-6"
+                <a href="{{ route('admin-travel-edit', $travel->id) }}"
+                    class="btn-primary bg-green-500 hover:bg-green-600 px-6 text-xl cursor-pointer md:px-6"
                     title="redaguoti">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a class="btn-primary bg-red-500 hover:bg-red-600 px-6 text-xl cursor-pointer md:px-6" title="ištrinti">
-                    <i class="fa-solid fa-trash"></i>
-                </a>
+                <form action="{{ route('admin-travel-delete', $travel->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit"
+                        class="btn-primary bg-red-500 hover:bg-red-600 px-6 text-xl cursor-pointer md:px-6"
+                        title="ištrinti">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </form>
             </div>
             <div class="md:w-1/5 text-2xl text-end">
                 <i class="fa-solid fa-chevron-down cursor-pointer transition-all hover:text-slate-500"
@@ -24,29 +32,29 @@
         </div>
         <div class="overflow-hidden max-h-0">
             <div class="pt-4 flex flex-col gap-3">
-                <div class="flex gap-1 md:hidden">
+                <div class="flex gap-1">
                     <span class="font-semibold">ID:</span>
-                    <span>{{ $travel['id'] }}</span>
+                    <span>{{ $travel->id }}</span>
                 </div>
-                <div class="flex gap-1 md:hidden">
+                <div class="flex gap-1">
                     <span class="font-semibold">Šalis:</span>
-                    <span>{{ $travel['country'] }}</span>
+                    <span>{{ $travel->country->name }}</span>
                 </div>
                 <div class="flex gap-1">
                     <span class="font-semibold">Viešbutis:</span>
-                    <span>{{ $travel['hotel'] }}</span>
+                    <span>{{ $travel->hotel->name }}</span>
                 </div>
                 <div class="flex gap-1">
                     <span class="font-semibold">Data:</span>
-                    <span>{{ $travel['startDate'] }} {{ $travel['endDate'] }}</span>
+                    <span>{{ $travel->travel_start }} iki {{ $travel->travel_end }}</span>
                 </div>
                 <div class="flex gap-1">
                     <span class="font-semibold">Trukmė:</span>
-                    <span>{{ $travel['days'] }}</span>
+                    <span>{{ 14 }}</span>
                 </div>
                 <div class="flex gap-1">
                     <span class="font-semibold">Kaina:</span>
-                    <span>{{ number_format($travel['price'], 2, '.', ',') }}</span>
+                    <span>{{ number_format($travel->price, 2, '.', ',') }}</span>
                 </div>
             </div>
         </div>

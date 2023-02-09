@@ -30,13 +30,13 @@
                 class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg dark:bg-dark-eval-1 dark:text-white">
                 @csrf
                 <div class="mb-6 flex flex-col gap-2">
-                    <label for="country">Šalis</label>
+                    <label for="country_id">Šalis</label>
                     <select
                         class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                        aria-label="country" name="country" id="country">
-                        <option value="" selected disabled>-- Rinktis šalį</option>
+                        aria-label="country" name="country_id" id="country_id">
+                        <option selected disabled>-- Rinktis šalį</option>
                         @foreach ($countries as $country)
-                            <option value="{{ $country->name }}">{{ $country->name }}</option>
+                            <option value="{{ $country->id }}">{{ $country->name }}</option>
                         @endforeach
                     </select>
                 </div>

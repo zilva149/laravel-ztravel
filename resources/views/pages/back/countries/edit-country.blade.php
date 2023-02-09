@@ -54,18 +54,21 @@
                 <label for="season_start">Sezono pradžia</label>
                 <input type="date"
                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    name="season_start" value="{{ $country->season_start }}" id="season_start" />
+                    name="season_start" value="{{ $country->season_start }}" id="season_start"
+                    min="{{ date('Y-m-d') }}" />
             </div>
 
             <div class="mb-6 flex flex-col gap-2">
                 <label for="season_end">Sezono pabaiga</label>
                 <input type="date"
                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                    name="season_end" value="{{ $country->season_end }}" id="season_end" />
+                    name="season_end" value="{{ $country->season_end }}" id="season_end"
+                    min="{{ date('Y-m-d', strtotime(date('Y-m-d') . ' +1 day')) }}" />
             </div>
 
             @if ($country->image !== '/assets/img/logo.png')
-                <div class="mb-6 flex flex-col gap-2">
+                <div class="mb-6
+                    flex flex-col gap-2">
                     <div class="w-full rounded-md overflow-hidden">
                         <img src="{{ $country->image }}" alt="image">
                     </div>

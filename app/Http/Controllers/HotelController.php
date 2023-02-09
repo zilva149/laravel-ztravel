@@ -31,15 +31,13 @@ class HotelController extends Controller
     public function store(Request $request)
     {
         $incomingFields = $request->validate([
-            'country' => ['required', Rule::in(Country::all()->pluck('name'))],
+            'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
             'name' => ['required', 'unique:hotels'],
             'desc' => ['required'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2000'],
         ]);
         $incomingFields['name'] = strip_tags($incomingFields['name']);
         $incomingFields['desc'] = strip_tags($incomingFields['desc']);
-
-        $incomingFields['country_id'] = DB::table('countries')->where('name', $incomingFields['country'])->value('id');
 
         if ($request->file('image')) {
             $image = $request->file('image');
@@ -79,15 +77,13 @@ class HotelController extends Controller
         }
 
         $incomingFields = $request->validate([
-            'country' => ['required', Rule::in(Country::all()->pluck('name'))],
+            'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
             'name' => ['required'],
             'desc' => ['required'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2000'],
         ]);
         $incomingFields['name'] = strip_tags($incomingFields['name']);
         $incomingFields['desc'] = strip_tags($incomingFields['desc']);
-
-        $incomingFields['country_id'] = DB::table('countries')->where('name', $incomingFields['country'])->value('id');
 
         if ($request->file('image')) {
             $image = $request->file('image');
