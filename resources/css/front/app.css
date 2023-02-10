@@ -7,15 +7,28 @@
     :root {
         --green: #1bae70;
         --dgreen: #06752e;
+        --dblue: #152238;
+    }
+
+    html {
+        @apply font-sans;
     }
 }
 
 @layer components {
-    .btn-nav-action {
+    .btn-action-link {
         @apply px-6 py-2 text-white rounded-3xl bg-[var(--green)] hover:bg-[var(--dgreen)] transition-all ease-in-out;
     }
 
     .show {
         @apply max-h-[9999px] !important;
+    }
+
+    .hero-section {
+        @apply relative;
+    }
+
+    .hero-section::before {
+        @apply absolute top-0 left-0 w-full h-full bg-[#14261c] opacity-[0.65] content-none;
     }
 }

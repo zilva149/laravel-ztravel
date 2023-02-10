@@ -1,19 +1,19 @@
 <x-front-layout>
-    <x-slot name="header">
-        <div class="flex gap-8 items-center">
-            <h2 class="w-full text-3xl font-semibold leading-tight text-center">
+    <section
+        class="relative min-h-[115vh] text-gray-900 bg-[url('/public/assets/img/hero-home.jpg')] bg-cover bg-center bg-fixed before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[#14261c] before:opacity-[0.6] flex flex-col justify-center items-center"
+        id="hero">
+        <header class="relative flex flex-col items-center bg-transparent z-99">
+            <h1
+                class="relative mb-12 text-white text-2xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">
                 Registracija
-            </h2>
-        </div>
-    </x-slot>
-
-    <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-    <section class="flex justify-center">
+            </h1>
+        </header>
         <form method="POST" action="{{ route('register') }}"
-            class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg dark:bg-dark-eval-1 dark:text-white">
+            class="relative p-6 rounded-lg border-2 shadow-lg bg-[rgba(21,34,56,0.4)] w-full max-w-lg z-99">
             @csrf
+
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
             <!-- Name -->
             <div class="mb-6 flex flex-col gap-2">
@@ -45,13 +45,13 @@
 
             <!-- Submit Button -->
             <div class="mb-6">
-                <button type="submit" class="btn-primary">Pridėti</button>
+                <button type="submit" class="btn-action-link">Registruotis</button>
             </div>
 
             <!-- Login Link -->
-            <p class="text-sm text-gray-600 dark:text-gray-400">
+            <p class="text-sm text-white">
                 {{ __('Jau prisiregistravęs?') }}
-                <a href="{{ route('login') }}" class="text-blue-500 hover:underline">
+                <a href="{{ route('login') }}" class="text-[var(--green)] hover:underline">
                     {{ __('Prisijungti') }}
                 </a>
             </p>

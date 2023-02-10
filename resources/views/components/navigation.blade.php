@@ -1,18 +1,30 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="absolute top-0 left-0 right-0 z-10 bg-transparent">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20">
+        <div class="flex justify-between h-24">
             <div class="flex items-center w-[125px]">
                 <a href="{{ route('index') }}">
-                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <x-application-logo-light class="block h-9 w-auto fill-current text-gray-800" />
                 </a>
             </div>
 
             <div class="flex items-center gap-8">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('index', 'customer-home')">
                         {{ __('Pradinis') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('customer-travels')">
+                        {{ __('Pasiūlymai') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('customer-destinations')">
+                        {{ __('Kelionių kryptys') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('customer-about-us')">
+                        {{ __('Apie mus') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('customer-contact-us')">
+                        {{ __('Kontaktai') }}
                     </x-nav-link>
                 </div>
                 @auth
@@ -59,8 +71,8 @@
                     </div>
                 @else
                     <div class="hidden sm:flex gap-4">
-                        <a href="{{ route('login') }}" class="btn-nav-action">Log in</a>
-                        <a href="{{ route('register') }}" class="btn-nav-action">Register</a>
+                        <a href="{{ route('login') }}" class="btn-action-link">Log in</a>
+                        <a href="{{ route('register') }}" class="btn-action-link">Register</a>
                     </div>
                 @endauth
             </div>
