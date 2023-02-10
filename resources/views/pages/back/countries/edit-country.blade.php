@@ -66,7 +66,7 @@
                     min="{{ date('Y-m-d', strtotime(date('Y-m-d') . ' +1 day')) }}" />
             </div>
 
-            @if ($country->image !== '/assets/img/logo.png')
+            @if ($country->image)
                 <div class="mb-6
                     flex flex-col gap-2">
                     <div class="w-full rounded-md overflow-hidden">

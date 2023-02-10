@@ -99,14 +99,14 @@ class HotelController extends Controller
                 Storage::delete(str_replace('/storage/', 'public/' , $hotel->image));
             }
 
-            $incomingFields['image'] = $fileName;
+            $incomingFields['image'] = "/storage/hotels/$fileName";
 
             Storage::put("public/hotels/$fileName", $image);
         } else {
             $incomingFields['image'] = $hotel->image;
         }
 
-       $hotel->update($incomingFields);
+        $hotel->update($incomingFields);
 
         return redirect()->back()->with('success', 'Viešbutis sėkmingai atnaujintas');
     }

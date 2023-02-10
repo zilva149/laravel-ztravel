@@ -11,19 +11,6 @@
         <p>{{ session('success') }}</p>
     @endif
 
-    @error('country')
-        <p>{{ $message }}</p>
-    @enderror
-    @error('name')
-        <p>{{ $message }}</p>
-    @enderror
-    @error('desc')
-        <p>{{ $message }}</p>
-    @enderror
-    @error('image')
-        <p>{{ $message }}</p>
-    @enderror
-
     <section class="flex justify-center">
         @if (count($countries) !== 0)
             <form action="{{ route('admin-hotel-store') }}" method="POST" enctype="multipart/form-data"
@@ -36,26 +23,47 @@
                         aria-label="country" name="country_id" id="country_id">
                         <option selected disabled>-- Rinktis šalį</option>
                         @foreach ($countries as $country)
-                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            <option value="{{ $country->id }}" @if ($country->id == old('country_id', '')) selected @endif>
+                                {{ $country->name }}</option>
                         @endforeach
                     </select>
+                    @error('country_id')
+                        <div class="modal-sm" style="background-color: #f01616">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @enderror
                 </div>
-                <div class="flex flex-col gap-2">
+                <div class="mb-6 flex flex-col gap-2">
                     <label for="name">Pavadinimas</label>
                     <input type="text"
-                        class="mb-6 w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                        name="name" id="name">
+                        class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                        name="name" id="name" value="{{ old('name', '') }}">
+                    @error('name')
+                        <div class="modal-sm" style="background-color: #f01616">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @enderror
                 </div>
-                <div class="flex flex-col gap-2">
+                <div class="mb-6 flex flex-col gap-2">
                     <label for="desc">Aprašymas</label>
                     <textarea
-                        class="mb-6 w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                        name="desc" id="desc" rows="3"></textarea>
+                        class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                        name="desc" id="desc" rows="3">{{ old('desc', '') }}</textarea>
+                    @error('desc')
+                        <div class="modal-sm" style="background-color: #f01616">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-6">
                     <input
                         class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
                         type="file" name="image">
+                    @error('image')
+                        <div class="modal-sm" style="background-color: #f01616">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn-primary">Pridėti</button>
             </form>

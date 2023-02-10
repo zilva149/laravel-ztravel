@@ -28,13 +28,6 @@ class Country extends Model
         'image',
     ];
 
-    protected function image(): Attribute
-    {
-        return Attribute::make(get: function($value) {
-            return $value ? "/storage/countries/$value" : '/assets/img/logo.png';
-        });
-    }
-
     public function hotels()
     {
         return $this->hasMany(Hotel::class);

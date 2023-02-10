@@ -4,7 +4,7 @@
     <div class="p-4 flex flex-col">
         <div class="flex flex-col md:flex-row gap-4 relative">
             <div class="w-full md:w-1/2">
-                <img src="{{ $hotel->image }}" alt="{{ $hotel->name }}"
+                <img src="{{ $hotel->image ? $hotel->image : '/assets/img/no-image.jpg' }}" alt="{{ $hotel->name }}"
                     class="object-cover w-full max-w-full h-full max-h-full">
             </div>
             <div class="w-full md:w-1/2 flex flex-col gap-2 text-lg">

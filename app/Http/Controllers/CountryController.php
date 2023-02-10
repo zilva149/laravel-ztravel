@@ -97,7 +97,7 @@ class CountryController extends Controller
                 Storage::delete(str_replace('/storage/', 'public/' , $country->image));
             }
 
-            $incomingFields['image'] = $fileName;
+            $incomingFields['image'] = "/storage/countries/$fileName";
 
             Storage::put("public/countries/$fileName", $image);
         } else {

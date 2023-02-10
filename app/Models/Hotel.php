@@ -17,13 +17,6 @@ class Hotel extends Model
         'country_id'
     ];
 
-    protected function image(): Attribute
-    {
-        return Attribute::make(get: function($value) {
-            return $value ? "/storage/hotels/$value" : '/assets/img/logo.png';
-        });
-    }
-
     public function country()
     {
         return $this->belongsTo(Country::class);
