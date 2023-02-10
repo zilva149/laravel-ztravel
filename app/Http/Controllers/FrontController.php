@@ -22,8 +22,13 @@ class FrontController extends Controller
         return view('pages.front.home-customer');
     }
 
-    public function customerHome()
+    public function showHome()
     {
         return view('pages.front.home-customer');
+    }
+    
+    public function showOrders()
+    {
+        return 'Customer Orders';
     }
 }

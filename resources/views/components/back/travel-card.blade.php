@@ -50,7 +50,7 @@
                 </div>
                 <div class="flex gap-1">
                     <span class="font-semibold">Trukmė:</span>
-                    <span>{{ 14 }}</span>
+                    <span>{{ $travel->duration }} dienų</span>
                 </div>
                 <div class="flex gap-1">
                     <span class="font-semibold">Kaina:</span>

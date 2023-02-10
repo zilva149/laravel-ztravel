@@ -50,7 +50,7 @@ class HotelController extends Controller
             })->crop(500, 300)->encode('jpg');
 
             Storage::put("public/hotels/$fileName", $image);
-            $incomingFields['image'] = $fileName;
+            $incomingFields['image'] = "/storage/hotels/$fileName";
         }
 
         Hotel::create($incomingFields);
@@ -113,6 +113,8 @@ class HotelController extends Controller
 
     public function delete(Hotel $hotel)
     {
+        Storage::delete(str_replace('/storage/', 'public/' , $hotel->image));
+
         $hotel->delete();
 
         return redirect()->back()->with('success', 'Viešbutis sėkmingai ištrinta');

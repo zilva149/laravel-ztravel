@@ -3,9 +3,16 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@layer base {
+    :root {
+        --green: #1bae70;
+        --dgreen: #06752e;
+    }
+}
+
 @layer components {
-    .btn-primary {
-        @apply inline-block px-6 py-2.5 bg-purple-500 text-white font-medium text-sm leading-tight rounded shadow-lg hover:bg-purple-600 hover:shadow-lg focus:outline-none focus:ring-0 transition duration-150 ease-in-out flex justify-center items-center;
+    .btn-nav-action {
+        @apply px-6 py-2 text-white rounded-3xl bg-[var(--green)] hover:bg-[var(--dgreen)] transition-all ease-in-out;
     }
 
     .show {

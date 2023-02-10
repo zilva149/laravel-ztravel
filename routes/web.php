@@ -11,8 +11,9 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
 
-Route::middleware('roles:Customer')->group(function() {
-    Route::get('/home', [FrontController::class, 'customerHome'])->name('customer-home');
+Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
+    Route::get('/home', [FrontController::class, 'showHome'])->name('home');
+    Route::get('/orders', [FrontController::class, 'showOrders'])->name('orders');
 });
 
 Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->group(function() {

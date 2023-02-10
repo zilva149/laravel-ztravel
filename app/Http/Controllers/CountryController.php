@@ -48,7 +48,7 @@ class CountryController extends Controller
             })->crop(500, 300)->encode('jpg');
 
             Storage::put("public/countries/$fileName", $image);
-            $incomingFields['image'] = $fileName;
+            $incomingFields['image'] = "/storage/countries/$fileName";
         }
 
         Country::create($incomingFields);
@@ -111,6 +111,14 @@ class CountryController extends Controller
 
     public function delete(Country $country)
     {
+        $countryHotels = $country->hotels;
+
+        foreach($countryHotels as $hotel) {
+            Storage::delete(str_replace('/storage/', 'public/' , $hotel->image));
+        }
+
+        Storage::delete(str_replace('/storage/', 'public/' , $country->image));
+
         $country->delete();
 
         return redirect()->back()->with('success', 'Šalis sėkmingai ištrinta');

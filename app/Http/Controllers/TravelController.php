@@ -7,6 +7,7 @@ use App\Models\Travel;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class TravelController extends Controller
 {
@@ -14,6 +15,14 @@ class TravelController extends Controller
     {
         $pageTitle = 'Kelionės';
         $travels = Travel::all();
+
+        foreach($travels as $travel) {
+            $start = Carbon::parse($travel->travel_start);
+            $end = Carbon::parse($travel->travel_end);
+
+            $duration = $start->diffInDays($end);
+            $travel->duration = $duration;
+        }
 
         return view('pages.back.travels.travels', compact('pageTitle', 'travels'));
     }
