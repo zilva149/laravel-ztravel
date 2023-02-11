@@ -14,7 +14,7 @@
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index', 'customer-home')">
                         {{ __('Pradinis') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('index')" :active="request()->routeIs('customer-travels')">
+                    <x-nav-link :href="route('customer-offers')" :active="request()->routeIs('customer-offers')">
                         {{ __('Pasiūlymai') }}
                     </x-nav-link>
                     <x-nav-link :href="route('index')" :active="request()->routeIs('customer-destinations')">

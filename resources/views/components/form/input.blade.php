@@ -11,5 +11,5 @@
     'class' =>
         $withiconClasses .
         ' py-2 border-gray-400 rounded-md focus:border-gray-400 focus:ring
-            focus:ring-[var(--green)] focus:ring-offset-2 focus:ring-offset-white',
+            focus:ring-[var(--green)]',
 ]) !!}>

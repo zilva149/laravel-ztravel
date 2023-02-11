@@ -19,16 +19,29 @@ class FrontController extends Controller
             }
         }
 
-        return view('pages.front.home-customer');
+        $pageTitle = 'Pradinis';
+
+        return view('pages.front.home-customer', compact('pageTitle'));
     }
 
     public function showHome()
     {
-        return view('pages.front.home-customer');
+        $pageTitle = 'Pradinis';
+
+        return view('pages.front.home-customer', compact('pageTitle'));
+    }
+
+    public function showOffers()
+    {
+        $pageTitle = 'Pasiūlymai';
+
+        return view('pages.front.offers.destinations-customer', compact('pageTitle'));
     }
     
     public function showOrders()
     {
+        $pageTitle = 'Užsakymai';
+
         return 'Customer Orders';
     }
 }

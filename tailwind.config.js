@@ -12,6 +12,15 @@ module.exports = {
 
     theme: {
         extend: {
+            keyframes: {
+                pulse: {
+                    "0%, 100%": { transform: "scale(1)" },
+                    "50%": { transform: "scale(0.95)" },
+                },
+            },
+            animation: {
+                pulse: "pulse 1.25s ease-in-out infinite",
+            },
             screens: {
                 sm: "500px",
                 md: "668px",

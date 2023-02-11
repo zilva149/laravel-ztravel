@@ -20,7 +20,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $pageTitle = 'Registracija';
+
+        return view('auth.register', compact('pageTitle'));
     }
 
     /**

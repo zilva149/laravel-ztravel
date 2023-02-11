@@ -13,7 +13,8 @@ Route::get('/', [FrontController::class, 'index'])->name('index');
 
 Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::get('/home', [FrontController::class, 'showHome'])->name('home');
-    Route::get('/orders', [FrontController::class, 'showOrders'])->name('orders');
+    Route::get('/offers', [FrontController::class, 'showOffers'])->name('offers');
+    Route::get('/orders', [FrontController::class, 'showOrders'])->middleware('roles:Customer')->name('orders');
 });
 
 Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->group(function() {
