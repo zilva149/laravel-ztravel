@@ -30,16 +30,17 @@
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.link title="Viešbučiai" href="{{ route('admin-hotels') }}" :isActive="request()->routeIs('admin-hotels')">
+    <x-sidebar.link title="Vietovės" href="{{ route('admin-destinations') }}" :isActive="request()->routeIs('admin-destinations')">
         <x-slot name="icon">
-            <i class="fa-solid fa-hotel w-6 text-center" aria-hidden="true"></i>
+            <i class="fa-solid fa-location-dot w-6 text-center" aria-hidden="true"></i>
         </x-slot>
     </x-sidebar.link>
 
-    <x-sidebar.link title="Kelionės" href="{{ route('admin-travels') }}" :isActive="request()->routeIs('admin-travels')">
+    <x-sidebar.link title="Nakvynės vietos" href="{{ route('admin-hotels') }}" :isActive="request()->routeIs('admin-hotels')">
         <x-slot name="icon">
-            <i class="fa-solid fa-plane w-6 text-center" aria-hidden="true"></i>
+            <i class="fa-solid fa-house w-6 text-center" aria-hidden="true"></i>
         </x-slot>
     </x-sidebar.link>
+
 
 </x-perfect-scrollbar>

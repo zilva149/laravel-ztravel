@@ -66,7 +66,10 @@
                     min="{{ date('Y-m-d', strtotime(date('Y-m-d') . ' +1 day')) }}" />
             </div>
 
-            <button type="submit" class="btn-primary">Redaguoti</button>
+            <div class="flex gap-2">
+                <button type="submit" class="btn-primary">Redaguoti</button>
+                <a href="{{ route('admin-countries') }}" class="btn-primary">Grįžti</a>
+            </div>
         </form>
     </section>
 </x-back-layout>

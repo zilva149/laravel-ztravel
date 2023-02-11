@@ -9,6 +9,6 @@ class APIController extends Controller
 {
     public function countryHotels(Country $country)
     {
-        return $country->hotels;
+        return $country->destinations;
     }
 }

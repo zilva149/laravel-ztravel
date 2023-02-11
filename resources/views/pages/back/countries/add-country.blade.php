@@ -57,7 +57,10 @@
                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     name="season_end" id="season_end" min="{{ date('Y-m-d', strtotime(date('Y-m-d') . ' +1 day')) }}" />
             </div>
-            <button type="submit" class="btn-primary">Pridėti</button>
+            <div class="flex gap-2">
+                <button type="submit" class="btn-primary">Pridėti</button>
+                <a href="{{ route('admin-countries') }}" class="btn-primary">Grįžti</a>
+            </div>
         </form>
     </section>
 </x-back-layout>

@@ -10,8 +10,10 @@
     <section
         class="mb-6 p-6 rounded-md bg-white shadow-md grid grid-cols-1 gap-4 dark:bg-dark-eval-1 md:grid-cols-2 2xl:grid-cols-4">
         <x-back.home-link url="{{ route('admin-countries') }}" title='Šalys' class='bg-red-700 hover:bg-red-800' />
-        <x-back.home-link url="{{ route('admin-hotels') }}" title='Viešbučiai' class='bg-green-700 hover:bg-green-800' />
-        <x-back.home-link url="{{ route('admin-travels') }}" title='Kelionės' class='bg-sky-500 hover:bg-sky-600' />
+        <x-back.home-link url="{{ route('admin-destinations') }}" title='Vietovės'
+            class='bg-green-700 hover:bg-green-800' />
+        <x-back.home-link url="{{ route('admin-hotels') }}" title='Nakvynės vietos'
+            class='bg-sky-500 hover:bg-sky-600' />
         <x-back.home-link url="{{ route('admin-reviews') }}" title='Atsiliepimai'
             class='bg-slate-400 hover:bg-slate-500' />
     </section>
