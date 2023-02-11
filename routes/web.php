@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\BackController;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\HotelController;
-use App\Http\Controllers\TravelController;
+use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProfileController;
 
@@ -14,6 +14,7 @@ Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::get('/home', [FrontController::class, 'showHome'])->name('home');
     Route::get('/offers', [FrontController::class, 'showOffers'])->name('offers');
+    Route::get('/offers/{destination}', [FrontController::class, 'showSingleOffer'])->name('single-offer');
     Route::get('/orders', [FrontController::class, 'showOrders'])->middleware('roles:Customer')->name('orders');
 });
 
@@ -30,6 +31,13 @@ Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->grou
     Route::put('/countries/edit/{country}', [CountryController::class, 'update'])->name('country-update');
     Route::delete('/countries/delete/{country}', [CountryController::class, 'delete'])->name('country-delete');
 
+    Route::get('/destinations', [DestinationController::class, 'index'])->name('destinations');
+    Route::get('/destinations/add', [DestinationController::class, 'create'])->name('destination-create');
+    Route::post('/destinations/add', [DestinationController::class, 'store'])->name('destination-store');
+    Route::get('/destinations/edit/{destination}', [DestinationController::class, 'edit'])->name('destination-edit');
+    Route::put('/destinations/edit/{destination}', [DestinationController::class, 'update'])->name('destination-update');
+    Route::delete('/destinations/delete/{destination}', [DestinationController::class, 'delete'])->name('destination-delete');
+
     Route::get('/hotels', [HotelController::class, 'index'])->name('hotels');
     Route::get('/hotels/add', [HotelController::class, 'create'])->name('hotel-create');
     Route::post('/hotels/add', [HotelController::class, 'store'])->name('hotel-store');
@@ -37,14 +45,14 @@ Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->grou
     Route::put('/hotels/edit/{hotel}', [HotelController::class, 'update'])->name('hotel-update');
     Route::delete('/hotels/delete/{hotel}', [HotelController::class, 'delete'])->name('hotel-delete');
     
-    Route::get('/travels', [TravelController::class, 'index'])->name('travels');
-    Route::get('/travels/add', [TravelController::class, 'create'])->name('travel-create');
-    Route::post('/travels/add', [TravelController::class, 'store'])->name('travel-store');
-    Route::get('/travels/edit/{travel}', [TravelController::class, 'edit'])->name('travel-edit');
-    Route::put('/travels/edit/{travel}', [TravelController::class, 'update'])->name('travel-update');
-    Route::delete('/travels/delete/{travel}', [TravelController::class, 'delete'])->name('travel-delete');
+    Route::get('/offers', [OfferController::class, 'index'])->name('offers');
+    Route::get('/offers/add', [OfferController::class, 'create'])->name('offer-create');
+    Route::post('/offers/add', [OfferController::class, 'store'])->name('offer-store');
+    Route::get('/offers/edit/{offer}', [OfferController::class, 'edit'])->name('offer-edit');
+    Route::put('/offers/edit/{offer}', [OfferController::class, 'update'])->name('offer-update');
+    Route::delete('/offers/delete/{offer}', [OfferController::class, 'delete'])->name('offer-delete');
 
-    Route::get('/travels/api/hotels/{country}', [APIController::class, 'countryHotels'])->name('api-travel-hotels');
+    Route::get('/offers/api/destinations/{country}', [APIController::class, 'countryDestinations'])->name('api-offer-hotels');
 });
 
 Route::middleware('auth')->group(function () {

@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('hotels', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30);
-            $table->string('continent', 20);
-            $table->date('season_start');
-            $table->date('season_end');
+            $table->string('address', 50);
+            $table->string('image')->nullable();
+            $table->smallInteger('people_limit')->unsigned();
+            $table->foreignId('destination_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('hotels');
     }
 };

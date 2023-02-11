@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hotels', function (Blueprint $table) {
+        Schema::create('destinations', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30);
+            $table->string('name', 50);
             $table->text('desc');
             $table->string('image')->nullable();
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hotels');
+        Schema::dropIfExists('destinations');
     }
 };

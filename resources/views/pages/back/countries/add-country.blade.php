@@ -57,11 +57,6 @@
                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     name="season_end" id="season_end" min="{{ date('Y-m-d', strtotime(date('Y-m-d') . ' +1 day')) }}" />
             </div>
-            <div class="mb-6">
-                <input
-                    class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                    type="file" name="image">
-            </div>
             <button type="submit" class="btn-primary">Pridėti</button>
         </form>
     </section>

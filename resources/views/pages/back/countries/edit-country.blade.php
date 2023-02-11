@@ -66,23 +66,6 @@
                     min="{{ date('Y-m-d', strtotime(date('Y-m-d') . ' +1 day')) }}" />
             </div>
 
-            @if ($country->image)
-                <div class="mb-6
-                    flex flex-col gap-2">
-                    <div class="w-full rounded-md overflow-hidden">
-                        <img src="{{ $country->image }}" alt="image">
-                    </div>
-                    <button class="btn-primary w-full" type="submit" name="delete_photo" value="1">Trinti
-                        nuotrauką</button>
-                </div>
-            @endif
-
-            <div class="mb-6">
-                <input
-                    class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                    type="file" name="image">
-            </div>
-
             <button type="submit" class="btn-primary">Redaguoti</button>
         </form>
     </section>

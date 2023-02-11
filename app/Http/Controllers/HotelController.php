@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use App\Models\Country;
+use App\Models\Destination;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +14,7 @@ class HotelController extends Controller
 {
     public function index()
     {
-        $pageTitle = 'Viešbučiai';
+        $pageTitle = 'Nakvynės vietos';
         $hotels = Hotel::all();
 
         return view('pages.back.hotels.hotels', compact('pageTitle', 'hotels'));
@@ -22,7 +22,7 @@ class HotelController extends Controller
 
      public function create()
     {
-        $pageTitle = 'Pridėti viešbutį';
+        $pageTitle = 'Pridėti nakvynės vietą';
         $countries = Country::all();
 
         return view('pages.back.hotels.add-hotel', compact('pageTitle', 'countries'));
@@ -31,13 +31,13 @@ class HotelController extends Controller
     public function store(Request $request)
     {
         $incomingFields = $request->validate([
-            'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
+            'destination_id' => ['required', Rule::in(Destination::all()->pluck('id'))],
             'name' => ['required', 'unique:hotels'],
-            'desc' => ['required'],
+            'address' => ['required', 'unique:hotels'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2000'],
         ]);
         $incomingFields['name'] = strip_tags($incomingFields['name']);
-        $incomingFields['desc'] = strip_tags($incomingFields['desc']);
+        $incomingFields['address'] = strip_tags($incomingFields['address']);
 
         if ($request->file('image')) {
             $image = $request->file('image');
@@ -55,12 +55,12 @@ class HotelController extends Controller
 
         Hotel::create($incomingFields);
 
-        return redirect()->back()->with('success', 'Viešbutis sėkmingai sukurtas');
+        return redirect()->back()->with('success', 'Nakvynės vieta sėkmingai sukurta');
     }
 
     public function edit(Hotel $hotel)
     {
-        $pageTitle = 'Redaguoti viešbutį';
+        $pageTitle = 'Redaguoti nakvynės vietą';
         $countries = Country::all();
 
         return view('pages.back.hotels.edit-hotel', compact('pageTitle', 'countries', 'hotel'));
@@ -77,13 +77,13 @@ class HotelController extends Controller
         }
 
         $incomingFields = $request->validate([
-            'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
-            'name' => ['required'],
-            'desc' => ['required'],
+            'destination_id' => ['required', Rule::in(Destination::all()->pluck('id'))],
+            'name' => ['required', 'unique:hotels'],
+            'address' => ['required', 'unique:hotels'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2000'],
         ]);
         $incomingFields['name'] = strip_tags($incomingFields['name']);
-        $incomingFields['desc'] = strip_tags($incomingFields['desc']);
+        $incomingFields['address'] = strip_tags($incomingFields['address']);
 
         if ($request->file('image')) {
             $image = $request->file('image');
@@ -101,14 +101,14 @@ class HotelController extends Controller
 
             $incomingFields['image'] = "/storage/hotels/$fileName";
 
-            Storage::put("public/hotels/$fileName", $image);
+            Storage::put("public/destinations/$fileName", $image);
         } else {
             $incomingFields['image'] = $hotel->image;
         }
 
         $hotel->update($incomingFields);
 
-        return redirect()->back()->with('success', 'Viešbutis sėkmingai atnaujintas');
+        return redirect()->back()->with('success', 'Nakvynės vieta sėkmingai atnaujinta');
     }
 
     public function delete(Hotel $hotel)
@@ -117,6 +117,6 @@ class HotelController extends Controller
 
         $hotel->delete();
 
-        return redirect()->back()->with('success', 'Viešbutis sėkmingai ištrinta');
+        return redirect()->back()->with('success', 'Nakvynės vieta sėkmingai ištrinta');
     }
 }

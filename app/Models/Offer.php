@@ -5,26 +5,32 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Travel extends Model
+class Offer extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'travel_start',
-        'travel_end',
+        'offer_start',
+        'offer_end',
         'price',
-        'country_id',
+        'country_id'.
         'hotel_id',
+        'destination_id',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 
     public function hotel()
     {
         return $this->belongsTo(Hotel::class);
     }
 
-    public function country()
+    public function destination()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Destination::class);
     }
 }

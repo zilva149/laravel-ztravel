@@ -25,16 +25,15 @@ class Country extends Model
         'continent',
         'season_start',
         'season_end',
-        'image',
     ];
 
-    public function hotels()
+    public function destinations()
     {
-        return $this->hasMany(Hotel::class);
+        return $this->hasMany(Destination::class);
     }
 
-    public function travels()
+    public function offers()
     {
-        return $this->hasMany(Travel::class);
+        return $this->hasMany(Offer::class);
     }
 }

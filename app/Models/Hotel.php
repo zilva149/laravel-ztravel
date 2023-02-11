@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Hotel extends Model
 {
@@ -12,18 +11,19 @@ class Hotel extends Model
 
     protected $fillable = [
         'name',
-        'desc',
+        'address',
         'image',
-        'country_id'
+        'people_limit',
+        'destination_id',
     ];
 
-    public function country()
+    public function destination()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Destination::class);
     }
 
-    public function travels()
+    public function offers()
     {
-        return $this->hasMany(Travel::class);
+        return $this->hasMany(Offer::class);
     }
 }
