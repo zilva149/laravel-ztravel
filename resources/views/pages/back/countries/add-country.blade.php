@@ -7,14 +7,17 @@
         </div>
     </x-slot>
 
-    @if (session()->has('success'))
-        <p>{{ session('success') }}</p>
-    @endif
-
     <section class="flex justify-center">
         <form action="{{ route('admin-country-store') }}" method="POST"
             class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg dark:bg-dark-eval-1 dark:text-white">
             @csrf
+
+            @if (session()->has('success'))
+                <div class="modal mb-4" style="background-color: var(--green)">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @endif
+
             <div class="mb-6 flex flex-col gap-2">
                 <label for="name">Šalis:</label>
                 <input type="text"

@@ -9,11 +9,13 @@
         </div>
     </x-slot>
 
-    @if (session()->has('success'))
-        <p>{{ session('success') }}</p>
-    @endif
-
     <div class="mb-6 dark:bg-dark-eval-0 dark:text-gray-200">
+        @if (session()->has('success'))
+            <div class="modal mb-4" style="background-color: var(--green)">
+                <p>{{ session('success') }}</p>
+            </div>
+        @endif
+
         @if (count($hotels) !== 0)
             <section class="grid grid-cols-3 gap-6 justify-between items-center dark:bg-dark-eval-1">
                 @foreach ($hotels as $hotel)
