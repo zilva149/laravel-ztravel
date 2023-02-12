@@ -40,7 +40,7 @@
                     <label for="country_id">Šalis:</label>
                     <select
                         class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                        aria-label="continent" name="country_id" id="country_id" data-id="select_country">
+                        aria-label="continent" name="country_id" id="country_id" data-id="country_select">
                         <option selected disabled>-- Rinktis šalį</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country->id }}" @if ($country->id == old('country_id', '')) selected @endif>
@@ -55,7 +55,7 @@
                     @enderror
                 </div>
 
-                <div class="mb-6 flex flex-col gap-2" id="select_hotel_parent">
+                <div class="mb-6 flex flex-col gap-2" id="destination_select_parent">
                     @if (old('destination_id') || old('country_id'))
                         <label for="destination_id">Vietovė:</label>
                         <select
@@ -133,4 +133,9 @@
             </form>
         @endif
     </section>
+
+    <script>
+        const countries = {{ Js::from($countries) }};
+        const countrySelect = document.querySelector("select[data-id='country_select']");
+    </script>
 </x-back-layout>

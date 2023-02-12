@@ -13,7 +13,7 @@
         </div>
         <div class="flex gap-1">
             <span class="font-semibold">Vietovė:</span>
-            <span>{{ $hotel->destination }}, {{ $hotel->country }}</span>
+            <span>{{ $hotel->destination->name }}, {{ $hotel->country->name }}</span>
         </div>
         <div class="flex gap-1">
             <span class="font-semibold">Adresas:</span>
@@ -21,7 +21,7 @@
         </div>
         <div class="flex gap-1">
             <span class="font-semibold">Žmonių limitas:</span>
-            <span>{{ $destination->people_limit }}</span>
+            <span>{{ $hotel->people_limit }}</span>
         </div>
         <div class="flex gap-1">
             <a href="{{ route('admin-hotel-edit', $hotel->id) }}"

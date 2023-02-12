@@ -91,6 +91,45 @@ if (expandBtns) {
     });
 }
 
+if (countrySelect) {
+    countrySelect.addEventListener("change", async (e) => {
+        const destinations = await fetchCountryDestinations(
+            e.currentTarget.value
+        );
+
+        const destinationSelectParent = document.getElementById(
+            "destination_select_parent"
+        );
+
+        let HTML = `
+            <label for="destination_id">Vietovė:</label>
+            <select
+                class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                aria-label="continent" name="destination_id" id="destination_id">
+                <option selected disabled>-- Rinktis vietovę</option>
+        `;
+
+        for (const destination of destinations) {
+            HTML += `
+                <option value="${destination.id}">
+                    ${destination.name}
+                </option>
+            `;
+        }
+
+        HTML += `</select>`;
+
+        destinationSelectParent.innerHTML = HTML;
+    });
+}
+
+async function fetchCountryDestinations(countryID) {
+    const resp = await fetch(`/admin/hotels/api/destinations/${countryID}`);
+    const data = await resp.json();
+
+    return data;
+}
+
 // if (countrySelect) {
 //     countrySelect.addEventListener("change", async (e) => {
 //         for (const country of countries) {
@@ -131,11 +170,4 @@ if (expandBtns) {
 
 //         hotelSelectParent.innerHTML = HTML;
 //     });
-// }
-
-// async function fetchHotels(countryID) {
-//     const resp = await fetch(`/admin/travels/api/hotels/${countryID}`);
-//     const data = await resp.json();
-
-//     return data;
 // }

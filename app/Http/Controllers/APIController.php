@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class APIController extends Controller
 {
-    public function countryHotels(Country $country)
+    public function countryDestinations(Country $country)
     {
         return $country->destinations;
     }

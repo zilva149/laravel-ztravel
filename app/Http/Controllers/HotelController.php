@@ -32,9 +32,11 @@ class HotelController extends Controller
     public function store(Request $request)
     {
         $incomingFields = $request->validate([
+            'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
             'destination_id' => ['required', Rule::in(Destination::all()->pluck('id'))],
             'name' => ['required', 'unique:hotels'],
             'address' => ['required', 'unique:hotels'],
+            'people_limit' => ['required', 'regex:/^\d+?/'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2000'],
         ]);
         $incomingFields['name'] = strip_tags($incomingFields['name']);
