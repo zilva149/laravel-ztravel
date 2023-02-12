@@ -137,6 +137,7 @@
     </section>
 
     <script>
+        const page = 'hotels';
         const countrySelect = document.getElementById('country_id');
     </script>
 </x-back-layout>

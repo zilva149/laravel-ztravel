@@ -14,7 +14,7 @@ class Offer extends Model
         'travel_start',
         'travel_end',
         'price',
-        'country_id'.
+        'country_id',
         'destination_id',
         'hotel_id',
     ];

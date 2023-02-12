@@ -41,19 +41,19 @@ class OfferController extends Controller
     public function store(Request $request)
     {
         $incomingFields = $request->validate([
-            'name' => ['required', 'unique:travel'],
+            'name' => ['required', 'unique:offers'],
             'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
             'destination_id' => ['required', Rule::in(Destination::all()->pluck('id'))],
             'hotel_id' => ['required', Rule::in(Hotel::all()->pluck('id'))],
-            'offer_start' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
-            'offer_end' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
+            'travel_start' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
+            'travel_end' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
             'price' => ['required', 'regex:/^-?(?:[0-9]*[.])?[0-9]+$/', 'gt:0'],
         ]);
         $incomingFields['name'] = strip_tags($incomingFields['name']);
-
+        
         Offer::create($incomingFields);
 
-        return redirect()->back()->with('success', 'Pasiūlymas sėkmingai sukurta');
+        return redirect()->back()->with('success', 'Pasiūlymas sėkmingai sukurtas');
     }
 
     public function edit(Offer $offer)

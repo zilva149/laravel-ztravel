@@ -97,6 +97,20 @@ if (countrySelect) {
             document.getElementById("hotel_select_parent").innerHTML = "";
         }
 
+        if (page === "offers") {
+            for (const country of countries) {
+                if (country.id == e.currentTarget.value) {
+                    const start = country["season_start"];
+                    const end = country["season_end"];
+
+                    travelStartInput.setAttribute("min", start);
+                    travelStartInput.setAttribute("max", end);
+                    travelEndInput.setAttribute("min", start);
+                    travelEndInput.setAttribute("max", end);
+                }
+            }
+        }
+
         const destinations = await fetchCountryDestinations(
             e.currentTarget.value
         );
@@ -209,45 +223,3 @@ async function fetchDestinationHotels(destinationID) {
 
     return data;
 }
-
-// if (countrySelect) {
-//     countrySelect.addEventListener("change", async (e) => {
-//         for (const country of countries) {
-//             if (country.id == e.currentTarget.value) {
-//                 const start = country["season_start"];
-//                 const end = country["season_end"];
-
-//                 travelStartInput.setAttribute("min", start);
-//                 travelStartInput.setAttribute("max", end);
-//                 travelEndInput.setAttribute("min", start);
-//                 travelEndInput.setAttribute("max", end);
-//             }
-//         }
-
-//         const hotels = await fetchHotels(e.currentTarget.value);
-
-//         const hotelSelectParent = document.getElementById(
-//             "select_hotel_parent"
-//         );
-
-//         let HTML = `
-//             <label for="hotel_id">Viešbutis:</label>
-//             <select
-//                 class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-//                 aria-label="continent" name="hotel_id" id="hotel_id">
-//                 <option selected disabled>-- Rinktis viešbutį</option>
-//         `;
-
-//         for (const hotel of hotels) {
-//             HTML += `
-//                 <option value="${hotel.id}">
-//                     ${hotel.name}
-//                 </option>
-//             `;
-//         }
-
-//         HTML += `</select>`;
-
-//         hotelSelectParent.innerHTML = HTML;
-//     });
-// }

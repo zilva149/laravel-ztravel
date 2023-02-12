@@ -134,7 +134,14 @@
                     <label for="travel_start">Kelionės pradžia:</label>
                     <input type="date"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        name="travel_start" value="{{ old('travel_start', '') }}" id="travel_start" />
+                        name="travel_start" value="{{ old('travel_start', '') }}" id="travel_start"
+                        @if (old('country_id'))
+                            @foreach ($countries as $country)
+                                @if ($country->id == old('country_id'))
+                                    min="{{ $country->season_start }}" max="{{ $country->season_end }}"
+                                @endif
+                            @endforeach
+                        @endif />
                     @error('travel_start')
                         <div class="modal-sm" style="background-color: #f01616">
                             <p>{{ $message }}</p>
@@ -146,7 +153,14 @@
                     <label for="travel_end">Kelionės pabaiga:</label>
                     <input type="date"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        name="travel_end" value="{{ old('travel_end', '') }}" id="travel_end" />
+                        name="travel_end" value="{{ old('travel_end', '') }}" id="travel_end"
+                        @if (old('country_id'))
+                            @foreach ($countries as $country)
+                                @if ($country->id == old('country_id'))
+                                    min="{{ $country->season_start }}" max="{{ $country->season_end }}"
+                                @endif
+                            @endforeach
+                        @endif />
                     @error('travel_end')
                         <div class="modal-sm" style="background-color: #f01616">
                             <p>{{ $message }}</p>
