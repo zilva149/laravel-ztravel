@@ -73,23 +73,23 @@ Alpine.plugin(collapse);
 
 Alpine.start();
 
-// const expandBtns = document.querySelectorAll("i[data-id='btn-expand']");
+const expandBtns = document.querySelectorAll("i[data-id='btn-expand']");
 
-// if (expandBtns) {
-//     expandBtns.forEach((btn) => {
-//         btn.addEventListener("click", (e) => {
-//             const accordionFooter =
-//                 e.currentTarget.parentElement.parentElement.nextElementSibling;
+if (expandBtns) {
+    expandBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            const accordionFooter =
+                e.currentTarget.parentElement.parentElement.nextElementSibling;
 
-//             accordionFooter.classList.toggle("show");
-//             if (accordionFooter.classList.contains("show")) {
-//                 e.currentTarget.style.transform = "rotate(180deg)";
-//             } else {
-//                 e.currentTarget.style.transform = "rotate(0deg)";
-//             }
-//         });
-//     });
-// }
+            accordionFooter.classList.toggle("show");
+            if (accordionFooter.classList.contains("show")) {
+                e.currentTarget.style.transform = "rotate(180deg)";
+            } else {
+                e.currentTarget.style.transform = "rotate(0deg)";
+            }
+        });
+    });
+}
 
 // if (countrySelect) {
 //     countrySelect.addEventListener("change", async (e) => {

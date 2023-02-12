@@ -15,7 +15,7 @@ class DestinationController extends Controller
     public function index()
     {
         $pageTitle = 'Vietovės';
-        $hotels = Destination::all();
+        $destinations = Destination::all();
 
         return view('pages.back.destinations.destinations', compact('pageTitle', 'destinations'));
     }
@@ -113,6 +113,10 @@ class DestinationController extends Controller
 
     public function delete(Destination $destination)
     {
+        foreach($destination->hotels as $hotel) {
+            Storage::delete(str_replace('/storage/', 'public/' , $hotel->image));
+        }
+
         Storage::delete(str_replace('/storage/', 'public/' , $destination->image));
 
         $destination->delete();

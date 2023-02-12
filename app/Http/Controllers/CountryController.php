@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class CountryController extends Controller
 {
@@ -65,6 +66,13 @@ class CountryController extends Controller
 
     public function delete(Country $country)
     {
+        foreach($country->destinations as $destination) {
+            Storage::delete(str_replace('/storage/', 'public/' , $destination->image));
+            foreach($destination->hotels as $hotel) {
+                Storage::delete(str_replace('/storage/', 'public/' , $hotel->image));
+            }
+        }
+
         $country->delete();
 
         return redirect()->back()->with('success', 'Šalis sėkmingai ištrinta');
