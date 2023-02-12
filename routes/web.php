@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\BackController;
 use App\Http\Controllers\FrontController;
-use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\HotelController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DestinationController;
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
 

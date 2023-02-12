@@ -14,8 +14,14 @@ class Hotel extends Model
         'address',
         'image',
         'people_limit',
+        'country_id',
         'destination_id',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 
     public function destination()
     {

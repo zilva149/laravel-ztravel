@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('address', 50);
             $table->string('image')->nullable();
             $table->smallInteger('people_limit')->unsigned();
+            $table->foreignId('country_id')->constrained()->onDelete('cascade');
             $table->foreignId('destination_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

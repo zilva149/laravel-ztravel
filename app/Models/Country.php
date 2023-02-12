@@ -32,6 +32,11 @@ class Country extends Model
         return $this->hasMany(Destination::class);
     }
 
+    public function hotels()
+    {
+        return $this->hasMany(Hotel::class);
+    }
+
     public function offers()
     {
         return $this->hasMany(Offer::class);

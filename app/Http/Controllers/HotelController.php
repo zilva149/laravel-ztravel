@@ -24,8 +24,9 @@ class HotelController extends Controller
     {
         $pageTitle = 'Pridėti nakvynės vietą';
         $countries = Country::all();
+        $destinations = Destination::all();
 
-        return view('pages.back.hotels.add-hotel', compact('pageTitle', 'countries'));
+        return view('pages.back.hotels.add-hotel', compact('pageTitle', 'countries', 'destinations'));
     }
 
     public function store(Request $request)
