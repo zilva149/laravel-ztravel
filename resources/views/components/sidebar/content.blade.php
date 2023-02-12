@@ -42,5 +42,11 @@
         </x-slot>
     </x-sidebar.link>
 
+    <x-sidebar.link title="Pasiūlymai" href="{{ route('admin-offers') }}" :isActive="request()->routeIs('admin-offers')">
+        <x-slot name="icon">
+            <i class="fa-solid fa-store w-6 text-center" aria-hidden="true"></i>
+        </x-slot>
+    </x-sidebar.link>
+
 
 </x-perfect-scrollbar>

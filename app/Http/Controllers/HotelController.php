@@ -65,9 +65,8 @@ class HotelController extends Controller
     {
         $pageTitle = 'Redaguoti nakvynės vietą';
         $countries = Country::all();
-        $destinations = Destination::all();
 
-        return view('pages.back.hotels.edit-hotel', compact('pageTitle', 'countries', 'destinations', 'hotel'));
+        return view('pages.back.hotels.edit-hotel', compact('pageTitle', 'countries', 'hotel'));
     }
 
     public function update(Request $request, Hotel $hotel)

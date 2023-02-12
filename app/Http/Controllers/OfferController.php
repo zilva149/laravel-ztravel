@@ -18,8 +18,8 @@ class OfferController extends Controller
         $offers = Offer::all();
 
         foreach($offers as $offer) {
-            $start = Carbon::parse($offer->offer_start);
-            $end = Carbon::parse($offer->offer_end);
+            $start = Carbon::parse($offer->travel_start);
+            $end = Carbon::parse($offer->travel_end);
 
             $duration = $start->diffInDays($end);
             $offer->duration = $duration;
@@ -32,9 +32,10 @@ class OfferController extends Controller
     {
         $pageTitle = 'Pridėti pasiūlymą';
         $countries = Country::all();
-        $hotels = Offer::all();
+        $destinations = Destination::all();
+        $hotels = Hotel::all();
 
-        return view('pages.back.offers.add-offer', compact('pageTitle', 'countries', 'offers'));
+        return view('pages.back.offers.add-offer', compact('pageTitle', 'countries', 'destinations', 'hotels'));
     }
 
     public function store(Request $request)

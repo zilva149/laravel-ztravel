@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->unsigned();
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
             $table->foreignId('destination_id')->constrained()->onDelete('cascade');
+            $table->foreignId('hotel_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

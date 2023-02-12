@@ -11,26 +11,26 @@ class Offer extends Model
 
     protected $fillable = [
         'name',
-        'offer_start',
-        'offer_end',
+        'travel_start',
+        'travel_end',
         'price',
         'country_id'.
-        'hotel_id',
         'destination_id',
+        'hotel_id',
     ];
 
     public function country()
     {
         return $this->belongsTo(Country::class);
     }
+    
+    public function destination()
+    {
+        return $this->belongsTo(Destination::class);
+    }
 
     public function hotel()
     {
         return $this->belongsTo(Hotel::class);
-    }
-
-    public function destination()
-    {
-        return $this->belongsTo(Destination::class);
     }
 }
