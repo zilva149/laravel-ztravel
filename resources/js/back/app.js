@@ -91,6 +91,16 @@ if (expandBtns) {
     });
 }
 
+const modals = document.querySelectorAll(".modal");
+
+if (modals) {
+    modals.forEach((modal) => {
+        setTimeout(() => {
+            modal.remove();
+        }, 3000);
+    });
+}
+
 if (countrySelect) {
     countrySelect.addEventListener("change", async (e) => {
         if (document.getElementById("hotel_id")) {

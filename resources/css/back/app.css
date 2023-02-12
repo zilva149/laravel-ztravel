@@ -14,6 +14,7 @@
         --green: #1bae70;
         --dgreen: #06752e;
         --dblue: #152238;
+        --red: #f01616;
     }
     
     html {
@@ -32,6 +33,14 @@
 
     .show {
         @apply max-h-[9999px] !important;
+    }
+
+    .modal {
+        @apply w-full p-2 px-4 rounded-md text-white;
+    }
+
+    .modal p {
+        @apply text-lg;
     }
 
     .modal-sm {
