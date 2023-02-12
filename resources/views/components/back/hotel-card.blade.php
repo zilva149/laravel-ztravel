@@ -1,8 +1,8 @@
-<article class="shadow-md rounded-lg overflow-hidden">
+<article class="bg-white border-2 border-solid border-white shadow-lg rounded-lg overflow-hidden">
     <div>
         <img src="{{ $hotel->image ? $hotel->image : '/assets/img/no-image.jpg' }}" alt="hotel">
     </div>
-    <div class="p-4 flex flex-col items-start">
+    <div class="p-4 flex flex-col gap-2 items-start">
         <div class="flex gap-1">
             <span class="font-semibold">ID:</span>
             <span>{{ $hotel->id }}</span>
@@ -23,7 +23,7 @@
             <span class="font-semibold">Žmonių limitas:</span>
             <span>{{ $hotel->people_limit }}</span>
         </div>
-        <div class="flex gap-1">
+        <div class="mt-4 flex gap-2">
             <a href="{{ route('admin-hotel-edit', $hotel->id) }}"
                 class="btn-primary bg-green-500 hover:bg-green-600 px-6 text-xl cursor-pointer md:px-6"
                 title="redaguoti">

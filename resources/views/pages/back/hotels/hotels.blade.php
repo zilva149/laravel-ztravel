@@ -14,7 +14,7 @@
     @endif
 
     <div class="mb-6 dark:bg-dark-eval-0 dark:text-gray-200">
-        <section class="w-full p-6 bg-white rounded-md shadow-md flex flex-col gap-6 dark:bg-dark-eval-1">
+        <section class="grid grid-cols-3 gap-6 justify-between items-center dark:bg-dark-eval-1">
             @if (count($hotels) !== 0)
                 @foreach ($hotels as $hotel)
                     <x-back.hotel-card :$hotel />
