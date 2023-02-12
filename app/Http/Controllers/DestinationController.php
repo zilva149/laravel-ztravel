@@ -32,10 +32,21 @@ class DestinationController extends Controller
     {
         $incomingFields = $request->validate([
             'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
-            'name' => ['required', 'unique:destinations'],
+            'name' => ['required'],
             'desc' => ['required'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2000'],
-        ]);
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
+        ],
+            [
+                'country_id.required' => 'Nepalikite tuščio laukelio',
+                'country_id.in' => 'Nėra tokios šalies',
+                'name.required' => 'Nepalikite tuščio laukelio',
+                'desc.required' => 'Nepalikite tuščio laukelio',
+                'image.image' => 'Failas turi būti nuotrauka',
+                'image.mimes' => 'Failas neatitinka formato (jpeg, png, jpg, gif)',
+                'image.max' => 'Failas per didelis',
+            ]
+        );
+
         $incomingFields['name'] = strip_tags($incomingFields['name']);
         $incomingFields['desc'] = strip_tags($incomingFields['desc']);
 
@@ -80,8 +91,19 @@ class DestinationController extends Controller
             'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
             'name' => ['required'],
             'desc' => ['required'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2000'],
-        ]);
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
+        ],
+            [
+                'country_id.required' => 'Nepalikite tuščio laukelio',
+                'country_id.in' => 'Nėra tokios šalies',
+                'name.required' => 'Nepalikite tuščio laukelio',
+                'desc.required' => 'Nepalikite tuščio laukelio',
+                'image.image' => 'Failas turi būti nuotrauka',
+                'image.mimes' => 'Failas neatitinka formato (jpeg, png, jpg, gif)',
+                'image.max' => 'Failas per didelis',
+            ]
+        );
+
         $incomingFields['name'] = strip_tags($incomingFields['name']);
         $incomingFields['desc'] = strip_tags($incomingFields['desc']);
 
