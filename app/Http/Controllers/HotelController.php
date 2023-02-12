@@ -34,8 +34,8 @@ class HotelController extends Controller
         $incomingFields = $request->validate([
             'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
             'destination_id' => ['required', Rule::in(Destination::all()->pluck('id'))],
-            'name' => ['required', 'unique:hotels'],
-            'address' => ['required', 'unique:hotels'],
+            'name' => ['required'],
+            'address' => ['required'],
             'people_limit' => ['required', 'regex:/^\d+?/'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
         ]);
@@ -65,8 +65,9 @@ class HotelController extends Controller
     {
         $pageTitle = 'Redaguoti nakvynės vietą';
         $countries = Country::all();
+        $destinations = Destination::all();
 
-        return view('pages.back.hotels.edit-hotel', compact('pageTitle', 'countries', 'hotel'));
+        return view('pages.back.hotels.edit-hotel', compact('pageTitle', 'countries', 'destinations', 'hotel'));
     }
 
     public function update(Request $request, Hotel $hotel)
@@ -81,9 +82,9 @@ class HotelController extends Controller
 
         $incomingFields = $request->validate([
             'destination_id' => ['required', Rule::in(Destination::all()->pluck('id'))],
-            'name' => ['required', 'unique:hotels'],
-            'address' => ['required', 'unique:hotels'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2000'],
+            'name' => ['required'],
+            'address' => ['required'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
         ]);
         $incomingFields['name'] = strip_tags($incomingFields['name']);
         $incomingFields['address'] = strip_tags($incomingFields['address']);

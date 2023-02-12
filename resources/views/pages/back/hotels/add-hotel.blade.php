@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex gap-8 items-center">
             <h2 class="w-full text-3xl font-semibold leading-tight text-center">
-                Pridėti vietovę
+                Pridėti nakvynės vietą
             </h2>
         </div>
     </x-slot>
@@ -60,7 +60,7 @@
                         <label for="destination_id">Vietovė:</label>
                         <select
                             class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                            aria-label="continent" name="hotel_id" id="hotel_id">
+                            aria-label="continent" name="destination_id" id="destination_id">
                             <option selected disabled>-- Rinktis vietovę</option>
                             @foreach ($destinations as $destination)
                                 @if ($destination->country->id == old('country_id'))
@@ -128,7 +128,7 @@
 
                 <div class="flex gap-2">
                     <button type="submit" class="btn-primary">Pridėti</button>
-                    <a href="{{ route('admin-destinations') }}" class="btn-primary">Grįžti</a>
+                    <a href="{{ route('admin-hotels') }}" class="btn-primary">Grįžti</a>
                 </div>
             </form>
         @endif
