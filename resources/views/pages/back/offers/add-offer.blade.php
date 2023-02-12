@@ -63,7 +63,7 @@
                     <label for="country_id">Šalis:</label>
                     <select
                         class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                        aria-label="continent" name="country_id" id="country_id" data-id="select_country">
+                        aria-label="country" name="country_id" id="country_id" data-id="select_country">
                         <option selected disabled>-- Rinktis šalį</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country->id }}" @if ($country->id == old('country_id', '')) selected @endif>
@@ -78,51 +78,55 @@
                     @enderror
                 </div>
 
-                <div class="mb-6 flex flex-col gap-2" id="select_destination_parent">
-                    @if (old('country_id') || old('destination_id'))
-                        <label for="destination_id">Vietovė:</label>
-                        <select
-                            class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                            aria-label="continent" name="destination_id" id="destination_id">
-                            <option selected disabled>-- Rinktis vietovę</option>
-                            @foreach ($destinations as $destination)
-                                @if ($destination->country_id == old('country_id'))
-                                    <option value="{{ $destination->id }}"
-                                        @if ($destination->id == old('destination_id', '')) selected @endif>
-                                        {{ $destination->name }}
-                                    </option>
-                                @endif
-                            @endforeach
-                        </select>
-                        @error('destination_id')
-                            <div class="modal-sm" style="background-color: #f01616">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @enderror
+                <div id="destination_select_parent">
+                    @if (old('country_id'))
+                        <div class="mb-6 flex flex-col gap-2">
+                            <label for="destination_id">Vietovė:</label>
+                            <select
+                                class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                                aria-label="destination" name="destination_id" id="destination_id">
+                                <option selected disabled>-- Rinktis vietovę</option>
+                                @foreach ($destinations as $destination)
+                                    @if ($destination->country_id == old('country_id'))
+                                        <option value="{{ $destination->id }}"
+                                            @if ($destination->id == old('destination_id', '')) selected @endif>
+                                            {{ $destination->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            @error('destination_id')
+                                <div class="modal-sm" style="background-color: #f01616">
+                                    <p>{{ $message }}</p>
+                                </div>
+                            @enderror
+                        </div>
                     @endif
                 </div>
 
-                <div class="mb-6 flex flex-col gap-2" id="select_destination_parent">
-                    @if (old('country_id') || old('destination_id') || old('hotel_id'))
-                        <label for="hotel_id">Nakvynės vieta:</label>
-                        <select
-                            class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                            aria-label="continent" name="hotel_id" id="hotel_id">
-                            <option selected disabled>-- Rinktis nakvynę</option>
-                            @foreach ($hotels as $hotel)
-                                @if ($hotel->country_id == old('country_id'))
-                                    <option value="{{ $hotel->id }}"
-                                        @if ($hotel->id == old('hotel_id', '')) selected @endif>
-                                        {{ $hotel->name }}
-                                    </option>
-                                @endif
-                            @endforeach
-                        </select>
-                        @error('hotel_id')
-                            <div class="modal-sm" style="background-color: #f01616">
-                                <p>{{ $message }}</p>
-                            </div>
-                        @enderror
+                <div id="hotel_select_parent">
+                    @if (old('country_id') && old('destination_id'))
+                        <div class="mb-6 flex flex-col gap-2">
+                            <label for="hotel_id">Nakvynės vieta:</label>
+                            <select
+                                class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                                aria-label="hotel" name="hotel_id" id="hotel_id">
+                                <option selected disabled>-- Rinktis nakvynę</option>
+                                @foreach ($hotels as $hotel)
+                                    @if ($hotel->destination_id == old('destination_id'))
+                                        <option value="{{ $hotel->id }}"
+                                            @if ($hotel->id == old('hotel_id', '')) selected @endif>
+                                            {{ $hotel->name }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            @error('hotel_id')
+                                <div class="modal-sm" style="background-color: #f01616">
+                                    <p>{{ $message }}</p>
+                                </div>
+                            @enderror
+                        </div>
                     @endif
                 </div>
 
@@ -173,6 +177,7 @@
     </section>
 
     <script>
+        const page = 'offers';
         const countries = {{ Js::from($countries) }};
         const countrySelect = document.querySelector("select[data-id='select_country']");
         let travelStartInput = document.getElementById('travel_start')

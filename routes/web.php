@@ -53,7 +53,8 @@ Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->grou
     Route::put('/offers/edit/{offer}', [OfferController::class, 'update'])->name('offer-update');
     Route::delete('/offers/delete/{offer}', [OfferController::class, 'delete'])->name('offer-delete');
 
-    Route::get('/hotels/api/destinations/{country}', [APIController::class, 'countryDestinations'])->name('api-country-destinations');
+    Route::get('/api/destinations/{country}', [APIController::class, 'countryDestinations'])->name('api-country-destinations');
+    Route::get('/api/hotels/{destination}', [APIController::class, 'destinationHotels'])->name('api-destination-hotels');
 });
 
 Route::middleware('auth')->group(function () {

@@ -21,7 +21,7 @@
                 <label for="country_id">Šalis:</label>
                 <select
                     class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                    aria-label="continent" name="country_id" id="country_id" data-id="country_select">
+                    aria-label="country" name="country_id" id="country_id" data-id="country_select">
                     <option selected disabled>-- Rinktis šalį</option>
                     @foreach ($countries as $country)
                         <option value="{{ $country->id }}" @if ($country->id == old('country_id', $hotel->country_id)) selected @endif>
@@ -36,28 +36,30 @@
                 @enderror
             </div>
 
-            <div class="mb-6 flex flex-col gap-2" id="destination_select_parent">
-                <label for="destination_id">Vietovė:</label>
-                <select
-                    class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                    aria-label="continent" name="destination_id" id="destination_id">
-                    <option selected disabled>-- Rinktis vietovę</option>
-                    @foreach ($countries as $country)
-                        @if ($country->id == old('country_id', $hotel->country_id))
-                            @foreach ($country->destinations as $destination)
-                                <option value="{{ $destination->id }}"
-                                    @if ($destination->id == old('destination_id', $hotel->destination_id)) selected @endif>
-                                    {{ $destination->name }}
-                                </option>
-                            @endforeach
-                        @endif
-                    @endforeach
-                </select>
-                @error('destination_id')
-                    <div class="modal-sm" style="background-color: #f01616">
-                        <p>{{ $message }}</p>
-                    </div>
-                @enderror
+            <div id="destination_select_parent">
+                <div class="mb-6 flex flex-col gap-2">
+                    <label for="destination_id">Vietovė:</label>
+                    <select
+                        class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                        aria-label="destination" name="destination_id" id="destination_id">
+                        <option selected disabled>-- Rinktis vietovę</option>
+                        @foreach ($countries as $country)
+                            @if ($country->id == old('country_id', $hotel->country_id))
+                                @foreach ($country->destinations as $destination)
+                                    <option value="{{ $destination->id }}"
+                                        @if ($destination->id == old('destination_id', $hotel->destination_id)) selected @endif>
+                                        {{ $destination->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('destination_id')
+                        <div class="modal-sm" style="background-color: #f01616">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @enderror
+                </div>
             </div>
 
             <div class="mb-6 flex flex-col gap-2">
@@ -115,7 +117,6 @@
     </section>
 
     <script>
-        const countries = {{ Js::from($countries) }};
         const countrySelect = document.querySelector("select[data-id='country_select']");
     </script>
 </x-back-layout>
