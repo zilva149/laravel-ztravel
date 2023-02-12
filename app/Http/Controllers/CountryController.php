@@ -32,7 +32,18 @@ class CountryController extends Controller
             'continent' => ['required', Rule::in(Country::CONTINENTS)],
             'season_start' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
             'season_end' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
+        ],
+        [
+            'name.required' => 'Nepalikite tuščio laukelio',
+            'name.unique' => 'Šalis jau egzistuoja',
+            'continent.required' => 'Nepalikite tuščio laukelio',
+            'continent.in' => 'Neegzistuojantis žemynas',
+            'season_start.required' => 'Nepalikite tuščio laukelio',
+            'season_start.regex' => 'Nevalidi data',
+            'season_end.required' => 'Nepalikite tuščio laukelio',
+            'season_end.regex' => 'Nevalidi data',
         ]);
+
         $incomingFields['name'] = strip_tags($incomingFields['name']);
 
         Country::create($incomingFields);
@@ -55,8 +66,17 @@ class CountryController extends Controller
             'continent' => ['required', Rule::in(Country::CONTINENTS)],
             'season_start' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
             'season_end' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2000'],
+        ],
+        [
+            'name.required' => 'Nepalikite tuščio laukelio',
+            'continent.required' => 'Nepalikite tuščio laukelio',
+            'continent.in' => 'Neegzistuojantis žemynas',
+            'season_start.required' => 'Nepalikite tuščio laukelio',
+            'season_start.regex' => 'Nevalidi data',
+            'season_end.required' => 'Nepalikite tuščio laukelio',
+            'season_end.regex' => 'Nevalidi data',
         ]);
+
         $incomingFields['name'] = strip_tags($incomingFields['name']);
 
         $country->update($incomingFields);

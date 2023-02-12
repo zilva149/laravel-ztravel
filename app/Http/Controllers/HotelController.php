@@ -38,7 +38,12 @@ class HotelController extends Controller
             'address' => ['required'],
             'people_limit' => ['required', 'regex:/^\d+?/'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
-        ]);
+        ],
+            [
+                
+            ]
+        );
+
         $incomingFields['name'] = strip_tags($incomingFields['name']);
         $incomingFields['address'] = strip_tags($incomingFields['address']);
 

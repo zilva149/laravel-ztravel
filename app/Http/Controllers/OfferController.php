@@ -48,7 +48,24 @@ class OfferController extends Controller
             'travel_start' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
             'travel_end' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
             'price' => ['required', 'regex:/^-?(?:[0-9]*[.])?[0-9]+$/', 'gt:0'],
+        ],
+        [
+            'name.required' => 'Nepalikite tuščio laukelio',
+            'country_id.required' => 'Nepalikite tuščio laukelio',
+            'country_id.in' => 'Tokios šalies nėra',
+            'destination_id.required' => 'Nepalikite tuščio laukelio',
+            'destination_id.in' => 'Tokios vietovės nėra',
+            'hotel_id.required' => 'Nepalikite tuščio laukelio',
+            'hotel_id.in' => 'Tokios nakvynės vietos nėra',
+            'travel_start.required' => 'Nepalikite tuščio laukelio',
+            'travel_start.regex' => 'Nevalidi data',
+            'travel_end.required' => 'Nepalikite tuščio laukelio',
+            'travel_end.regex' => 'Nevalidi data',
+            'price.required' => 'Nepalikite tuščio laukelio',
+            'price.regex' => 'Nevalidi kaina',
+            'price.git' => 'Kaina negali būti mažesnė arba lygi nuliui',
         ]);
+
         $incomingFields['name'] = strip_tags($incomingFields['name']);
 
         Offer::create($incomingFields);
@@ -76,7 +93,24 @@ class OfferController extends Controller
             'travel_start' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
             'travel_end' => ['required', 'regex:/^\d{4}[\/-](0[1-9]|1[0-2])[\/-](0[1-9]|[1-2][0-9]|3[0-1])$/'],
             'price' => ['required', 'regex:/^-?(?:[0-9]*[.])?[0-9]+$/', 'gt:0'],
+        ],
+        [
+            'name.required' => 'Nepalikite tuščio laukelio',
+            'country_id.required' => 'Nepalikite tuščio laukelio',
+            'country_id.in' => 'Tokios šalies nėra',
+            'destination_id.required' => 'Nepalikite tuščio laukelio',
+            'destination_id.in' => 'Tokios vietovės nėra',
+            'hotel_id.required' => 'Nepalikite tuščio laukelio',
+            'hotel_id.in' => 'Tokios nakvynės vietos nėra',
+            'travel_start.required' => 'Nepalikite tuščio laukelio',
+            'travel_start.regex' => 'Nevalidi data',
+            'travel_end.required' => 'Nepalikite tuščio laukelio',
+            'travel_end.regex' => 'Nevalidi data',
+            'price.required' => 'Nepalikite tuščio laukelio',
+            'price.regex' => 'Nevalidi kaina',
+            'price.git' => 'Kaina negali būti mažesnė arba lygi nuliui',
         ]);
+
         $incomingFields['name'] = strip_tags($incomingFields['name']);
 
         $offer->update($incomingFields);
