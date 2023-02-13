@@ -13,9 +13,9 @@
                     class="btn-primary cursor-pointer w-full max-w-[150px] {{ $order['status'] === 'pending' ? 'bg-[var(--red)] hover:bg-[var(--dred)]' : 'bg-[var(--green)] hover:bg-[var(--dgreen)]' }}">
                     {{ $order['status'] === 'pending' ? 'Tvirtinti' : 'Patvirtinta' }}
                 </a>
-                <a class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
+                <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
                     <i class="fa-solid fa-chevron-down"></i>
-                </a>
+                </div>
             </div>
         </div>
         <div class="overflow-hidden max-h-0">

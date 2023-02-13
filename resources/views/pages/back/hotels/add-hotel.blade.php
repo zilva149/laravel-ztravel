@@ -42,7 +42,7 @@
                     <label for="country_id">Šalis:</label>
                     <select
                         class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                        aria-label="country" name="country_id" id="country_id">
+                        aria-label="country" name="country_id" id="country_id" data-id="country_select">
                         <option selected disabled>-- Rinktis šalį</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country->id }}" @if ($country->id == old('country_id', '')) selected @endif>
@@ -140,6 +140,5 @@
 
     <script>
         const page = 'hotels';
-        const countrySelect = document.getElementById('country_id');
     </script>
 </x-back-layout>

@@ -78,14 +78,28 @@ const expandBtns = document.querySelectorAll("*[data-id='btn-expand']");
 if (expandBtns) {
     expandBtns.forEach((btn) => {
         btn.addEventListener("click", (e) => {
-            const accordionFooter =
-                e.currentTarget.parentElement.parentElement.nextElementSibling;
+            if (document.getElementById("destination-expand")) {
+                const accordionFooter =
+                    e.currentTarget.parentElement.parentElement.parentElement
+                        .nextElementSibling;
 
-            accordionFooter.classList.toggle("show");
-            if (accordionFooter.classList.contains("show")) {
-                e.currentTarget.style.transform = "rotate(180deg)";
+                accordionFooter.classList.toggle("show");
+                if (accordionFooter.classList.contains("show")) {
+                    e.currentTarget.style.transform = "rotate(180deg)";
+                } else {
+                    e.currentTarget.style.transform = "rotate(0deg)";
+                }
             } else {
-                e.currentTarget.style.transform = "rotate(0deg)";
+                const accordionFooter =
+                    e.currentTarget.parentElement.parentElement
+                        .nextElementSibling;
+
+                accordionFooter.classList.toggle("show");
+                if (accordionFooter.classList.contains("show")) {
+                    e.currentTarget.style.transform = "rotate(180deg)";
+                } else {
+                    e.currentTarget.style.transform = "rotate(0deg)";
+                }
             }
         });
     });
@@ -101,7 +115,9 @@ if (modals) {
     });
 }
 
-if (countrySelect) {
+if (document.querySelector("select[data-id='country_select']")) {
+    countrySelect = document.querySelector("select[data-id='country_select']");
+
     countrySelect.addEventListener("change", async (e) => {
         if (document.getElementById("hotel_id")) {
             document.getElementById("hotel_select_parent").innerHTML = "";

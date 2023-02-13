@@ -1,13 +1,13 @@
 @props(['destination'])
 
-<article class="max-w-[900px] rounded-md shadow-md bg-white dark:bg-dark-eval-1">
-    <div class="p-4 flex flex-col">
-        <div class="flex flex-col md:flex-row gap-4 relative">
-            <div class="w-full md:w-1/2">
-                <img src="{{ $destination->image ? $destination->image : '/assets/img/no-image.jpg' }}"
-                    alt="{{ $destination->name }}" class="object-cover w-full max-w-full h-full max-h-full">
-            </div>
-            <div class="w-full md:w-1/2 flex flex-col gap-2 text-lg">
+<article class="w-full max-w-[900px] rounded-md shadow-md bg-white flex flex-col dark:bg-dark-eval-1">
+    <div class="flex flex-col md:flex-row gap-4 relative">
+        <div class="w-full md:w-1/2">
+            <img src="{{ $destination->image ? $destination->image : '/assets/img/no-image.jpg' }}"
+                alt="{{ $destination->name }}" class="object-cover w-full max-w-full h-full max-h-full">
+        </div>
+        <div class="w-full md:w-1/2 p-3 flex flex-col justify-between gap-2 text-lg">
+            <div class="flex flex-col gap-2">
                 <div class="flex gap-1">
                     <span class="font-semibold">ID:</span>
                     <span>{{ $destination->id }}</span>
@@ -24,33 +24,32 @@
                     <span class="font-semibold">Šalis:</span>
                     <span>{{ $destination->country->name }}</span>
                 </div>
-                <div class="flex gap-1">
-                    <a href="{{ route('admin-destination-edit', $destination->id) }}"
-                        class="btn-primary bg-green-500 hover:bg-green-600 px-6 text-xl cursor-pointer md:px-6"
-                        title="redaguoti">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </a>
-                    <form action="{{ route('admin-destination-delete', $destination->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
+            </div>
+            <div class="flex gap-1">
+                <a href="{{ route('admin-destination-edit', $destination->id) }}"
+                    class="btn-primary bg-[var(--green)] hover:bg-[var(--dgreen)] px-6 text-xl cursor-pointer md:px-6"
+                    title="redaguoti">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <form action="{{ route('admin-destination-delete', $destination->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
 
-                        <button type="submit"
-                            class="btn-primary bg-red-500 hover:bg-red-600 px-6 text-xl cursor-pointer md:px-6"
-                            title="ištrinti">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </form>
+                    <button type="submit"
+                        class="btn-primary bg-[var(--red)] hover:bg-[var(--dred)] px-6 text-xl cursor-pointer md:px-6"
+                        title="ištrinti">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </form>
+                <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" id="destination-expand" data-id="btn-expand">
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
             </div>
-            <div class="absolute bottom-0 right-0 text-2xl">
-                <i class="fa-solid fa-chevron-down cursor-pointer transition-all hover:text-slate-500"
-                    data-id="btn-expand"></i>
-            </div>
         </div>
-        <div class="overflow-hidden max-h-0">
-            <div class="pt-6 flex gap-3">
-                <span>{{ $destination->desc }}</span>
-            </div>
+    </div>
+    <div class="overflow-hidden max-h-0">
+        <div class="p-6">
+            <span>{{ $destination->desc }}</span>
         </div>
     </div>
 </article>

@@ -15,7 +15,7 @@
     </div>
     <div class="w-full md:w-1/5 flex justify-center md:justify-end gap-2">
         <a href="{{ route('admin-country-edit', $country->id) }}"
-            class="btn-primary h-full text-lg bg-green-500 hover:bg-green-600 cursor-pointer text-center"
+            class="btn-primary h-full text-lg bg-[var(--green)] hover:[var(--dgreen)] cursor-pointer text-center"
             title="redaguoti">
             <i class="fa-solid fa-pen-to-square"></i>
         </a>
@@ -23,7 +23,7 @@
             @csrf
             @method('DELETE')
             <button type="submit"
-                class="btn-primary h-full bg-red-500 text-lg hover:bg-red-600 cursor-pointer text-center"
+                class="btn-primary h-full bg-[var(--red)] text-lg hover:bg-[var(--dred)] cursor-pointer text-center"
                 title="ištrinti">
                 <i class="fa-solid fa-trash"></i>
             </button>

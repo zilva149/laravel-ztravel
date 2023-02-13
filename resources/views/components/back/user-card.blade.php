@@ -16,8 +16,9 @@
                 <span>{{ $user['email'] }}</span>
             </div>
             <div class="w-[10%] flex justify-end items-center text-xl">
-                <i class="fa-solid fa-chevron-down cursor-pointer transition-all hover:text-slate-500"
-                    data-id="btn-expand"></i>
+                <div class="btn-primary text-lg bg-[var(--green)] hover:bg-[var(--dgreen)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
             </div>
         </div>
         <div class="overflow-hidden max-h-0">
