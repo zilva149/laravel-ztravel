@@ -9,6 +9,12 @@ class Hotel extends Model
 {
     use HasFactory;
 
+    const SORT = [
+        'popularity_desc' => 'Populiariausios',
+        'price_desc' => 'Brangiausios',
+        'price_asc' => 'Pigiausios',
+    ];
+
     protected $fillable = [
         'name',
         'address',

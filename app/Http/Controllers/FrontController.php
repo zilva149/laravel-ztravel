@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Hotel;
 use App\Models\Offer;
+use App\Models\Country;
 use App\Models\Destination;
 use Illuminate\Http\Request;
 
@@ -37,9 +38,12 @@ class FrontController extends Controller
     public function showOffers()
     {
         $pageTitle = 'Pasiūlymai';
+        $countries = Country::all();
+        $continents = Country::select('continent')->distinct()->get();
         $hotels = Hotel::all();
+        $sortOptions = Hotel::SORT;
 
-        return view('pages.front.offers.destinations-customer', compact('pageTitle', 'hotels'));
+        return view('pages.front.offers.destinations-customer', compact('pageTitle', 'countries', 'hotels', 'continents', 'sortOptions'));
     }
 
     public function showSingleOffer(Destination $destination)

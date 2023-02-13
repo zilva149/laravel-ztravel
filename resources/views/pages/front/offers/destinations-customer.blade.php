@@ -24,15 +24,16 @@
                         <label class="font-semibold" for="filter">Šalys:</label>
                         <select name="filter" id="filter"
                             class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-4 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
-                            <optgroup label="Visos">
-                                <option value="all" selected>Visos</option>
-                            </optgroup>
-                            <optgroup label="Europa">
-                                <option value="">Ispanijas</option>
-                            </optgroup>
-                            <optgroup label="Šiaurės Amerika">
-                                <option value="">Kanada</option>
-                            </optgroup>
+                            <option value="all">Visos</option>
+                            @foreach ($continents as $continent)
+                                <optgroup label="{{ $continent->continent }}">
+                                    @foreach ($countries as $country)
+                                        @if ($country->continent === $continent->continent)
+                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </optgroup>
+                            @endforeach
                         </select>
                     </div>
 
@@ -40,9 +41,9 @@
                         <label class="font-semibold" for="sort">Rikiavimas:</label>
                         <select name="sort" id="sort"
                             class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-8 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
-                            <option value="">Populiariausios</option>
-                            <option value="">Brangiausios</option>
-                            <option value="">Pigiausios</option>
+                            @foreach ($sortOptions as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -63,9 +64,8 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
-
             </div>
-            <div class="grid grid-cols-3 gap-6 justify-between items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-between items-center">
                 @foreach ($hotels as $hotel)        
                     <article class="shadow-md rounded-lg overflow-hidden">
                         <div>

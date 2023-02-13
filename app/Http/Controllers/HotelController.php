@@ -134,7 +134,7 @@ class HotelController extends Controller
 
             $incomingFields['image'] = "/storage/hotels/$fileName";
 
-            Storage::put("public/destinations/$fileName", $image);
+            Storage::put("public/hotels/$fileName", $image);
         } else {
             $incomingFields['image'] = $hotel->image;
         }
