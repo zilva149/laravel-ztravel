@@ -39,18 +39,57 @@ class FrontController extends Controller
     public function showOffers(Request $request)
     {
         if($request->s && $request->s !== '') {
-            $offers = Offer::query()
-                        ->join('destinations', 'destinations.id', 'offers.destination_id')
-                        ->join('countries', 'countries.id', 'offers.country_id')
-                        ->join('hotels', 'hotels.id', 'offers.hotel_id')
-                        ->where('offers.name', 'like', '%' . $request->s . '%')
-                        ->orWhere('destinations.name', 'like', '%' . $request->s . '%')
-                        ->orWhere('destinations.desc', 'like', '%' . $request->s . '%')
-                        ->orWhere('countries.name', 'like', '%' . $request->s . '%')
-                        ->orWhere('countries.continent', 'like', '%' . $request->s . '%')
-                        ->orWhere('hotels.name', 'like', '%' . $request->s . '%')
-                        ->orWhere('hotels.address', 'like', '%' . $request->s . '%')
-                        ->get();
+            $searchWords = explode(' ', $request->s);
+            if(count($searchWords) === 1) {
+                $offers = Offer::query()
+                            ->join('destinations', 'destinations.id', 'offers.destination_id')
+                            ->join('countries', 'countries.id', 'offers.country_id')
+                            ->join('hotels', 'hotels.id', 'offers.hotel_id')
+                            ->where('offers.name', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('destinations.name', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('destinations.desc', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('countries.name', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('countries.continent', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('hotels.name', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('hotels.address', 'like', '%' . $searchWords[0] . '%')
+                            ->get();
+            }
+
+            if(count($searchWords) === 2) {
+                $offers = Offer::query()
+                            ->join('destinations', 'destinations.id', 'offers.destination_id')
+                            ->join('countries', 'countries.id', 'offers.country_id')
+                            ->join('hotels', 'hotels.id', 'offers.hotel_id')
+                            ->where('offers.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                            ->orWhere('offers.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                            ->orWhere('offers.name', 'like', '%' . $searchWords[1] . '%')
+                            ->orWhere('offers.name', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('destinations.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                            ->orWhere('destinations.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                            ->orWhere('destinations.name', 'like', '%' . $searchWords[1] . '%')
+                            ->orWhere('destinations.name', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('destinations.desc', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                            ->orWhere('destinations.desc', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                            ->orWhere('destinations.desc', 'like', '%' . $searchWords[1] . '%')
+                            ->orWhere('destinations.desc', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('countries.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                            ->orWhere('countries.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                            ->orWhere('countries.name', 'like', '%' . $searchWords[1] . '%')
+                            ->orWhere('countries.name', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('countries.continent', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                            ->orWhere('countries.continent', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                            ->orWhere('countries.continent', 'like', '%' . $searchWords[1] . '%')
+                            ->orWhere('countries.continent', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('hotels.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                            ->orWhere('hotels.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                            ->orWhere('hotels.name', 'like', '%' . $searchWords[1] . '%')
+                            ->orWhere('hotels.name', 'like', '%' . $searchWords[0] . '%')
+                            ->orWhere('hotels.address', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                            ->orWhere('hotels.address', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                            ->orWhere('hotels.address', 'like', '%' . $searchWords[1] . '%')
+                            ->orWhere('hotels.address', 'like', '%' . $searchWords[0] . '%')
+                            ->get();
+            }
         } else {
             $offers = Offer::where('id', '>', 0)->get();
 
