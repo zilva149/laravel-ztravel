@@ -20,7 +20,7 @@
         @elseif(count($destinations) === 0)
             <div
                 class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg flex flex-col gap-4 items-center dark:bg-dark-eval-1 dark:text-white">
-                <h2 class="text-lg font-semibold">Vieotvių sąrašas tuščias, prašome pridėti naują vietovę</h2>
+                <h2 class="text-lg font-semibold">Vietovių sąrašas tuščias, prašome pridėti naują vietovę</h2>
                 <div class="flex gap-2">
                     <a href="{{ route('admin-destination-create') }}" class="btn-primary cursor-pointer">Pridėti
                         vietovę</a>

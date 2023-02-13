@@ -38,9 +38,8 @@ class FrontController extends Controller
     {
         $pageTitle = 'Pasiūlymai';
         $hotels = Hotel::all();
-        $offerPrices = Offer::all()->pluck('price');
 
-        return view('pages.front.offers.destinations-customer', compact('pageTitle', 'hotels', 'offerPrices'));
+        return view('pages.front.offers.destinations-customer', compact('pageTitle', 'hotels'));
     }
 
     public function showSingleOffer(Destination $destination)

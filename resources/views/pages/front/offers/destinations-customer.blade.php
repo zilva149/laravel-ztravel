@@ -63,7 +63,10 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
-                <div class="flex gap-6 justify-between items-center">
+
+            </div>
+            <div class="flex gap-6 justify-between items-center">
+                @foreach ($hotels as $hotel)        
                     <article class="shadow-md rounded-lg overflow-hidden">
                         <div>
                             <img src="{{ $hotel->image ? $hotel->image : '/assets/img/no-image.jpg' }}" alt="hotel">
@@ -72,16 +75,25 @@
                             <p class="mb-1 text-gray-500">{{ $hotel->destination->name }}, {{ $hotel->country->name }}</p>
                             <p class="mb-4">{{ $hotel->name }}</p>
                             <div class="mb-6 w-full flex justify-between">
-                                <p class="font-semibold">Nuo &euro;{{ min($offerPrices) }}</p>
+                                <p class="font-semibold">
+                                    Nuo &euro;@php
+                                        $lowestPrice = 0;
+                                        foreach ($hotel->offers as $value) {
+                                            if ($value->price > $lowestPrice) {
+                                                $lowestPrice = $value->price;
+                                            }
+                                        }
+                                        echo $lowestPrice;@endphp
+                                </p>
                                 <x-front.rating-stars />
                             </div>
                             <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
                         </div>
                     </article>
-                </div>
+                @endforeach
             </div>
-            @else
-                <h2 class="text-3xl font-semibold">Atsiprašome, pasiūlymų šiuo metu nėra</h2>
-            @endif
+        @else
+            <h2 class="text-3xl font-semibold">Atsiprašome, pasiūlymų šiuo metu nėra</h2>
+        @endif
     </section>
 </x-front-layout>
