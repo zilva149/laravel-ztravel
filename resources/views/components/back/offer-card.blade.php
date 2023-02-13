@@ -1,6 +1,6 @@
 @props(['offer'])
 
-<article class="rounded-md shadow-md">
+<article class="bg-white rounded-md shadow-md">
     <div class="p-4 flex flex-col">
         <div class="flex flex-col md:flex-row gap-4 justify-between items-center relative">
             <div>
@@ -8,7 +8,7 @@
             </div>
             <div class="flex gap-1">
                 <a href="{{ route('admin-offer-edit', $offer->id) }}"
-                    class="btn-primary bg-green-500 hover:bg-green-600 px-6 text-xl cursor-pointer md:px-6"
+                    class="btn-primary bg-[var(--green)] hover:bg-[var(--dgreen)] px-6 text-xl cursor-pointer md:px-6"
                     title="redaguoti">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
@@ -17,15 +17,14 @@
                     @method('DELETE')
 
                     <button type="submit"
-                        class="btn-primary bg-red-500 hover:bg-red-600 px-6 text-xl cursor-pointer md:px-6"
+                        class="btn-primary bg-[var(--red)] hover:bg-[var(--dred)] px-6 text-xl cursor-pointer md:px-6"
                         title="ištrinti">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </form>
-            </div>
-            <div class="text-2xl">
-                <i class="fa-solid fa-chevron-down cursor-pointer transition-all hover:text-slate-500"
-                    data-id="btn-expand"></i>
+                <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
             </div>
         </div>
         <div class="overflow-hidden max-h-0">

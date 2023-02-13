@@ -22,7 +22,9 @@
                     <x-back.destination-card :$destination />
                 @endforeach
             @else
-                <h2 class="text-2xl font-semibold">Vietovių sąrašas tuščias</h2>
+                <div class="w-full max-w-[600px] p-6 text-center bg-white rounded-md shadow-md flex flex-col gap-6 dark:bg-dark-eval-1">
+                    <h2 class="text-2xl font-semibold">Vietovių sąrašas tuščias</h2>
+                </div>
             @endif
         </section>
     </div>

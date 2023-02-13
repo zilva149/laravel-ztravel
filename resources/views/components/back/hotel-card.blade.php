@@ -25,7 +25,7 @@
         </div>
         <div class="mt-4 flex gap-2">
             <a href="{{ route('admin-hotel-edit', $hotel->id) }}"
-                class="btn-primary bg-green-500 hover:bg-green-600 px-6 text-xl cursor-pointer md:px-6"
+                class="btn-primary bg-[var(--green)] hover:bg-[var(--dgreen)] px-6 text-xl cursor-pointer md:px-6"
                 title="redaguoti">
                 <i class="fa-solid fa-pen-to-square"></i>
             </a>
@@ -34,7 +34,7 @@
                 @method('DELETE')
 
                 <button type="submit"
-                    class="btn-primary bg-red-500 hover:bg-red-600 px-6 text-xl cursor-pointer md:px-6"
+                    class="btn-primary bg-[var(--red)] hover:bg-[var(--dred)] px-6 text-xl cursor-pointer md:px-6"
                     title="ištrinti">
                     <i class="fa-solid fa-trash"></i>
                 </button>

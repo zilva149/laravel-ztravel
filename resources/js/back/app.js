@@ -115,8 +115,8 @@ if (modals) {
     });
 }
 
-if (document.querySelector("select[data-id='country_select']")) {
-    countrySelect = document.querySelector("select[data-id='country_select']");
+if (document.getElementById("country_id")) {
+    const countrySelect = document.getElementById("country_id");
 
     countrySelect.addEventListener("change", async (e) => {
         if (document.getElementById("hotel_id")) {
