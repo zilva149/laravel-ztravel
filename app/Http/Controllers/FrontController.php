@@ -8,6 +8,7 @@ use App\Models\Offer;
 use App\Models\Country;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FrontController extends Controller
 {
@@ -35,15 +36,44 @@ class FrontController extends Controller
         return view('pages.front.home-customer', compact('pageTitle'));
     }
 
-    public function showOffers()
+    public function showOffers(Request $request)
     {
+        if($request->s && $request->s !== '') {
+            $offers = Offer::query()
+                        ->join('destinations', 'destinations.id', 'offers.destination_id')
+                        ->join('countries', 'countries.id', 'offers.country_id')
+                        ->join('hotels', 'hotels.id', 'offers.hotel_id')
+                        ->where('offers.name', 'like', '%' . $request->s . '%')
+                        ->orWhere('destinations.name', 'like', '%' . $request->s . '%')
+                        ->orWhere('destinations.desc', 'like', '%' . $request->s . '%')
+                        ->orWhere('countries.name', 'like', '%' . $request->s . '%')
+                        ->orWhere('countries.continent', 'like', '%' . $request->s . '%')
+                        ->orWhere('hotels.name', 'like', '%' . $request->s . '%')
+                        ->orWhere('hotels.address', 'like', '%' . $request->s . '%')
+                        ->get();
+        } else {
+            $offers = Offer::where('id', '>', 0)->get();
+
+            if($request->filter ?? '') {
+                if($request->filter !== 'all') {
+                    $offers = $offers->where('country_id', $request->filter);
+                }
+    
+                $offers = match($request->sort ?? '') {
+                    'popularity_desc' => $offers,
+                    'price_desc' => $offers->sortByDesc('price'),
+                    'price_asc' => $offers->sortBy('price'),
+                    default => $offers,
+                };
+            }
+        }
+        
         $pageTitle = 'Pasiūlymai';
         $countries = Country::all();
         $continents = Country::select('continent')->distinct()->get();
-        $hotels = Hotel::all();
-        $sortOptions = Hotel::SORT;
+        $sortOptions = Offer::SORT;
 
-        return view('pages.front.offers.destinations-customer', compact('pageTitle', 'countries', 'hotels', 'continents', 'sortOptions'));
+        return view('pages.front.offers.destinations-customer', compact('pageTitle', 'request', 'offers', 'countries', 'continents', 'sortOptions'));
     }
 
     public function showSingleOffer(Destination $destination)

@@ -4,10 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 
 class Offer extends Model
 {
     use HasFactory;
+    use Searchable;
+
+    const SORT = [
+        'popularity_desc' => 'Populiariausios',
+        'price_desc' => 'Brangiausios',
+        'price_asc' => 'Pigiausios',
+    ];
 
     protected $fillable = [
         'name',
@@ -18,6 +26,13 @@ class Offer extends Model
         'destination_id',
         'hotel_id',
     ];
+
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+        ];
+    }
 
     public function country()
     {
