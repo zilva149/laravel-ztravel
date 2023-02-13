@@ -23,7 +23,7 @@
     <section class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         <h2
             class="relative mb-16 text-3xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">
-            Populiariausios vietos
+            Populiariausios vietovės
         </h2>
         <div class="flex gap-6 justify-between items-center">
             <article class="shadow-md rounded-lg overflow-hidden">
@@ -33,56 +33,8 @@
                 <div class="p-4 flex flex-col items-start">
                     <p class="mb-1 text-gray-500">Kroatija</p>
                     <p class="mb-4">Vietovės pavadinimas</p>
-                    <div class="mb-6 w-full flex justify-between">
-                        <p class="font-semibold">Nuo &euro;899.99</p>
-                        <ul class="flex justify-center">
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                        </ul>
-                    </div>
+                    <p class="mb-6 font-semibold">Nuo &euro;899.99</p>
+                    
                     <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
                 </div>
             </article>
@@ -93,56 +45,8 @@
                 <div class="p-4 flex flex-col items-start">
                     <p class="mb-1 text-gray-500">Makedonija</p>
                     <p class="mb-4">Vietovės pavadinimas</p>
-                    <div class="mb-6 w-full flex justify-between">
-                        <p class="font-semibold">Nuo &euro;699.99</p>
-                        <ul class="flex justify-center">
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                        </ul>
-                    </div>
+                    <p class="mb-6 font-semibold">Nuo &euro;699.99</p>
+
                     <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
                 </div>
             </article>
@@ -151,58 +55,10 @@
                     <img src="/assets/img/hotel-1.jpg" alt="hotel">
                 </div>
                 <div class="p-4 flex flex-col items-start">
-                    <p class="mb-1 text-gray-500">Kroatija</p>
+                    <p class="mb-1 text-gray-500">VKroatija</p>
                     <p class="mb-4">Vietovės pavadinimas</p>
-                    <div class="mb-6 w-full flex justify-between">
-                        <p class="font-semibold">Nuo &euro;899.99</p>
-                        <ul class="flex justify-center">
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                        </ul>
-                    </div>
+                    <p class="mb-6 font-semibold">Nuo &euro;899.99</p>
+                        
                     <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
                 </div>
             </article>

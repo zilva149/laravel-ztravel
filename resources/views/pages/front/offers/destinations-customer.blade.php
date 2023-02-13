@@ -17,234 +17,71 @@
             Apsistojimo vietos
         </h2>
 
-        <div class="w-full border-[3px] border-solid border-[var(--green)] rounded-lg p-8 mb-14 flex justify-between">
-            <form class="w-full max-w-[600px] filter-form flex justify-between gap-6">
-                <div class="flex gap-3 justify-center items-center">
-                    <label class="font-semibold" for="filter">Šalys:</label>
-                    <select name="filter" id="filter"
-                        class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-4 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
-                        <optgroup label="Visos">
-                            <option value="all" selected>Visos</option>
-                        </optgroup>
-                        <optgroup label="Europa">
-                            <option value="">Ispanijas</option>
-                        </optgroup>
-                        <optgroup label="Šiaurės Amerika">
-                            <option value="">Kanada</option>
-                        </optgroup>
-                    </select>
-                </div>
+        @if (count($hotels) !== 0)
+            <div class="w-full border-[3px] border-solid border-[var(--green)] rounded-lg p-8 mb-14 flex justify-between">
+                <form class="w-full max-w-[600px] filter-form flex justify-between gap-6">
+                    <div class="flex gap-3 justify-center items-center">
+                        <label class="font-semibold" for="filter">Šalys:</label>
+                        <select name="filter" id="filter"
+                            class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-4 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
+                            <optgroup label="Visos">
+                                <option value="all" selected>Visos</option>
+                            </optgroup>
+                            <optgroup label="Europa">
+                                <option value="">Ispanijas</option>
+                            </optgroup>
+                            <optgroup label="Šiaurės Amerika">
+                                <option value="">Kanada</option>
+                            </optgroup>
+                        </select>
+                    </div>
 
-                <div class="flex gap-3 justify-center items-center">
-                    <label class="font-semibold" for="sort">Rikiavimas:</label>
-                    <select name="sort" id="sort"
-                        class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-8 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
-                        <option value="">Populiariausios</option>
-                        <option value="">Brangiausios</option>
-                        <option value="">Pigiausios</option>
-                    </select>
-                </div>
+                    <div class="flex gap-3 justify-center items-center">
+                        <label class="font-semibold" for="sort">Rikiavimas:</label>
+                        <select name="sort" id="sort"
+                            class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-8 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
+                            <option value="">Populiariausios</option>
+                            <option value="">Brangiausios</option>
+                            <option value="">Pigiausios</option>
+                        </select>
+                    </div>
 
-                <div class="flex gap-1">
-                    <button type="submit" class="btn-action-link" title="Pateikti">
-                        <i class="fa-solid fa-arrow-right"></i>
+                    <div class="flex gap-1">
+                        <button type="submit" class="btn-action-link" title="Pateikti">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button type="reset" class="btn-action-link" title="Atnaujinti">
+                            <i class="fa-solid fa-rotate"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <form
+                    class="relative overflow-hidden w-full max-w-[350px] border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0 flex">
+                    <input name="s" class="w-full pl-2 pr-20 focus:outline-none" placeholder="Ieškoti vietovės...">
+                    <button type="submit" class="btn-action-link absolute top-0 bottom-0 right-0 rounded-none">
+                        <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                    <button type="reset" class="btn-action-link" title="Atnaujinti">
-                        <i class="fa-solid fa-rotate"></i>
-                    </button>
+                </form>
+                <div class="flex gap-6 justify-between items-center">
+                    <article class="shadow-md rounded-lg overflow-hidden">
+                        <div>
+                            <img src="{{ $hotel->image ? $hotel->image : '/assets/img/no-image.jpg' }}" alt="hotel">
+                        </div>
+                        <div class="p-4 flex flex-col items-start">
+                            <p class="mb-1 text-gray-500">{{ $hotel->destination->name }}, {{ $hotel->country->name }}</p>
+                            <p class="mb-4">{{ $hotel->name }}</p>
+                            <div class="mb-6 w-full flex justify-between">
+                                <p class="font-semibold">Nuo &euro;{{ min($offerPrices) }}</p>
+                                <x-front.rating-stars />
+                            </div>
+                            <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
+                        </div>
+                    </article>
                 </div>
-            </form>
-
-            <form
-                class="relative overflow-hidden w-full max-w-[350px] border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0 flex">
-                <input name="s" class="w-full pl-2 pr-20 focus:outline-none" placeholder="Ieškoti vietovės...">
-                <button type="submit" class="btn-action-link absolute top-0 bottom-0 right-0 rounded-none">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-        </div>
-
-        <div class="flex gap-6 justify-between items-center">
-            <article class="shadow-md rounded-lg overflow-hidden">
-                <div>
-                    <img src="/assets/img/hotel-1.jpg" alt="hotel">
-                </div>
-                <div class="p-4 flex flex-col items-start">
-                    <p class="mb-1 text-gray-500">Kroatija</p>
-                    <p class="mb-4">Vietovės pavadinimas</p>
-                    <div class="mb-6 w-full flex justify-between">
-                        <p class="font-semibold">Nuo &euro;899.99</p>
-                        <ul class="flex justify-center">
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
-                </div>
-            </article>
-            <article class="shadow-md rounded-lg overflow-hidden">
-                <div>
-                    <img src="/assets/img/hotel-2.jpg" alt="hotel">
-                </div>
-                <div class="p-4 flex flex-col items-start">
-                    <p class="mb-1 text-gray-500">Makedonija</p>
-                    <p class="mb-4">Vietovės pavadinimas</p>
-                    <div class="mb-6 w-full flex justify-between">
-                        <p class="font-semibold">Nuo &euro;699.99</p>
-                        <ul class="flex justify-center">
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
-                </div>
-            </article>
-            <article class="shadow-md rounded-lg overflow-hidden">
-                <div>
-                    <img src="/assets/img/hotel-1.jpg" alt="hotel">
-                </div>
-                <div class="p-4 flex flex-col items-start">
-                    <p class="mb-1 text-gray-500">Kroatija</p>
-                    <p class="mb-4">Vietovės pavadinimas</p>
-                    <div class="mb-6 w-full flex justify-between">
-                        <p class="font-semibold">Nuo &euro;899.99</p>
-                        <ul class="flex justify-center">
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500 mr-1" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                            <li>
-                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star"
-                                    class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path fill="currentColor"
-                                        d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z">
-                                    </path>
-                                </svg>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
-                </div>
-            </article>
-        </div>
+            </div>
+            @else
+                <h2 class="text-3xl font-semibold">Atsiprašome, pasiūlymų šiuo metu nėra</h2>
+            @endif
     </section>
 </x-front-layout>

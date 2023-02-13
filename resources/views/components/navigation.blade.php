@@ -18,7 +18,7 @@
                         {{ __('Pasiūlymai') }}
                     </x-nav-link>
                     <x-nav-link :href="route('index')" :active="request()->routeIs('customer-destinations')">
-                        {{ __('Kelionių kryptys') }}
+                        {{ __('Vietovės') }}
                     </x-nav-link>
                     <x-nav-link :href="route('index')" :active="request()->routeIs('customer-about-us')">
                         {{ __('Apie mus') }}
