@@ -37,7 +37,7 @@ class HotelController extends Controller
             'name' => ['required'],
             'address' => ['required'],
             'people_limit' => ['required', 'regex:/^\d+?/'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'],
         ],
             [
                 'country_id.required' => 'Nepalikite tuščio laukelio',
@@ -62,9 +62,9 @@ class HotelController extends Controller
             $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             $fileName = $name . '-' . uniqid() . '.jpg';
 
-            $image = Image::make($image)->resize(500, null, function($constraint) {
+            $image = Image::make($image)->resize(1600, null, function($constraint) {
                 $constraint->aspectRatio();
-            })->crop(500, 300)->encode('jpg');
+            })->crop(1600, 1000)->encode('jpg');
 
             Storage::put("public/hotels/$fileName", $image);
             $incomingFields['image'] = "/storage/hotels/$fileName";
@@ -99,7 +99,7 @@ class HotelController extends Controller
             'name' => ['required'],
             'address' => ['required'],
             'people_limit' => ['required', 'regex:/^\d+?/'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'],
         ],
             [
                 'country_id.required' => 'Nepalikite tuščio laukelio',
@@ -124,9 +124,9 @@ class HotelController extends Controller
             $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             $fileName = $name . '-' . uniqid() . '.jpg';
 
-            $image = Image::make($image)->resize(500, null, function($constraint) {
+            $image = Image::make($image)->resize(1600, null, function($constraint) {
                 $constraint->aspectRatio();
-            })->crop(500, 300)->encode('jpg');
+            })->crop(1600, 1000)->encode('jpg');
 
             if($hotel->image && $incomingFields['image']) {
                 Storage::delete(str_replace('/storage/', 'public/' , $hotel->image));

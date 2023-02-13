@@ -40,6 +40,7 @@ class FrontController extends Controller
     {
         if($request->s && $request->s !== '') {
             $searchWords = explode(' ', $request->s);
+
             if(count($searchWords) === 1) {
                 $offers = Offer::query()
                             ->join('destinations', 'destinations.id', 'offers.destination_id')
@@ -112,14 +113,14 @@ class FrontController extends Controller
         $continents = Country::select('continent')->distinct()->get();
         $sortOptions = Offer::SORT;
 
-        return view('pages.front.offers.destinations-customer', compact('pageTitle', 'request', 'offers', 'countries', 'continents', 'sortOptions'));
+        return view('pages.front.offers.offers-customer', compact('pageTitle', 'request', 'offers', 'countries', 'continents', 'sortOptions'));
     }
 
-    public function showSingleOffer(Destination $destination)
+    public function showSingleOffer(Offer $offer)
     {
         $pageTitle = 'Pasiūlymas';
 
-        return view('pages.front.offers.single-destinations-customer', compact('pageTitle', 'destination'));
+        return view('pages.front.offers.single-offer-customer', compact('pageTitle', 'offer'));
     }
     
     public function showOrders()

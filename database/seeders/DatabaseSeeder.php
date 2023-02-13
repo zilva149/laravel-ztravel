@@ -241,7 +241,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('offers')->insert([
-            'name' => '12 deinų šalia krioklio didybės',
+            'name' => '12 dienų šalia krioklio didybės',
             'travel_start' => '2023-08-15',
             'travel_end' => '2023-08-27',
             'price' => '2499.99',

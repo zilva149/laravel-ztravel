@@ -1,6 +1,6 @@
 <x-front-layout :$pageTitle>
     <section
-        class="relative min-h-[90vh] text-gray-900 bg-[url('/public/assets/img/hero-home.jpg')] bg-cover bg-center bg-fixed before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[#14261c] before:opacity-[0.6] flex justify-center items-end"
+        class="relative min-h-[90vh] text-gray-900 bg-[url('/public/assets/img/hero-boat.jpg')] bg-cover bg-center bg-fixed before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[#14261c] before:opacity-[0.6] flex justify-center items-end"
         id="hero">
         <header class="relative mb-36 flex flex-col gap-16 items-center bg-transparent z-99">
             <h1 class="text-white text-5xl font-semibold text-center">Mūsų pasiūlymai</h1>
@@ -81,7 +81,7 @@
                                 <p class="font-semibold">&euro;{{ $offer->price }}</p>
                                 <x-front.rating-stars />
                             </div>
-                            <a href="{{ route('customer-single-offer', $offer->destination->id) }}" class="btn-action-link text-md">Sužinokite daugiau</a>
+                            <a href="{{ route('customer-single-offer', $offer->id) }}" class="btn-action-link text-md">Sužinokite daugiau</a>
                         </div>
                     </article>
                 @endforeach

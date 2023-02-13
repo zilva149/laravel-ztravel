@@ -34,7 +34,7 @@ class DestinationController extends Controller
             'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
             'name' => ['required'],
             'desc' => ['required'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'],
         ],
             [
                 'country_id.required' => 'Nepalikite tuščio laukelio',
@@ -56,9 +56,9 @@ class DestinationController extends Controller
             $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             $fileName = $name . '-' . uniqid() . '.jpg';
 
-            $image = Image::make($image)->resize(500, null, function($constraint) {
+            $image = Image::make($image)->resize(1600, null, function($constraint) {
                 $constraint->aspectRatio();
-            })->crop(500, 300)->encode('jpg');
+            })->crop(1600, 1000)->encode('jpg');
 
             Storage::put("public/destinations/$fileName", $image);
             $incomingFields['image'] = "/storage/destinations/$fileName";
@@ -91,7 +91,7 @@ class DestinationController extends Controller
             'country_id' => ['required', Rule::in(Country::all()->pluck('id'))],
             'name' => ['required'],
             'desc' => ['required'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'],
         ],
             [
                 'country_id.required' => 'Nepalikite tuščio laukelio',
@@ -113,9 +113,9 @@ class DestinationController extends Controller
             $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             $fileName = $name . '-' . uniqid() . '.jpg';
 
-            $image = Image::make($image)->resize(500, null, function($constraint) {
+            $image = Image::make($image)->resize(1600, null, function($constraint) {
                 $constraint->aspectRatio();
-            })->crop(500, 300)->encode('jpg');
+            })->crop(1600, 1000)->encode('jpg');
 
             if($destination->image && $incomingFields['image']) {
                 Storage::delete(str_replace('/storage/', 'public/' , $destination->image));

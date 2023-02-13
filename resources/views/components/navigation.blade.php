@@ -17,9 +17,6 @@
                     <x-nav-link :href="route('customer-offers')" :active="request()->routeIs('customer-offers')">
                         {{ __('Pasiūlymai') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('index')" :active="request()->routeIs('customer-destinations')">
-                        {{ __('Vietovės') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('index')" :active="request()->routeIs('customer-about-us')">
                         {{ __('Apie mus') }}
                     </x-nav-link>

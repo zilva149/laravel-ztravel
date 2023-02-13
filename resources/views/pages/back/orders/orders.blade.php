@@ -1,8 +1,8 @@
 @php
     $order = [
         'id' => 1,
-        'firstname' => 'Monika',
-        'lastname' => 'Levickaitė',
+        'firstname' => 'Jonas',
+        'lastname' => 'Jonaitis',
         'username' => 'liepsnele',
         'country' => 'Lenkija',
         'hotel' => 'StarsHotel',
