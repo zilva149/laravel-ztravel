@@ -8,10 +8,10 @@
     </span>
     <div class="flex justify-center items-center gap-2 lg:w-1/3">
         <button
-            class="btn-primary w-full {{ $status === 'pending' ? 'bg-red-700 hover:bg-red-800' : 'bg-green-700 hover:bg-green-800' }}">
+            class="btn-primary w-full {{ $status === 'pending' ? 'bg-[var(--red)] hover:bg-[var(--dred)]' : 'bg-[var(--green)] hover:bg-[var(--dgreen)]' }}">
             {{ $status === 'pending' ? 'Tvirtinti' : 'Patvirtinta' }}
         </button>
-        <a class="btn-primary bg-blue-700 hover:bg-blue-800 px-4 cursor-pointer md:px-6" title="info">
+        <a class="btn-primary bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info">
             <i class="fa-solid fa-info"></i>
         </a>
     </div>

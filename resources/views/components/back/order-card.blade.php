@@ -4,19 +4,18 @@
     <div class="p-4 flex flex-col">
         <div class="flex flex-col md:flex-row gap-4 justify-between items-center relative">
             <div
-                class="md:w-2/5 flex flex-col justify-center gap-1 xl:flex-row xl:justify-start text-center md:text-start">
+                class="md:w-3/5 flex flex-col justify-center gap-1 xl:flex-row xl:justify-start text-center md:text-start">
                 <span class="font-semibold">Vardas:</span>
                 <span>{{ $order['firstname'] }} {{ $order['lastname'] }}</span>
             </div>
-            <div class="md:w-2/5 flex gap-1">
+            <div class="md:w-2/5 flex gap-1 justify-end items-center">
                 <a
-                    class="btn-primary cursor-pointer w-full max-w-[150px] {{ $order['status'] === 'pending' ? 'bg-red-700 hover:bg-red-800' : 'bg-green-700 hover:bg-green-800' }}">
+                    class="btn-primary cursor-pointer w-full max-w-[150px] {{ $order['status'] === 'pending' ? 'bg-[var(--red)] hover:bg-[var(--dred)]' : 'bg-[var(--green)] hover:bg-[var(--dgreen)]' }}">
                     {{ $order['status'] === 'pending' ? 'Tvirtinti' : 'Patvirtinta' }}
                 </a>
-            </div>
-            <div class="md:w-1/5 text-2xl text-end">
-                <i class="fa-solid fa-chevron-down cursor-pointer transition-all hover:text-slate-500"
-                    data-id="btn-expand"></i>
+                <a class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </a>
             </div>
         </div>
         <div class="overflow-hidden max-h-0">

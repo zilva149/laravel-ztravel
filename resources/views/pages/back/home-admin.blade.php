@@ -1,21 +1,33 @@
+@php
+    $order = [
+        'id' => 1,
+        'firstname' => 'Monika',
+        'lastname' => 'Levickaitė',
+        'username' => 'liepsnele',
+        'country' => 'Lenkija',
+        'hotel' => 'StarsHotel',
+        'travel' => 'Kelionė į Lenkiją 14 dienų',
+        'startDate' => '2023-03-01',
+        'endDate' => '2023-03-15',
+        'days' => 14,
+        'price' => 499.99,
+        'status' => 'pending',
+    ];
+@endphp
+
 <x-back-layout :$pageTitle>
     <x-slot name="header">
-        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <h2 class="text-3xl font-semibold leading-tight">
-                Pradinis
-            </h2>
-        </div>
     </x-slot>
 
     <section
         class="mb-6 p-6 rounded-md bg-white shadow-md grid grid-cols-1 gap-4 dark:bg-dark-eval-1 md:grid-cols-2 2xl:grid-cols-4">
-        <x-back.home-link url="{{ route('admin-countries') }}" title='Šalys' class='bg-red-700 hover:bg-red-800' />
+        <x-back.home-link url="{{ route('admin-countries') }}" title='Šalys' class='bg-[var(--green)] hover:bg-[var(--dgreen)]' />
         <x-back.home-link url="{{ route('admin-destinations') }}" title='Vietovės'
-            class='bg-green-700 hover:bg-green-800' />
+            class='bg-[var(--green)] hover:bg-[var(--dgreen)]' />
         <x-back.home-link url="{{ route('admin-hotels') }}" title='Nakvynės vietos'
-            class='bg-sky-500 hover:bg-sky-600' />
+            class='bg-[var(--green)] hover:bg-[var(--dgreen)]' />
         <x-back.home-link url="{{ route('admin-reviews') }}" title='Atsiliepimai'
-            class='bg-slate-400 hover:bg-slate-500' />
+            class='bg-[var(--green)] hover:bg-[var(--dgreen)]' />
     </section>
 
     <div class="mb-6 flex flex-col gap-6 2xl:flex-row dark:bg-dark-eval-0 dark:text-gray-200">
@@ -25,12 +37,11 @@
                 <a href="{{ route('admin-orders') }}" class="btn-primary">Peržiūrėti
                     visus</a>
             </div>
-            <x-back.home-order name='Monika Levickaitė' orderID='2' status='pending' />
-            <x-back.home-order name='Artūras Valinskas' orderID='4' status='pending' />
-            <x-back.home-order name='Kazys Bailiukas' orderID='4' status='approved' />
-            <x-back.home-order name='Eglė Vieversytė' orderID='1' status='approved' />
-            <x-back.home-order name='Elena Danienė' orderID='3' status='approved' />
-            <x-back.home-order name='Marius Būžinskas' orderID='5' status='approved' />
+            <x-back.order-card :$order />
+            <x-back.order-card :$order />
+            <x-back.order-card :$order />
+            <x-back.order-card :$order />
+            <x-back.order-card :$order />
         </section>
         <section class="w-full p-6 bg-white rounded-md shadow-md flex flex-col gap-6 2xl:w-1/3 dark:bg-dark-eval-1">
             <div class="flex gap-4 justify-center items-center">

@@ -73,7 +73,7 @@ Alpine.plugin(collapse);
 
 Alpine.start();
 
-const expandBtns = document.querySelectorAll("i[data-id='btn-expand']");
+const expandBtns = document.querySelectorAll("*[data-id='btn-expand']");
 
 if (expandBtns) {
     expandBtns.forEach((btn) => {

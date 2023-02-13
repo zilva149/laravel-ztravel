@@ -13,8 +13,11 @@
     :root {
         --green: #1bae70;
         --dgreen: #06752e;
+        --red: #d91818;
+        --dred: #b31111;
+        --lblue: #3457d5;
+        --blue: #2240af;
         --dblue: #152238;
-        --red: #f01616;
     }
     
     html {
@@ -28,7 +31,7 @@
 
 @layer components {
     .btn-primary {
-        @apply inline-block px-6 py-2.5 bg-purple-500 text-white font-medium text-sm leading-tight rounded shadow-lg hover:bg-purple-600 hover:shadow-lg focus:outline-none focus:ring-0 transition duration-150 ease-in-out flex justify-center items-center;
+        @apply px-6 py-2.5 bg-[var(--green)] text-white font-medium text-sm leading-tight rounded shadow-lg hover:bg-[var(--dgreen)] hover:shadow-lg focus:outline-none focus:ring-0 transition duration-150 ease-in-out flex justify-center items-center;
     }
 
     .show {
