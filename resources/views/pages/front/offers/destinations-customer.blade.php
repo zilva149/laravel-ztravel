@@ -65,7 +65,7 @@
                 </form>
 
             </div>
-            <div class="flex gap-6 justify-between items-center">
+            <div class="grid grid-cols-3 gap-6 justify-between items-center">
                 @foreach ($hotels as $hotel)        
                     <article class="shadow-md rounded-lg overflow-hidden">
                         <div>
