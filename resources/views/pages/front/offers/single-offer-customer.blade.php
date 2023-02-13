@@ -17,12 +17,35 @@
             Informacija
         </h2>
 
-        <div class="w-full border-[3px] border-solid border-[var(--green)] rounded-lg p-8 mb-14 flex justify-between">
-            <h2>informacija</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-between items-center">
-            <h2>kažkas</h2>
+        <div class="w-full bg-[var(--dblue)] text-white rounded-lg shadow-md mb-14 overflow-hidden">
+            <div class="grid grid-cols-2">
+                <div class="p-6">
+                    <img src="{{ $offer->destination->image ? $offer->destination->image : '' }}" alt="{{ $offer->destination->name }}">
+                </div>
+                <div class="p-6">
+                    <p>{{ $offer->destination->desc }}</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2">
+                <div class="p-6 flex flex-col justify-between">
+                    <div class="flex flex-col gap-2">
+                        <p class="mb-2 flex flex-col gap-1"><span class="font-semibold">Žemynas:</span>{{ $offer->country->continent }}</p>
+                        <p class="mb-2 flex flex-col gap-1"><span class="font-semibold">Vieta:</span>{{ $offer->destination->name }}, {{ $offer->country->name }}</p>
+                        <p class="mb-2 flex flex-col gap-1"><span class="font-semibold">Nakvynė:</span>{{ $offer->hotel->name }}, {{ $offer->hotel->address }}</p>
+                        <p class="flex flex-col gap-1"><span class="font-semibold">Kelionės data:</span>{{ $offer->travel_start }} iki {{ $offer->travel_end }}</p>
+                    </div>
+                    <div class="flex gap-8 justify-start items-center">
+                        <p class="text-xl font-semibold">&euro;{{ number_format($offer->price, 2, '.', ',') }}</p>
+                        <button class="btn-action-link text-xl flex gap-4 justify-center items-center">
+                            Užsisakyti
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <img src="{{ $offer->hotel->image ? $offer->hotel->image : '' }}" alt="{{ $offer->hotel->name }}">
+                </div>
+            </div>
         </div>
     </section>
 </x-front-layout>
