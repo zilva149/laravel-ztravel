@@ -1,7 +1,7 @@
 @props([
     'align' => 'right',
     'width' => '48',
-    'contentClasses' => 'py-1 bg-white dark:bg-dark-eval-2'
+    'contentClasses' => 'bg-[var(--green)] text-white overflow-hidden dark:bg-dark-eval-2'
 ])
 
 @php
