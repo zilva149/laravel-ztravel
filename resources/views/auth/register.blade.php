@@ -1,7 +1,8 @@
 <x-front-layout :$pageTitle>
     <section
-        class="relative min-h-[115vh] text-gray-900 bg-[url('/public/assets/img/hero-home.jpg')] bg-cover bg-center bg-fixed before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[#14261c] before:opacity-[0.6] flex flex-col justify-center items-center"
+        class="relative min-h-[115vh] pb-8 text-gray-900 bg-[url('/public/assets/img/hero-home.jpg')] bg-cover bg-center bg-fixed before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[#14261c] before:opacity-[0.6] flex flex-col justify-start items-center"
         id="hero">
+        <div class="bg-transparent h-[100px]"></div>
         <header class="relative flex flex-col items-center bg-transparent z-99">
             <h1
                 class="relative mb-12 text-white text-2xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">

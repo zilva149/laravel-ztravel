@@ -24,6 +24,10 @@
         @apply font-sans scroll-smooth;
     }
 
+    body * {
+        @apply box-border;
+    }
+
     th, td {
         @apply dark:text-white;
     }

@@ -17,6 +17,10 @@
     html {
         @apply font-sans scroll-smooth;
     }
+
+    body * {
+        @apply box-border;
+    }
 }
 
 @layer components {
