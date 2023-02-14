@@ -48,4 +48,9 @@ class Offer extends Model
     {
         return $this->belongsTo(Hotel::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

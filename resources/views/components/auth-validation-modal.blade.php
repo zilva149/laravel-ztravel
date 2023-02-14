@@ -1,7 +1,7 @@
-@props(['errors', 'input'])
+@props(['errors'])
 
 @if ($errors->any())
     <div class="modal-sm mb-4" style="background-color: var(--red)">
-        <p>{{ $errors->first($input) }}</p>
+        <p>{{ $errors->first() }}</p>
     </div>
 @endif

@@ -12,21 +12,32 @@
             class="relative p-6 rounded-lg border-2 shadow-lg bg-[rgba(21,34,56,0.4)] w-full max-w-lg z-99">
             @csrf
 
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            @if (session()->has('success'))
+                <div class="modal mb-4" style="background-color: var(--green)">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @endif
 
+            @if (session()->has('failure'))
+                <div class="modal mb-4" style="background-color: var(--red)">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @endif
+
+            <x-auth-validation-modal :errors="$errors" />
+            
             <!-- Email Address -->
             <div class="mb-6 flex flex-col gap-2">
                 <x-form.label for="email" :value="__('El. paštas')" />
                 <x-form.input id="email" class="block w-full" type="email" name="email" :value="old('email')"
-                    placeholder="{{ __('') }}" />
+                    placeholder="{{ __('') }}" autofocus />
             </div>
 
             <!-- Password -->
             <div class="mb-6 flex flex-col gap-2">
                 <x-form.label for="password" :value="__('Slaptažodis')" />
                 <x-form.input id="password" class="block w-full" type="password" name="password"
-                    autocomplete="new-password" placeholder="{{ __('') }}" />
+                    autocomplete="new-password" placeholder="{{ __('') }}" autofocus />
             </div>
 
             <!-- Remember Me -->

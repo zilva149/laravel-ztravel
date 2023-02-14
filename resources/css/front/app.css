@@ -24,6 +24,22 @@
         @apply px-6 py-2 text-white rounded-3xl bg-[var(--green)] hover:bg-[var(--dgreen)] transition-all ease-in-out;
     }
 
+    .modal {
+        @apply w-full p-2 px-4 rounded-md text-white;
+    }
+
+    .modal p {
+        @apply text-lg;
+    }
+
+    .modal-sm {
+        @apply w-full p-1 px-4 rounded-md text-white;
+    }
+
+    .modal-sm p {
+        @apply text-sm;
+    }
+
     .show {
         @apply max-h-[9999px] !important;
     }
