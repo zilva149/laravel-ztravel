@@ -43,7 +43,7 @@
                     <div class="flex flex-col gap-4">
                         <div class="flex gap-8 justify-start items-center">
                             <p class="text-xl font-semibold">&euro;{{ number_format($offer->price, 2, '.', ',') }}</p>
-                            <form action="{{ route('customer-single-offer', $offer->id) }}" method="POST" id="order">
+                            <form action="{{ route('customer-single-offer-store', $offer->id) }}" method="POST" id="order">
                                 @csrf
                                 <button type="submit" class="btn-action-link text-xl flex gap-4 justify-center items-center">
                                     Užsisakyti

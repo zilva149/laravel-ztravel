@@ -1,5 +1,5 @@
 @props(['order', 'statusOptions'])
-<article class="rounded-md shadow-md">
+<article class="rounded-md shadow-md" id="{{ $order->id }}">
     <div class="p-4 flex flex-col">
         <div class="flex flex-col md:flex-row gap-4 justify-between items-center relative">
             <div class="md:w-3/5 flex flex-row justify-start gap-12 text-center">
@@ -11,7 +11,7 @@
                 <div
                     class="md:w-3/5 flex flex-col justify-center items-center gap-1 xl:flex-row xl:justify-start text-center md:text-start">
                     <span class="font-semibold">Statusas:</span>
-                    <span class="p-2 rounded-md
+                    <span class="w-[130px] py-2 text-center rounded-md font-semibold
                     @php
                     if($statusOptions[$order->status] == 'Nepatvirtinta') {
                         echo 'bg-[var(--red)]';
@@ -25,10 +25,15 @@
                 </div>
             </div>
             <div class="md:w-2/5 flex gap-1 justify-end items-center">
-                @if ($statusOptions[$order->status] == 'Nepatvirtinta')    
-                    <div class="btn-primary text-lg bg-[var(--green)] hover:bg-[var(--dgreen)] px-4 cursor-pointer md:px-6" title="tvirtinti">
-                        <i class="fa-solid fa-check"></i>
-                    </div>
+                @if ($statusOptions[$order->status] == 'Nepatvirtinta')
+                    <form action="{{ route('admin-order-update', $order->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <button type="submit" class="btn-primary text-lg bg-[var(--green)] hover:bg-[var(--dgreen)] px-4 cursor-pointer md:px-6" title="tvirtinti">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                    </form>
                 @endif
                 <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
                     <i class="fa-solid fa-info"></i>
@@ -73,3 +78,8 @@
         </div>
     </div>
 </article>
+@if (session()->has('success') && session('id') == $order->id)
+    <div class="modal mb-4" style="background-color: var(--green)">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif

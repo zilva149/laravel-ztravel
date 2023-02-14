@@ -1,20 +1,3 @@
-@php
-    $order = [
-        'id' => 1,
-        'firstname' => 'Jonas',
-        'lastname' => 'Jonaitis',
-        'username' => 'liepsnele',
-        'country' => 'Lenkija',
-        'hotel' => 'StarsHotel',
-        'travel' => 'Kelionė į Lenkiją 14 dienų',
-        'startDate' => '2023-03-01',
-        'endDate' => '2023-03-15',
-        'days' => 14,
-        'price' => 499.99,
-        'status' => 'pending',
-    ];
-@endphp
-
 <x-back-layout :$pageTitle>
     <x-slot name="header">
     </x-slot>
@@ -73,33 +56,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="border-b">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            liepsnele
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            &euro;{{ number_format(29799.84, 2, '.', ',') }}
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            zilva149
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            &euro;{{ number_format(14125.99, 2, '.', ',') }}
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            grybas
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            &euro;{{ number_format(9999, 2, '.', ',') }}
-                                        </td>
-                                    </tr>
+                                    @foreach ($users as $key => $user)
+                                        <tr class="border-b">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $key }}</td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                {{ $user->name }}
+                                            </td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                &euro;{{ number_format($user->sales, 2, '.', ',') }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

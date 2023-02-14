@@ -16,13 +16,14 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::get('/home', [FrontController::class, 'showHome'])->name('home');
     Route::get('/offers', [FrontController::class, 'showOffers'])->name('offers');
     Route::get('/offers/{offer}', [FrontController::class, 'showSingleOffer'])->name('single-offer');
-    Route::post('/offers/{offer}', [FrontController::class, 'storeOrder'])->name('single-offer');
+    Route::post('/offers/{offer}', [FrontController::class, 'storeOrder'])->name('single-offer-store');
     Route::get('/orders', [FrontController::class, 'showOrders'])->middleware('roles:Customer')->name('orders');
 });
 
 Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->group(function() {
     Route::get('/home', [BackController::class, 'showHome'])->name('home');
     Route::get('/orders', [BackController::class, 'showOrders'])->name('orders');
+    Route::put('/orders/{order}', [BackController::class, 'updateOrder'])->name('order-update');
     Route::get('/users', [BackController::class, 'showUsers'])->name('users');
     Route::get('/reviews', [BackController::class, 'showReviews'])->name('reviews');
 
