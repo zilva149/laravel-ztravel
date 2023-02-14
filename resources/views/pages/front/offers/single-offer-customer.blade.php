@@ -17,7 +17,7 @@
             Informacija
         </h2>
 
-        <div class="w-full bg-[var(--dblue)] text-white rounded-lg shadow-md mb-14 overflow-hidden">
+        <div class="w-full bg-[rgba(21,34,56,0.8)] p-6 text-white rounded-lg shadow-md mb-14 overflow-hidden">
             <div class="grid grid-cols-2">
                 @if ($offer->destination->image)
                     <div class="p-6">

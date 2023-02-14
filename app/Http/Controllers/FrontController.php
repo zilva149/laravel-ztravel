@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Hotel;
 use App\Models\Offer;
+use App\Models\Order;
 use App\Models\Country;
 use App\Models\Destination;
 use Illuminate\Http\Request;
@@ -129,6 +131,13 @@ class FrontController extends Controller
             return redirect('login')->with('success', 'Norėdami užsisakyti, prašome prisijungti');
         }
 
+        Order::create([
+            'user_id' => auth()->user()->id,
+            'destination_id' => $offer->destination->id,
+            'hotel_id' => $offer->hotel->id,
+            'offer_id' => $offer->id,
+        ]);
+
         return redirect($request->fullUrl() . '#order')->with('success', 'Užsakymas atliktas');
     }
     
@@ -136,6 +145,18 @@ class FrontController extends Controller
     {
         $pageTitle = 'Užsakymai';
 
-        return 'Customer Orders';
+        $orders = Order::all();
+
+        foreach($orders as $order) {
+            $start = Carbon::parse($order->offer->travel_start);
+            $end = Carbon::parse($order->offer->travel_end);
+
+            $duration = $start->diffInDays($end);
+            $order->duration = $duration;
+        }
+
+        $statusOptions = array_flip(Order::STATUS);
+
+        return view('pages.back.home-admin', compact('pageTitle', 'orders', 'statusOptions'));
     }
 }

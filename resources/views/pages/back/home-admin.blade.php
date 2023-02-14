@@ -37,11 +37,13 @@
                 <a href="{{ route('admin-orders') }}" class="btn-primary">Peržiūrėti
                     visus</a>
             </div>
-            <x-back.order-card :$order />
-            <x-back.order-card :$order />
-            <x-back.order-card :$order />
-            <x-back.order-card :$order />
-            <x-back.order-card :$order />
+            @if (isset($orders)  && count($orders) != 0)
+                @foreach ($orders as $order)
+                    <x-back.order-card :$order :$statusOptions  />
+                @endforeach
+            @else
+                <p class="w-full text-xl font-semibold text-center">Nėra užsakymų</p>
+            @endif
         </section>
         <section class="w-full p-6 bg-white rounded-md shadow-md flex flex-col gap-6 2xl:w-1/3 dark:bg-dark-eval-1">
             <div class="flex gap-4 justify-center items-center">
