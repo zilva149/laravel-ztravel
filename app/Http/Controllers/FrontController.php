@@ -125,7 +125,7 @@ class FrontController extends Controller
         return view('pages.front.offers.single-offer-customer', compact('pageTitle', 'offer'));
     }
 
-    public function storeOrder(Request $request, Offer $offer)
+    public function offerPayment(Request $request, Offer $offer)
     {
         if(!auth()->check()) {
             return redirect('login')->with('success', 'Norėdami užsisakyti, prašome prisijungti');

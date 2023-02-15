@@ -15,7 +15,7 @@
             class="relative mb-16 text-3xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">
             Jūsų užsakymai
         </h2>
-        <section class="w-full p-10 rounded-md shadow-md flex flex-col gap-6">
+        <div class="w-full p-10 rounded-md shadow-md flex flex-col gap-6">
             @if (isset($orders)  && count($orders) != 0)
                 @foreach ($orders as $order)
                     <x-front.order-card :$order :$statusOptions />
@@ -23,6 +23,6 @@
             @else
                 <p class="w-full text-xl font-semibold text-center">Užsakymų neturite</p>
             @endif
-        </section>
+        </div>
     </section>
 </x-front-layout>
