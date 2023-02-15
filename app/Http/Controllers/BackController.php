@@ -64,15 +64,36 @@ class BackController extends Controller
 
     public function updateOrder(Request $request, Order $order)
     {
-        $order->update(['status' => (string) Order::STATUS['Patvirtinta']]);
+        if($request->status_approve) {
+            $order->update(['status' => (string) Order::STATUS['Patvirtinta']]);
+            return redirect($request->fullUrl() . "#$order->id")->with('success', 'Užsakymas sėkmingai patvirtintas')->with('id', $order->id);
+        }
+        
+        if($request->status_cancel) {
+            $order->update(['status' => (string) Order::STATUS['Atšaukta']]);
+            return redirect($request->fullUrl() . "#$order->id")->with('success', 'Užsakymas sėkmingai atšauktas')->with('id', $order->id);
+        }
 
-        return redirect($request->fullUrl() . "#$order->id")->with('success', 'Užsakymas sėkmingai patvirtintas')->with('id', $order->id);
     }
 
     public function showUsers()
     {
         $pageTitle = 'Vartotojai';
-        return view('pages.back.users.users-admin', compact('pageTitle'));
+        
+        $users = User::all()->where('role', '!=', User::ROLES['Admin']);
+
+        foreach($users as &$user) {
+            $userOrders = $user->orders;
+
+            $sales = 0;
+            foreach($userOrders as $order) {
+                $sales += $order->offer->price;
+            }
+
+            $user->sales = $sales;
+        }
+
+        return view('pages.back.users.users-admin', compact('pageTitle', 'users'));
     }
 
     public function showReviews()

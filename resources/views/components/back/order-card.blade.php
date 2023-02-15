@@ -11,7 +11,7 @@
                 <div
                     class="md:w-3/5 flex flex-col justify-center items-center gap-1 xl:flex-row xl:justify-start text-center md:text-start">
                     <span class="font-semibold">Statusas:</span>
-                    <span class="w-[130px] py-2 text-center rounded-md font-semibold
+                    <span class="w-[130px] py-2 text-center rounded-md font-semibold text-white
                     @php
                     if($statusOptions[$order->status] == 'Nepatvirtinta') {
                         echo 'bg-[var(--red)]';
@@ -26,12 +26,15 @@
             </div>
             <div class="md:w-2/5 flex gap-1 justify-end items-center">
                 @if ($statusOptions[$order->status] == 'Nepatvirtinta')
-                    <form action="{{ route('admin-order-update', $order->id) }}" method="POST">
+                    <form action="{{ route('admin-order-update', $order->id) }}" method="POST" class="flex gap-1">
                         @csrf
                         @method('PUT')
 
-                        <button type="submit" class="btn-primary text-lg bg-[var(--green)] hover:bg-[var(--dgreen)] px-4 cursor-pointer md:px-6" title="tvirtinti">
+                        <button type="submit" name="status_approve" value="1" class="btn-primary text-lg bg-[var(--green)] hover:bg-[var(--dgreen)] px-4 cursor-pointer md:px-6" title="tvirtinti">
                             <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button type="submit" name="status_cancel" value="1" class="btn-primary text-lg bg-gray-400 hover:bg-gray-500 px-4 cursor-pointer md:px-6" title="atšaukti">
+                            <i class="fa-solid fa-xmark"></i>
                         </button>
                     </form>
                 @endif
