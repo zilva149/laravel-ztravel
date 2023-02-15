@@ -1,5 +1,5 @@
 @props(['order', 'statusOptions'])
-<article class="rounded-md shadow-md" id="{{ $order->id }}">
+<article class="border border-solid border-slate-200 rounded-md shadow-md" id="{{ $order->id }}">
     <div class="p-4 flex flex-col">
         <div class="flex flex-col md:flex-row gap-4 justify-between items-center relative">
             <div class="md:w-3/5 flex flex-row justify-start gap-12 text-center">
@@ -25,19 +25,6 @@
                 </div>
             </div>
             <div class="md:w-2/5 flex gap-1 justify-end items-center">
-                @if ($statusOptions[$order->status] == 'Nepatvirtinta')
-                    <form action="{{ route('admin-order-update', $order->id) }}" method="POST" class="flex gap-1">
-                        @csrf
-                        @method('PUT')
-
-                        <button type="submit" name="status_approve" value="1" class="btn-primary text-lg bg-[var(--green)] hover:bg-[var(--dgreen)] px-4 cursor-pointer md:px-6" title="tvirtinti">
-                            <i class="fa-solid fa-check"></i>
-                        </button>
-                        <button type="submit" name="status_cancel" value="1" class="btn-primary text-lg bg-gray-400 hover:bg-gray-500 px-4 cursor-pointer md:px-6" title="atšaukti">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </form>
-                @endif
                 <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
                     <i class="fa-solid fa-info"></i>
                 </div>
@@ -81,8 +68,3 @@
         </div>
     </div>
 </article>
-@if (session()->has('success') && session('id') == $order->id)
-    <div class="modal mb-4" style="background-color: var(--green)">
-        <p>{{ session('success') }}</p>
-    </div>
-@endif

@@ -145,7 +145,7 @@ class FrontController extends Controller
     {
         $pageTitle = 'Užsakymai';
 
-        $orders = Order::all();
+        $orders = Order::all()->where('user_id', auth()->user()->id)->sortByDesc('id');
 
         foreach($orders as $order) {
             $start = Carbon::parse($order->offer->travel_start);
@@ -157,6 +157,6 @@ class FrontController extends Controller
 
         $statusOptions = array_flip(Order::STATUS);
 
-        return view('pages.back.home-admin', compact('pageTitle', 'orders', 'statusOptions'));
+        return view('pages.front.orders.orders-customer', compact('pageTitle', 'orders', 'statusOptions'));
     }
 }

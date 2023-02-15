@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -41,6 +42,7 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $userRole = auth()->user()->role;
+        $requestUrl = URL::previous();
 
         Auth::guard('web')->logout();
 
@@ -49,6 +51,8 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         if($userRole == User::ROLES['Admin']) {
+            return redirect('/');
+        } elseif($requestUrl == route('customer-orders') || $requestUrl == route('profile.edit') ) {
             return redirect('/');
         } else {
             return redirect()->back();
