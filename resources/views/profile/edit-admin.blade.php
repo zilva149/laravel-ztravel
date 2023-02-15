@@ -1,7 +1,7 @@
 <x-back-layout :$pageTitle>
     <x-slot name="header">
         <h2 class="font-semibold text-xl leading-tight">
-            {{ __('Profile') }}
+            {{ __('Paskyra') }}
         </h2>
     </x-slot>
 
