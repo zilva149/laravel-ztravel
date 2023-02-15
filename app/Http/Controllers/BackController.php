@@ -20,7 +20,9 @@ class BackController extends Controller
 
             $sales = 0;
             foreach($userOrders as $order) {
-                $sales += $order->offer->price;
+                if($order->status == Order::STATUS['Patvirtinta']) {
+                    $sales += $order->offer->price;
+                }
             }
 
             $user->sales = $sales;
@@ -87,7 +89,9 @@ class BackController extends Controller
 
             $sales = 0;
             foreach($userOrders as $order) {
-                $sales += $order->offer->price;
+                if($order->status == Order::STATUS['Patvirtinta']) {
+                    $sales += $order->offer->price;
+                }
             }
 
             $user->sales = $sales;
