@@ -37,13 +37,8 @@ class DestinationController extends Controller
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'],
         ],
             [
-                'country_id.required' => 'Nepalikite tuščio laukelio',
                 'country_id.in' => 'Nėra tokios šalies',
-                'name.required' => 'Nepalikite tuščio laukelio',
-                'desc.required' => 'Nepalikite tuščio laukelio',
-                'image.image' => 'Failas turi būti nuotrauka',
                 'image.mimes' => 'Failas neatitinka formato (jpeg, png, jpg, gif)',
-                'image.max' => 'Failas per didelis',
             ]
         );
 
@@ -94,13 +89,8 @@ class DestinationController extends Controller
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'],
         ],
             [
-                'country_id.required' => 'Nepalikite tuščio laukelio',
                 'country_id.in' => 'Nėra tokios šalies',
-                'name.required' => 'Nepalikite tuščio laukelio',
-                'desc.required' => 'Nepalikite tuščio laukelio',
-                'image.image' => 'Failas turi būti nuotrauka',
                 'image.mimes' => 'Failas neatitinka formato (jpeg, png, jpg, gif)',
-                'image.max' => 'Failas per didelis',
             ]
         );
 

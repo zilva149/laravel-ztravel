@@ -19,6 +19,7 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::get('/offers/{offer}', [FrontController::class, 'showSingleOffer'])->name('single-offer');
     Route::get('/offers/{offer}/payment', [FrontController::class, 'showPayment'])->name('payment');
     Route::post('/offers/{offer}/payment', [FrontController::class, 'storePayment'])->name('payment-store');
+    Route::get('/offers/{offer}/payment/success', [FrontController::class, 'successPayment'])->name('payment-success');
 
     Route::get('/orders', [FrontController::class, 'showOrders'])->middleware('roles:Customer')->name('orders');
 });

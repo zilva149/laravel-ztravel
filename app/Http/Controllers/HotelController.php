@@ -40,16 +40,9 @@ class HotelController extends Controller
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'],
         ],
             [
-                'country_id.required' => 'Nepalikite tuščio laukelio',
                 'country_id.in' => 'Nėra tokios šalies',
-                'destination_id.required' => 'Nepalikite tuščio laukelio',
                 'destination_id.in' => 'Nėra tokios vietovės',
-                'name.required' => 'Nepalikite tuščio laukelio',
-                'address.required' => 'Nepalikite tuščio laukelio',
-                'people_limit.required' => 'Nepalikite tuščio laukelio',
-                'image.image' => 'Failas turi būti nuotrauka',
                 'image.mimes' => 'Failas neatitinka formato (jpeg, png, jpg, gif)',
-                'image.max' => 'Failas per didelis',
             ]
         );
 
@@ -102,16 +95,9 @@ class HotelController extends Controller
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'],
         ],
             [
-                'country_id.required' => 'Nepalikite tuščio laukelio',
                 'country_id.in' => 'Nėra tokios šalies',
-                'destination_id.required' => 'Nepalikite tuščio laukelio',
                 'destination_id.in' => 'Nėra tokios vietovės',
-                'name.required' => 'Nepalikite tuščio laukelio',
-                'address.required' => 'Nepalikite tuščio laukelio',
-                'people_limit.required' => 'Nepalikite tuščio laukelio',
-                'image.image' => 'Failas turi būti nuotrauka',
                 'image.mimes' => 'Failas neatitinka formato (jpeg, png, jpg, gif)',
-                'image.max' => 'Failas per didelis',
             ]
         );
 
