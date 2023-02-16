@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\Hotel;
 use App\Models\Offer;
 use App\Models\Order;
 use App\Models\Country;
-use App\Models\Destination;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FrontController extends Controller
 {
@@ -125,7 +122,20 @@ class FrontController extends Controller
         return view('pages.front.offers.single-offer-customer', compact('pageTitle', 'offer'));
     }
 
-    public function offerPayment(Request $request, Offer $offer)
+    public function showPayment(Request $request, Offer $offer)
+    {
+        $pageTitle = 'Apmokėjimas';
+
+        $start = Carbon::parse($offer->travel_start);
+        $end = Carbon::parse($offer->travel_end);
+
+        $duration = $start->diffInDays($end);
+        $offer->duration = $duration;
+
+        return view('pages.front.offers.payment-customer', compact('pageTitle', 'offer'));
+    }
+
+    public function storePayment(Request $request, Offer $offer)
     {
         if(!auth()->check()) {
             return redirect('login')->with('success', 'Norėdami užsisakyti, prašome prisijungti');

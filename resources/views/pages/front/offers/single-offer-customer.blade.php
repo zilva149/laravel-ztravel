@@ -43,13 +43,10 @@
                     <div class="flex flex-col gap-4">
                         <div class="flex gap-8 justify-start items-center">
                             <p class="text-xl font-semibold">&euro;{{ number_format($offer->price, 2, '.', ',') }}</p>
-                            <form action="{{ route('customer-offer-payment', $offer->id) }}" method="POST" id="order">
-                                @csrf
-                                <button type="submit" class="btn-action-link text-xl flex gap-4 justify-center items-center">
-                                    Užsisakyti
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </button>
-                            </form>
+                            <a href="{{ route('customer-payment-store', $offer->id) }}" class="btn-action-link text-xl flex gap-4 justify-center items-center">
+                                Užsisakyti
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
                         </div>
                         @if (session()->has('success'))
                             <div class="modal mb-4" style="background-color: var(--green)">
