@@ -4,9 +4,8 @@
         <div class="flex flex-col md:flex-row gap-4 justify-between items-center relative">
             <div class="md:w-3/5 flex flex-row justify-start gap-12 text-center">
                 <div
-                    class="md:w-2/5 flex flex-col justify-center items-center gap-1 xl:flex-row xl:justify-start text-center md:text-start">
-                    <span class="font-semibold">Vardas:</span>
-                    <span>{{ $order->user->name }}</span>
+                    class="md:w-2/5 flex justify-center items-center xl:flex-row xl:justify-start text-center md:text-start">
+                    <span>{{ $order->firstname }} {{ $order->lastname }}</span>
                 </div>
                 <div
                     class="md:w-3/5 flex flex-col justify-center items-center gap-3 xl:flex-row xl:justify-start text-center md:text-start">
@@ -48,6 +47,18 @@
                 <div class="flex gap-1">
                     <span class="font-semibold">ID:</span>
                     <span>{{ $order->id }}</span>
+                </div>
+                <div class="flex gap-1">
+                    <span class="font-semibold">Vartotojo vardas:</span>
+                    <span>{{ $order->user->name }}</span>
+                </div>
+                <div class="flex gap-1">
+                    <span class="font-semibold">El. paštas:</span>
+                    <span>{{ $order->email }}</span>
+                </div>
+                <div class="flex gap-1">
+                    <span class="font-semibold">Adresas:</span>
+                    <span>{{ $order->address }}</span>
                 </div>
                 <div class="flex gap-1">
                     <span class="font-semibold">Užsakymo laikas:</span>
