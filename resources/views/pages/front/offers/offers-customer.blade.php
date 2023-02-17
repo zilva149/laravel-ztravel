@@ -17,10 +17,8 @@
             Pasiūlymai
         </h2>
 
-        <div class="w-full border-[3px] border-solid border-[var(--green)] rounded-lg p-8 mb-14 flex justify-between">
-            <form action="{{ route('customer-offers') }}" method="GET" class="w-full max-w-[600px] filter-form flex justify-between gap-6">
-                @csrf
-                
+        <div class="w-full max-w-[1000px] border-[3px] border-solid border-[var(--green)] rounded-lg p-8 mb-14">
+            <div class="w-full flex justify-between gap-6">
                 <div class="flex gap-3 justify-center items-center">
                     <label class="font-semibold" for="filter">Šalys:</label>
                     <select name="filter" id="filter"
@@ -48,23 +46,11 @@
                     </select>
                 </div>
 
-                <div class="flex gap-1">
-                    <button type="submit" class="btn-action-link" title="Pateikti">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                    <button type="reset" class="btn-action-link" title="Atnaujinti">
-                        <i class="fa-solid fa-rotate"></i>
-                    </button>
-                </div>
-            </form>
-                
-            <form
-            class="relative overflow-hidden w-full max-w-[350px] border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0 flex" action="{{ route('customer-offers') }}" method="GET">
-                <input name="s" class="w-full pl-2 pr-20 focus:outline-none" placeholder="Ieškoti vietovės...">
-                <button type="submit" class="btn-action-link absolute top-0 bottom-0 right-0 rounded-none">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>            
+                <div
+                class="max-w-[350px] border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
+                    <input name="s" class="w-full px-2 focus:outline-none" placeholder="Ieškoti vietovės...">
+                </div>            
+            </div>                
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-between items-center">

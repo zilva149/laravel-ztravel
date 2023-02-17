@@ -30,7 +30,7 @@ class BackController extends Controller
 
         $users = $users->sortByDesc('sales')->take(7);
         
-        $orders = Order::all()->sortBy('status')->take(5);
+        $orders = Order::all()->sortByDesc('updated_at')->sortBy('status')->take(5);
 
         foreach($orders as $order) {
             $start = Carbon::parse($order->offer->travel_start);
@@ -49,7 +49,7 @@ class BackController extends Controller
     {
         $pageTitle = 'Užsakymai';
 
-        $orders = Order::all()->sortBy('status');
+        $orders = Order::all()->sortByDesc('updated_at')->sortBy('status');
 
         foreach($orders as $order) {
             $start = Carbon::parse($order->offer->travel_start);
