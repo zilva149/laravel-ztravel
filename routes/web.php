@@ -13,8 +13,6 @@ use App\Http\Controllers\DestinationController;
 Route::get('/', [FrontController::class, 'index'])->name('index');
 
 Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
-    Route::get('/home', [FrontController::class, 'showHome'])->name('home');
-
     Route::get('/offers', [FrontController::class, 'showOffers'])->name('offers');
     Route::get('/offers/{offer}', [FrontController::class, 'showSingleOffer'])->name('single-offer');
     Route::get('/offers/{offer}/payment', [FrontController::class, 'showPayment'])->name('payment');

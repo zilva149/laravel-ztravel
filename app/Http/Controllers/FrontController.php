@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Offer;
 use App\Models\Order;
 use App\Models\Country;
+use App\Models\Destination;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -17,22 +18,23 @@ class FrontController extends Controller
             if(auth()->user()->role == User::ROLES['Admin']) {
                 return redirect()->route('admin-home');
             }
-
-            if(auth()->user()->role == User::ROLES['Customer']) {
-                return redirect()->route('customer-home');
-            }
         }
 
         $pageTitle = 'Pradinis';
 
-        return view('pages.front.home-customer', compact('pageTitle'));
-    }
+        $topDestinations = Destination::withCount('orders')->where('id', '>', 0)->get()->sortByDesc('orders_count')->take(3);
 
-    public function showHome()
-    {
-        $pageTitle = 'Pradinis';
+        foreach($topDestinations as $destination) {
+            $minPrice = 0;
+            foreach($destination->offers as $offer) {
+                if($offer->price > $minPrice) {
+                    $minPrice = $offer->price;
+                }
+            }
+            $destination->min_price = $minPrice;
+        }
 
-        return view('pages.front.home-customer', compact('pageTitle'));
+        return view('pages.front.home-customer', compact('pageTitle', 'topDestinations'));
     }
 
     public function showOffers(Request $request)
@@ -91,7 +93,7 @@ class FrontController extends Controller
                             ->get();
             }
         } else {
-            $offers = Offer::where('id', '>', 0)->get();
+            $offers = Offer::withCount('orders')->where('id', '>', 0)->get()->sortByDesc('orders_count');
 
             if($request->filter ?? '') {
                 if($request->filter !== 'all') {
@@ -99,7 +101,7 @@ class FrontController extends Controller
                 }
     
                 $offers = match($request->sort ?? '') {
-                    'popularity_desc' => $offers,
+                    'popularity_desc' => $offers->sortByDesc('orders_count'),
                     'price_desc' => $offers->sortByDesc('price'),
                     'price_asc' => $offers->sortBy('price'),
                     default => $offers,
@@ -137,10 +139,6 @@ class FrontController extends Controller
 
     public function storePayment(Request $request, Offer $offer)
     {
-        // if(!auth()->check()) {
-        //     return redirect('login')->with('success', 'Norėdami užsisakyti, prašome prisijungti');
-        // }
-
         $incomingFields = $request->validate([
             'firstname' => ['required'],
             'lastname' => ['required'],
