@@ -17,7 +17,7 @@
             Pasiūlymai
         </h2>
 
-        <div class="w-full max-w-[1000px] border-[3px] border-solid border-[var(--green)] rounded-lg p-8 mb-14">
+        <div class="w-full max-w-[1000px] border-[3px] border-solid border-[var(--green)] rounded-lg px-12 py-8 mb-14">
             <div class="w-full flex justify-between gap-6">
                 <div class="flex gap-3 justify-center items-center">
                     <label class="font-semibold" for="filter">Šalys:</label>
@@ -48,7 +48,7 @@
 
                 <div
                 class="max-w-[350px] border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
-                    <input name="s" class="w-full px-2 focus:outline-none" placeholder="Ieškoti vietovės...">
+                    <input name="s" id="search" class="w-full px-2 focus:outline-none" placeholder="Ieškoti vietovės...">
                 </div>            
             </div>                
         </div>

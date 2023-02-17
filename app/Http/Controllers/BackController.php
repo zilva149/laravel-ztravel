@@ -68,12 +68,12 @@ class BackController extends Controller
     {
         if($request->status_approve) {
             $order->update(['status' => (string) Order::STATUS['Patvirtinta']]);
-            return redirect($request->fullUrl() . "#$order->id")->with('success', 'Užsakymas sėkmingai patvirtintas')->with('id', $order->id);
+            return redirect("/admin/orders#$order->id")->with('success', 'Užsakymas sėkmingai patvirtintas')->with('id', $order->id);
         }
         
         if($request->status_cancel) {
             $order->update(['status' => (string) Order::STATUS['Atšaukta']]);
-            return redirect($request->fullUrl() . "#$order->id")->with('success', 'Užsakymas sėkmingai atšauktas')->with('id', $order->id);
+            return redirect("/admin/orders#$order->id")->with('success', 'Užsakymas sėkmingai atšauktas')->with('id', $order->id);
         }
 
     }

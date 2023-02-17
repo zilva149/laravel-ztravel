@@ -46,3 +46,14 @@ if (modals) {
         }, 3000);
     });
 }
+
+if (document.getElementById("filter")) {
+    console.log("hello");
+}
+
+async function fetchDestinationHotels(destinationID) {
+    const resp = await fetch(`/admin/api/hotels/${destinationID}`);
+    const data = await resp.json();
+
+    return data;
+}
