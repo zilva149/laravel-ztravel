@@ -14,7 +14,7 @@
             @method('PUT')
 
             @if (session()->has('success'))
-                <div class="modal mb-4" style="background-color: var(--green)">
+                <div class="message mb-4" style="background-color: var(--green)">
                     <p>{{ session('success') }}</p>
                 </div>
             @endif
@@ -26,7 +26,7 @@
                     name="name" id="name" value="{{ old('name', $country->name) }}"
                     placeholder="Šalies pavadinimas">
                 @error('name')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -44,7 +44,7 @@
                     @endforeach
                 </select>
                 @error('continent')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -57,7 +57,7 @@
                     name="season_start" value="{{ old('season_start', $country->season_start) }}" id="season_start"
                     min="{{ date('Y-m-d') }}" />
                 @error('season_start')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -70,7 +70,7 @@
                     name="season_end" value="{{ old('season_end', $country->season_end) }}" id="season_end"
                     min="{{ date('Y-m-d', strtotime(date('Y-m-d') . ' +1 day')) }}" />
                 @error('season_end')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror

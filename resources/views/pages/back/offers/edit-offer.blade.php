@@ -14,7 +14,7 @@
             @method('PUT')
 
             @if (session()->has('success'))
-                <div class="modal mb-4" style="background-color: var(--green)">
+                <div class="message mb-4" style="background-color: var(--green)">
                     <p>{{ session('success') }}</p>
                 </div>
             @endif
@@ -25,7 +25,7 @@
                     class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
                     name="name" value="{{ old('name', $offer->name) }}" id="name">
                 @error('name')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -44,7 +44,7 @@
                     @endforeach
                 </select>
                 @error('country_id')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -67,7 +67,7 @@
                         @endforeach
                     </select>
                     @error('destination_id')
-                        <div class="modal-sm" style="background-color: #f01616">
+                        <div class="message-sm" style="background-color: #f01616">
                             <p>{{ $message }}</p>
                         </div>
                     @enderror
@@ -91,7 +91,7 @@
                         @endforeach
                     </select>
                     @error('hotel_id')
-                        <div class="modal-sm" style="background-color: #f01616">
+                        <div class="message-sm" style="background-color: #f01616">
                             <p>{{ $message }}</p>
                         </div>
                     @enderror
@@ -110,7 +110,7 @@
                     @endforeach
                 />
                 @error('travel_start')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -128,7 +128,7 @@
                     @endforeach
                 />
                 @error('travel_end')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -140,7 +140,7 @@
                     class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
                     name="price" id="price" value="{{ old('price', $offer->price) }}">
                 @error('price')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror

@@ -11,7 +11,7 @@
 
     <div class="mb-6 dark:bg-dark-eval-0 dark:text-gray-200">
         @if (session()->has('success'))
-            <div class="modal mb-4" style="background-color: var(--green)">
+            <div class="message mb-4" style="background-color: var(--green)">
                 <p>{{ session('success') }}</p>
             </div>
         @endif

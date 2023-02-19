@@ -14,13 +14,13 @@
             @csrf
 
             @if (session()->has('success'))
-                <div class="modal mb-4" style="background-color: var(--green)">
+                <div class="message mb-4" style="background-color: var(--green)">
                     <p>{{ session('success') }}</p>
                 </div>
             @endif
 
             @if (session()->has('failure'))
-                <div class="modal mb-4" style="background-color: var(--red)">
+                <div class="message mb-4" style="background-color: var(--red)">
                     <p>{{ session('success') }}</p>
                 </div>
             @endif

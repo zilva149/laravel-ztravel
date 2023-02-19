@@ -25,17 +25,18 @@
             </div>
             <div class="md:w-2/5 flex gap-1 justify-end items-center">
                 @if ($statusOptions[$order->status] == 'Nepatvirtinta')
-                    <form action="{{ route('admin-order-update', $order->id) }}" method="POST" class="flex gap-1">
-                        @csrf
-                        @method('PUT')
-
-                        <button type="submit" name="status_approve" value="1" class="btn-primary text-lg bg-[var(--green)] hover:bg-[var(--dgreen)] px-4 cursor-pointer md:px-6" title="tvirtinti">
+                    <div class="flex gap-1">
+                        <button
+                            class="btn-primary h-full text-lg cursor-pointer text-center"
+                            title="tvirtinti" data-modal-open="modal" data-modal-operation="approve" data-modal-object="užsakymą" data-modal-route="{{ route('admin-order-update', $order->id) }}">
                             <i class="fa-solid fa-check"></i>
                         </button>
-                        <button type="submit" name="status_cancel" value="1" class="btn-primary text-lg bg-gray-400 hover:bg-gray-500 px-4 cursor-pointer md:px-6" title="atšaukti">
+                        <button
+                            class="btn-primary h-full text-lg bg-gray-400 hover:bg-gray-500 cursor-pointer text-center"
+                            title="atšaukti" data-modal-open="modal" data-modal-operation="cancel" data-modal-object="užsakymą" data-modal-route="{{ route('admin-order-update', $order->id) }}">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
-                    </form>
+                    </div>
                 @endif
                 <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
                     <i class="fa-solid fa-info"></i>
@@ -93,7 +94,7 @@
     </div>
 </article>
 @if (session()->has('success') && session('id') == $order->id)
-    <div class="modal mb-4" style="background-color: var(--green)">
+    <div class="message mb-4" style="background-color: var(--green)">
         <p>{{ session('success') }}</p>
     </div>
 @endif

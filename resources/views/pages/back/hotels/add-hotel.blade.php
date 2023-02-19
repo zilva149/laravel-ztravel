@@ -33,7 +33,7 @@
                 @csrf
 
                 @if (session()->has('success'))
-                    <div class="modal mb-4" style="background-color: var(--green)">
+                    <div class="message mb-4" style="background-color: var(--green)">
                         <p>{{ session('success') }}</p>
                     </div>
                 @endif
@@ -51,7 +51,7 @@
                         @endforeach
                     </select>
                     @error('country_id')
-                        <div class="modal-sm" style="background-color: #f01616">
+                        <div class="message-sm" style="background-color: #f01616">
                             <p>{{ $message }}</p>
                         </div>
                     @enderror
@@ -75,7 +75,7 @@
                                 @endforeach
                             </select>
                             @error('destination_id')
-                                <div class="modal-sm" style="background-color: #f01616">
+                                <div class="message-sm" style="background-color: #f01616">
                                     <p>{{ $message }}</p>
                                 </div>
                             @enderror
@@ -89,7 +89,7 @@
                         class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
                         name="name" id="name" value="{{ old('name', '') }}">
                     @error('name')
-                        <div class="modal-sm" style="background-color: #f01616">
+                        <div class="message-sm" style="background-color: #f01616">
                             <p>{{ $message }}</p>
                         </div>
                     @enderror
@@ -101,7 +101,7 @@
                         class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
                         name="address" id="address" value="{{ old('address', '') }}">
                     @error('address')
-                        <div class="modal-sm" style="background-color: #f01616">
+                        <div class="message-sm" style="background-color: #f01616">
                             <p>{{ $message }}</p>
                         </div>
                     @enderror
@@ -113,7 +113,7 @@
                         class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
                         name="people_limit" id="people_limit" value="{{ old('people_limit', '') }}">
                     @error('people_limit')
-                        <div class="modal-sm" style="background-color: #f01616">
+                        <div class="message-sm" style="background-color: #f01616">
                             <p>{{ $message }}</p>
                         </div>
                     @enderror
@@ -124,7 +124,7 @@
                         class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
                         type="file" name="image">
                     @error('image')
-                        <div class="modal-sm" style="background-color: #f01616">
+                        <div class="message-sm" style="background-color: #f01616">
                             <p>{{ $message }}</p>
                         </div>
                     @enderror

@@ -13,7 +13,7 @@
             @csrf
 
             @if (session()->has('success'))
-                <div class="modal mb-4" style="background-color: var(--green)">
+                <div class="message mb-4" style="background-color: var(--green)">
                     <p>{{ session('success') }}</p>
                 </div>
             @endif
@@ -24,7 +24,7 @@
                     class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
                     name="name" id="name" value="{{ old('name', '') }}">
                 @error('name')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -41,7 +41,7 @@
                     @endforeach
                 </select>
                 @error('continent')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -53,7 +53,7 @@
                     name="season_start" id="season_start" min="{{ date('Y-m-d') }}"
                     value="{{ old('season_start', '') }}" />
                 @error('season_start')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
@@ -65,7 +65,7 @@
                     name="season_end" id="season_end" min="{{ date('Y-m-d', strtotime(date('Y-m-d') . ' +1 day')) }}"
                     value="{{ old('season_end', '') }}" />
                 @error('season_end')
-                    <div class="modal-sm" style="background-color: #f01616">
+                    <div class="message-sm" style="background-color: #f01616">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror

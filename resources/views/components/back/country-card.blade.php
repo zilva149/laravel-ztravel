@@ -19,14 +19,10 @@
             title="redaguoti">
             <i class="fa-solid fa-pen-to-square"></i>
         </a>
-        <form action="{{ route('admin-country-delete', $country->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit"
-                class="btn-primary h-full bg-[var(--red)] text-lg hover:bg-[var(--dred)] cursor-pointer text-center"
-                title="ištrinti">
-                <i class="fa-solid fa-trash"></i>
-            </button>
-        </form>
+        <button
+            class="btn-primary h-full bg-[var(--red)] text-lg hover:bg-[var(--dred)] cursor-pointer text-center"
+            title="ištrinti" data-modal-open="modal" data-modal-operation="delete" data-modal-object="šalį" data-modal-route="{{ route('admin-country-delete', $country->id) }}">
+            <i class="fa-solid fa-trash"></i>
+        </button>
     </div>
 </article>

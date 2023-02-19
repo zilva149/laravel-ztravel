@@ -12,16 +12,11 @@
                     title="redaguoti">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <form action="{{ route('admin-offer-delete', $offer->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit"
-                        class="btn-primary bg-[var(--red)] hover:bg-[var(--dred)] px-6 text-xl cursor-pointer md:px-6"
-                        title="ištrinti">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </form>
+                <button
+                    class="btn-primary h-full bg-[var(--red)] text-xl hover:bg-[var(--dred)] cursor-pointer text-center"
+                    title="ištrinti" data-modal-open="modal" data-modal-operation="delete" data-modal-object="pasiūlymą" data-modal-route="{{ route('admin-offer-delete', $offer->id) }}">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
                 <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
