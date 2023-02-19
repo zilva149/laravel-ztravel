@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offer;
 use App\Models\Country;
 use App\Models\Destination;
 use Illuminate\Http\Request;
@@ -16,5 +17,89 @@ class APIController extends Controller
     public function destinationHotels(Destination $destination)
     {
         return $destination->hotels;
+    }
+
+    public function filterOffers(Request $request)
+    {
+        if($request->s && $request->s !== '') {
+            if($request->filter !== 'all') {
+                $offers = Offer::where('countries.id', $request->filter)
+                                ->join('destinations', 'destinations.id', 'offers.destination_id')
+                                ->join('countries', 'countries.id', 'offers.country_id')
+                                ->join('hotels', 'hotels.id', 'offers.hotel_id')
+                                ->withCount('orders');
+            } else {
+                $offers = Offer::where('offers.id', '>', 0)
+                                ->join('destinations', 'destinations.id', 'offers.destination_id')
+                                ->join('countries', 'countries.id', 'offers.country_id')
+                                ->join('hotels', 'hotels.id', 'offers.hotel_id')
+                                ->withCount('orders');
+            }
+
+            $searchWords = explode(' ', $request->s);
+
+            if(count($searchWords) === 1) {
+                $offers = $offers->where(function($builder) use($searchWords) {
+                                $builder->where('offers.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('hotels.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('hotels.address', 'like', '%' . $searchWords[0] . '%');
+                            });
+            }
+
+            if(count($searchWords) === 2) {
+                $offers = $offers->where(function($builder) use($searchWords) {
+                                $builder->where('offers.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('offers.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('offers.name', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('offers.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('destinations.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.name', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('destinations.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('hotels.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('hotels.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('hotels.name', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('hotels.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('hotels.address', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('hotels.address', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('hotels.address', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('hotels.address', 'like', '%' . $searchWords[0] . '%');
+                            });
+            }
+        } else {
+            $offers = Offer::withCount('orders')->where('id', '>', 0);
+
+        }
+
+        if($request->s == '' && $request->filter !== 'all') {
+            $offers = $offers->where('country_id', $request->filter);
+        }
+
+        $offers = match($request->sort ?? '') {
+            'popularity_desc' => $offers->orderBy('orders_count', 'DESC'),
+            'price_desc' => $offers->orderBy('price', 'DESC'),
+            'price_asc' => $offers->orderBy('price'),
+            default => $offers,
+        };
+
+        $offers = $offers->get();
+
+        return $offers;
     }
 }

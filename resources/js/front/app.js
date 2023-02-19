@@ -48,11 +48,54 @@ if (modals) {
 }
 
 if (document.getElementById("filter")) {
-    console.log("hello");
+    const filter = document.getElementById("filter");
+    const sort = document.getElementById("sort");
+    const search = document.getElementById("search");
+
+    filter.addEventListener("change", async (e) => {
+        const filterValue = e.currentTarget.value;
+        const sortValue = sort.value;
+        const searchValue = search.value;
+
+        const offers = await fetchFilteredOffers(
+            filterValue,
+            sortValue,
+            searchValue
+        );
+        console.log(offers);
+    });
+
+    sort.addEventListener("change", async (e) => {
+        const filterValue = filter.value;
+        const sortValue = e.currentTarget.value;
+        const searchValue = search.value;
+
+        const offers = await fetchFilteredOffers(
+            filterValue,
+            sortValue,
+            searchValue
+        );
+        console.log(offers);
+    });
+
+    search.addEventListener("input", async (e) => {
+        const filterValue = filter.value;
+        const sortValue = sort.value;
+        const searchValue = e.currentTarget.value;
+
+        const offers = await fetchFilteredOffers(
+            filterValue,
+            sortValue,
+            searchValue
+        );
+        console.log(offers);
+    });
 }
 
-async function fetchDestinationHotels(destinationID) {
-    const resp = await fetch(`/admin/api/hotels/${destinationID}`);
+async function fetchFilteredOffers(filter, sort, search) {
+    const resp = await fetch(
+        `/api/offers?filter=${filter}&sort=${sort}&s=${search}`
+    );
     const data = await resp.json();
 
     return data;

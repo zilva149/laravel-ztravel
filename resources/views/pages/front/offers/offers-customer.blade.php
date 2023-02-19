@@ -53,7 +53,7 @@
             </div>                
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-between items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-between items-center" id="offers-container">
             @if (isset($offers) && count($offers) != 0)
                 @foreach ($offers as $offer)        
                     <article class="shadow-md rounded-lg overflow-hidden">

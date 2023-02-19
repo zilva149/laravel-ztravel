@@ -20,6 +20,8 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::get('/offers/{offer}/payment/success', [FrontController::class, 'successPayment'])->name('payment-success');
 
     Route::get('/orders', [FrontController::class, 'showOrders'])->middleware('roles:Customer')->name('orders');
+
+    Route::get('/api/offers', [APIController::class, 'filterOffers'])->name('api-filter-offers');
 });
 
 Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->group(function() {
