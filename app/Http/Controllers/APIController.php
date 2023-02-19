@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use App\Models\Offer;
 use App\Models\Country;
 use App\Models\Destination;
@@ -97,8 +98,14 @@ class APIController extends Controller
             'price_asc' => $offers->orderBy('price'),
             default => $offers,
         };
-
+        
         $offers = $offers->get();
+
+        foreach ($offers as $offer) {
+            $offer->hotel = Hotel::find($offer->hotel);
+            $offer->destination = Destination::find($offer->destination);
+            $offer->country = Country::find($offer->country);
+        }
 
         return $offers;
     }
