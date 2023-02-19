@@ -1,3 +1,5 @@
+import { ratingStars } from "./ratingStars";
+
 import Alpine from "alpinejs";
 import collapse from "@alpinejs/collapse";
 
@@ -77,7 +79,7 @@ if (document.getElementById("filter")) {
                                 <p class="mb-4">${offer.travel_start} iki ${offer.travel_end}</p>
                                 <div class="mb-6 w-full flex justify-between">
                                     <p class="font-semibold">&euro;${offer.price}</p>
-                                    <x-front.rating-stars />
+                                    ${ratingStars}
                                 </div>
                                 <a href="/offers/${offer.id}" class="btn-action-link text-md">Sužinokite daugiau</a>
                             </div>
@@ -115,7 +117,7 @@ if (document.getElementById("filter")) {
                                 <p class="mb-4">${offer.travel_start} iki ${offer.travel_end}</p>
                                 <div class="mb-6 w-full flex justify-between">
                                     <p class="font-semibold">&euro;${offer.price}</p>
-                                    <x-front.rating-stars />
+                                    ${ratingStars}
                                 </div>
                                 <a href="/offers/${offer.id}" class="btn-action-link text-md">Sužinokite daugiau</a>
                             </div>
@@ -153,7 +155,7 @@ if (document.getElementById("filter")) {
                                 <p class="mb-4">${offer.travel_start} iki ${offer.travel_end}</p>
                                 <div class="mb-6 w-full flex justify-between">
                                     <p class="font-semibold">&euro;${offer.price}</p>
-                                    <x-front.rating-stars />
+                                    ${ratingStars}
                                 </div>
                                 <a href="/offers/${offer.id}" class="btn-action-link text-md">Sužinokite daugiau</a>
                             </div>
