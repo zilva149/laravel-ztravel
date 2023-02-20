@@ -7,6 +7,8 @@ Alpine.plugin(collapse);
 
 Alpine.start();
 
+// *********** ACCORDIONS ***********
+
 const expandBtns = document.querySelectorAll("*[data-id='btn-expand']");
 
 if (expandBtns) {
@@ -39,6 +41,8 @@ if (expandBtns) {
     });
 }
 
+// ********** MODALS ***********
+
 const modals = document.querySelectorAll(".modal");
 
 if (modals) {
@@ -48,6 +52,8 @@ if (modals) {
         }, 3000);
     });
 }
+
+// ********** FILTERS ***********
 
 if (document.getElementById("filter")) {
     const filter = document.getElementById("filter");

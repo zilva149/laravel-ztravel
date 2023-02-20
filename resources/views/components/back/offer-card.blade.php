@@ -29,8 +29,8 @@
                     <span>{{ $offer->id }}</span>
                 </div>
                 <div class="flex gap-1">
-                    <span class="font-semibold">Šalis:</span>
-                    <span>{{ $offer->country->name }}</span>
+                    <span class="font-semibold">Vietovė:</span>
+                    <span>{{ $offer->destination->name }}, {{ $offer->country->name }}</span>
                 </div>
                 <div class="flex gap-1">
                     <span class="font-semibold">Viešbutis:</span>
