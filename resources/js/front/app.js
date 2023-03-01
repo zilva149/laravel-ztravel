@@ -72,42 +72,23 @@ if(openRatingBtns) {
     })
 }
 
-function appendInnerModal(operation, object, route) {
-    let modalMessage = "";
-    switch (operation) {
-        case "delete":
-            modalMessage = `Ar tikrai norite ištrinti ${object}?`;
-            break;
-        case "approve":
-            modalMessage = `Ar tikrai norite patvirinti ${object}?`;
-            break;
-        case "cancel":
-            modalMessage = `Ar tikrai norite atšaukti ${object}?`;
-            break;
-        default:
-            modalMessage = `Ar tikrai norite tęsti?`;
-            break;
-    }
+function appendInnerModal(operation, route) {
 
     const csrf = document.querySelector('meta[name="csrf-token"]').content;
 
-    return `<div class="w-full py-4 text-2xl text-center">${modalMessage}</div>
-            <div class="w-full py-4 flex gap-4 justify-center">
-                <form action="${route}" method="POST">
+    return `<form action="${route}" method="POST" class="w-full py-2 px-4 flex flex-col gap-4">
+                <div class="flex justify-center items-center">${ratingStars}</div>
+                <div class="w-full py-4 hidden flex-col gap-6 justify-center">
                     <input type="hidden" name="_token" id="csrf-token" value="${csrf}" />
-                    <button 
-                        ${
-                            operation === "approve"
-                                ? "name='status_approve'"
-                                : ""
-                        }
-                        ${operation === "cancel" ? "name='status_cancel'" : ""}
-                        value="1" type="submit" class="btn-primary text-lg">
-                            Taip
-                    </button>
-                </form>
-                <button class="btn-primary bg-gray-400 hover:bg-gray-500 text-lg" data-close-modal="modal">Atšaukti</button>
-            </div>`;
+                    <textarea class="w-full px-3 py-1.5 text-gray-700 border border-solid border-[var(--green)] rounded-md transition ease-in-out focus:border-[var(--green)] focus:outline-none focus:ring-2 focus:ring-[var(--dgreen)]" rows="6" placeholder="Apibūdinkite savo patirtį..."></textarea>
+                    <div class="flex gap-2 justify-center">
+                        <button type="submit" class="btn-primary text-lg">
+                                Vertinti
+                        </button>
+                        <button type="button" class="btn-primary bg-gray-400 hover:bg-gray-500 text-lg" data-close-modal="modal">Atšaukti</button>
+                    </div>
+                </div>
+            </form>`;
 }
 
 // ********** FILTERS ***********

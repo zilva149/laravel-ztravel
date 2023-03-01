@@ -3,7 +3,8 @@
     $reviews = 8;
 @endphp
 
-<button class="flex gap-1 items-center cursor-pointer" title="{{ $reviews }} atsiliepimai(as)" data-modal-open="rating" data-modal-operation="view" data-modal-route="">
+<button class="flex gap-2 items-center cursor-pointer" title="{{ $reviews }} atsiliepimai(as)" data-modal-open="rating" data-modal-operation="view" data-modal-route="">
+    <p class="font-bold text-yellow-600">{{ $rating }}</p>
     <div class="flex gap-0 pointer-events-none">
         <input type="radio" name="1" id="rate-1" class="hidden">
         <label for="rate-1" class="fas fa-star text-yellow-500 {{ round($rating) >= 1 ? 'opacity-100' : 'opacity-40' }} pointer-events-none"></label>
@@ -16,5 +17,5 @@
         <input type="radio" name="5" id="rate-5" class="hidden">
         <label for="rate-5" class="fas fa-star text-yellow-500 {{ round($rating) == 5 ? 'opacity-100' : 'opacity-40' }} pointer-events-none"></label>
     </div>
-    <p class="text-sm">{{ $rating }}/5</p>
+    <p>({{ $reviews }})</p>
 </button>

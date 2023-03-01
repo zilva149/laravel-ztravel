@@ -61,7 +61,7 @@
     }
 
     .modal {
-        @apply fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] scale-0 bg-white shadow-lg rounded-md w-[450px] max-w-[90%] h-[300px] p-6 flex flex-col gap-8 justify-center transition-all ease-in-out z-[199];
+        @apply fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] scale-0 bg-white shadow-lg rounded-md w-[450px] max-w-[90%] p-6 flex flex-col gap-8 justify-center transition-all ease-in-out z-[199];
     }
 
     .modal.active {
@@ -76,15 +76,15 @@
         @apply opacity-100 pointer-events-auto;
     }
 
-    /* .star {
+    .star {
         @apply hidden;
     }
 
     label.star-label {
-        @apply text-yellow-500 opacity-40 cursor-pointer transition-all;
+        @apply text-5xl text-yellow-500 opacity-40 cursor-pointer transition-all;
     }
 
     .star:not(:checked) ~ label.star-label:hover {
         @apply opacity-100;
-    } */
+    }
 }
