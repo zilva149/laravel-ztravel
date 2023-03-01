@@ -81,10 +81,15 @@
     }
 
     label.star-label {
-        @apply text-5xl text-yellow-500 opacity-40 cursor-pointer transition-all;
+        @apply text-5xl text-yellow-200 cursor-pointer transition-all;
     }
 
-    .star:not(:checked) ~ label.star-label:hover {
-        @apply opacity-100;
+    .star:not(:checked) ~ label.star-label:hover,
+    .star:not(:checked) ~ label.star-label:hover ~ label.star-label {
+        @apply text-yellow-400;
+    }
+
+    .star:checked ~ label.star-label {
+        @apply text-yellow-400;
     }
 }

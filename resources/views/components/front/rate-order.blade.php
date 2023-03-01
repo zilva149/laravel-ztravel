@@ -1,4 +1,4 @@
-<button class="flex gap-1 items-center cursor-pointer" data-modal-open="rating" data-modal-operation="post" data-modal-route="">
+<button class="flex gap-1 items-center cursor-pointer" title="vertinti" data-modal-open="rating" data-modal-operation="post" data-modal-route="">
     <div class="flex gap-0 pointer-events-none">
         <input type="radio" name="1" id="rate-1" class="hidden">
         <label for="rate-1" class="fas fa-star text-yellow-500 opacity-40 pointer-events-none"></label>
