@@ -59,14 +59,14 @@ if(openRatingBtns) {
             modal.querySelector('button[data-close-modal]').addEventListener('click', (e) => {
                 modal.classList.remove('active');
                 overlay.classList.remove('active');
-            })
+            });
 
             modal.querySelectorAll(".star-label").forEach((star) => {
                 star.addEventListener('click', () => {
                     const ratingInner = modal.querySelector('.rating-inner');
                     ratingInner.classList.remove('hidden');
                     ratingInner.classList.add('flex');
-                })
+                });
             });
 
             modal.classList.add('active');
@@ -75,7 +75,7 @@ if(openRatingBtns) {
             overlay.addEventListener('click', (e) => {
                 modal.classList.remove('active');
                 e.currentTarget.classList.remove('active');
-            })
+            });
         });
     })
 }
@@ -88,7 +88,7 @@ function appendInnerModal(operation, route) {
                 <div class="flex justify-center items-center">${ratingStars}</div>
                 <div class="rating-inner w-full py-4 hidden flex-col gap-6 justify-center">
                     <input type="hidden" name="_token" id="csrf-token" value="${csrf}"/>
-                    <textarea class="w-full px-3 py-1.5 text-gray-700 resize-none border border-solid border-[var(--green)] rounded-md transition ease-in-out focus:border-[var(--green)] focus:outline-none focus:ring-2 focus:ring-[var(--dgreen)]" rows="6" placeholder="Apibūdinkite savo patirtį..."></textarea>
+                    <textarea class="w-full px-3 py-1.5 text-gray-700 resize-none border border-solid border-[var(--green)] rounded-md transition ease-in-out focus:border-[var(--green)] focus:outline-none focus:ring-2 focus:ring-[var(--dgreen)]" name="desc" rows="6" placeholder="Apibūdinkite savo patirtį..."></textarea>
                     <div class="flex gap-2 justify-center">
                         <button type="submit" class="btn-primary text-lg">
                                 Vertinti
