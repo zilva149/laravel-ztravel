@@ -41,16 +41,73 @@ if (expandBtns) {
     });
 }
 
-// ********** MODALS ***********
+// ************* RATING STARS ***************
 
-const modals = document.querySelectorAll(".modal");
+const openRatingBtns = document.querySelectorAll('button[data-modal-open="rating"]');
 
-if (modals) {
-    modals.forEach((modal) => {
-        setTimeout(() => {
-            modal.remove();
-        }, 3000);
-    });
+if(openRatingBtns) {
+    const modal = document.getElementById('rating');
+    const overlay = document.getElementById('overlay');
+
+    openRatingBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            modal.innerHTML = appendInnerModal(
+                e.currentTarget.dataset.modalOperation,
+                e.currentTarget.dataset.modalRoute
+            );
+
+            modal.querySelector('button[data-close-modal]').addEventListener('click', (e) => {
+                modal.classList.remove('active');
+                overlay.classList.remove('active');
+            })
+
+            modal.classList.add('active');
+            overlay.classList.add('active');
+
+            overlay.addEventListener('click', (e) => {
+                modal.classList.remove('active');
+                e.currentTarget.classList.remove('active');
+            })
+        });
+    })
+}
+
+function appendInnerModal(operation, object, route) {
+    let modalMessage = "";
+    switch (operation) {
+        case "delete":
+            modalMessage = `Ar tikrai norite ištrinti ${object}?`;
+            break;
+        case "approve":
+            modalMessage = `Ar tikrai norite patvirinti ${object}?`;
+            break;
+        case "cancel":
+            modalMessage = `Ar tikrai norite atšaukti ${object}?`;
+            break;
+        default:
+            modalMessage = `Ar tikrai norite tęsti?`;
+            break;
+    }
+
+    const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+    return `<div class="w-full py-4 text-2xl text-center">${modalMessage}</div>
+            <div class="w-full py-4 flex gap-4 justify-center">
+                <form action="${route}" method="POST">
+                    <input type="hidden" name="_token" id="csrf-token" value="${csrf}" />
+                    <button 
+                        ${
+                            operation === "approve"
+                                ? "name='status_approve'"
+                                : ""
+                        }
+                        ${operation === "cancel" ? "name='status_cancel'" : ""}
+                        value="1" type="submit" class="btn-primary text-lg">
+                            Taip
+                    </button>
+                </form>
+                <button class="btn-primary bg-gray-400 hover:bg-gray-500 text-lg" data-close-modal="modal">Atšaukti</button>
+            </div>`;
 }
 
 // ********** FILTERS ***********
