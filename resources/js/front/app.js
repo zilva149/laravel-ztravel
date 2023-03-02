@@ -1,4 +1,5 @@
 import { ratingStars } from "./ratingStars";
+import { ratingCard } from "./ratingCard";
 
 import Alpine from "alpinejs";
 import collapse from "@alpinejs/collapse";
@@ -43,45 +44,48 @@ if (expandBtns) {
 
 // ************* RATING STARS ***************
 
-const openRatingBtns = document.querySelectorAll('button[data-modal-open="rating"]');
+const openRatingBtns = document.querySelectorAll(
+    'button[data-modal-open="rating"]'
+);
 
-if(openRatingBtns) {
-    const modal = document.getElementById('rating');
-    const overlay = document.getElementById('overlay');
+if (openRatingBtns) {
+    const modal = document.getElementById("rating");
+    const overlay = document.getElementById("overlay");
 
     openRatingBtns.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener("click", (e) => {
             modal.innerHTML = appendInnerModal(
                 e.currentTarget.dataset.modalOperation,
                 e.currentTarget.dataset.modalRoute
             );
 
-            modal.querySelector('button[data-close-modal]').addEventListener('click', (e) => {
-                modal.classList.remove('active');
-                overlay.classList.remove('active');
-            });
+            modal
+                .querySelector("button[data-close-modal]")
+                .addEventListener("click", (e) => {
+                    modal.classList.remove("active");
+                    overlay.classList.remove("active");
+                });
 
             modal.querySelectorAll(".star-label").forEach((star) => {
-                star.addEventListener('click', () => {
-                    const ratingInner = modal.querySelector('.rating-inner');
-                    ratingInner.classList.remove('hidden');
-                    ratingInner.classList.add('flex');
+                star.addEventListener("click", () => {
+                    const ratingInner = modal.querySelector(".rating-inner");
+                    ratingInner.classList.remove("hidden");
+                    ratingInner.classList.add("flex");
                 });
             });
 
-            modal.classList.add('active');
-            overlay.classList.add('active');
+            modal.classList.add("active");
+            overlay.classList.add("active");
 
-            overlay.addEventListener('click', (e) => {
-                modal.classList.remove('active');
-                e.currentTarget.classList.remove('active');
+            overlay.addEventListener("click", (e) => {
+                modal.classList.remove("active");
+                e.currentTarget.classList.remove("active");
             });
         });
-    })
+    });
 }
 
 function appendInnerModal(operation, route) {
-
     const csrf = document.querySelector('meta[name="csrf-token"]').content;
 
     return `<form action="${route}" method="POST" class="w-full py-2 px-4 flex flex-col gap-4">
@@ -117,28 +121,41 @@ if (document.getElementById("filter")) {
             searchValue
         );
 
-        let HTML = '';
+        let HTML = "";
 
         if (offers.length > 0) {
             for (const offer of offers) {
                 HTML += `<article class="shadow-md rounded-lg overflow-hidden">
                             <div>
-                                <img src="${offer.hotel.image ? offer.hotel.image : '/assets/img/no-image.jpg'}" alt="hotel">
+                                <img src="${
+                                    offer.hotel.image
+                                        ? offer.hotel.image
+                                        : "/assets/img/no-image.jpg"
+                                }" alt="hotel">
                             </div>
                             <div class="p-4 flex flex-col items-start">
-                                <p class="mb-1 text-gray-500 text-lg">${offer.destination.name}, ${offer.country.name}</p>
+                                <p class="mb-1 text-gray-500 text-lg">${
+                                    offer.destination.name
+                                }, ${offer.country.name}</p>
                                 <p class="mb-3 text-sm">${offer.hotel.name}</p>
-                                <p class="mb-4">${offer.travel_start} iki ${offer.travel_end}</p>
+                                <p class="mb-4">${offer.travel_start} iki ${
+                    offer.travel_end
+                }</p>
                                 <div class="mb-6 w-full flex justify-between">
-                                    <p class="font-semibold">&euro;${offer.price}</p>
-                                    ${ratingStars}
+                                    <p class="font-semibold">&euro;${
+                                        offer.price
+                                    }</p>
+                                    ${ratingCard}
                                 </div>
-                                <a href="/offers/${offer.id}" class="btn-action-link text-md">Sužinokite daugiau</a>
+                                <a href="/offers/${
+                                    offer.id
+                                }" class="btn-action-link text-md">Sužinokite daugiau</a>
                             </div>
                         </article>`;
             }
         } else {
-            HTML += '<h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>';
+            HTML +=
+                '<h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>';
         }
 
         document.getElementById("offers-container").innerHTML = HTML;
@@ -154,29 +171,42 @@ if (document.getElementById("filter")) {
             sortValue,
             searchValue
         );
-        
+
         let HTML = "";
 
         if (offers.length > 0) {
             for (const offer of offers) {
                 HTML += `<article class="shadow-md rounded-lg overflow-hidden">
                             <div>
-                                <img src="${offer.hotel.image ? offer.hotel.image : '/assets/img/no-image.jpg'}" alt="hotel">
+                                <img src="${
+                                    offer.hotel.image
+                                        ? offer.hotel.image
+                                        : "/assets/img/no-image.jpg"
+                                }" alt="hotel">
                             </div>
                             <div class="p-4 flex flex-col items-start">
-                                <p class="mb-1 text-gray-500 text-lg">${offer.destination.name}, ${offer.country.name}</p>
+                                <p class="mb-1 text-gray-500 text-lg">${
+                                    offer.destination.name
+                                }, ${offer.country.name}</p>
                                 <p class="mb-3 text-sm">${offer.hotel.name}</p>
-                                <p class="mb-4">${offer.travel_start} iki ${offer.travel_end}</p>
+                                <p class="mb-4">${offer.travel_start} iki ${
+                    offer.travel_end
+                }</p>
                                 <div class="mb-6 w-full flex justify-between">
-                                    <p class="font-semibold">&euro;${offer.price}</p>
-                                    ${ratingStars}
+                                    <p class="font-semibold">&euro;${
+                                        offer.price
+                                    }</p>
+                                    ${ratingCard}
                                 </div>
-                                <a href="/offers/${offer.id}" class="btn-action-link text-md">Sužinokite daugiau</a>
+                                <a href="/offers/${
+                                    offer.id
+                                }" class="btn-action-link text-md">Sužinokite daugiau</a>
                             </div>
                         </article>`;
             }
         } else {
-            HTML += '<h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>';
+            HTML +=
+                '<h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>';
         }
 
         document.getElementById("offers-container").innerHTML = HTML;
@@ -192,29 +222,42 @@ if (document.getElementById("filter")) {
             sortValue,
             searchValue
         );
-        
+
         let HTML = "";
 
         if (offers.length > 0) {
             for (const offer of offers) {
                 HTML += `<article class="shadow-md rounded-lg overflow-hidden">
                             <div>
-                                <img src="${offer.hotel.image ? offer.hotel.image : '/assets/img/no-image.jpg'}" alt="hotel">
+                                <img src="${
+                                    offer.hotel.image
+                                        ? offer.hotel.image
+                                        : "/assets/img/no-image.jpg"
+                                }" alt="hotel">
                             </div>
                             <div class="p-4 flex flex-col items-start">
-                                <p class="mb-1 text-gray-500 text-lg">${offer.destination.name}, ${offer.country.name}</p>
+                                <p class="mb-1 text-gray-500 text-lg">${
+                                    offer.destination.name
+                                }, ${offer.country.name}</p>
                                 <p class="mb-3 text-sm">${offer.hotel.name}</p>
-                                <p class="mb-4">${offer.travel_start} iki ${offer.travel_end}</p>
+                                <p class="mb-4">${offer.travel_start} iki ${
+                    offer.travel_end
+                }</p>
                                 <div class="mb-6 w-full flex justify-between">
-                                    <p class="font-semibold">&euro;${offer.price}</p>
-                                    ${ratingStars}
+                                    <p class="font-semibold">&euro;${
+                                        offer.price
+                                    }</p>
+                                    ${ratingCard}
                                 </div>
-                                <a href="/offers/${offer.id}" class="btn-action-link text-md">Sužinokite daugiau</a>
+                                <a href="/offers/${
+                                    offer.id
+                                }" class="btn-action-link text-md">Sužinokite daugiau</a>
                             </div>
                         </article>`;
             }
         } else {
-            HTML += '<h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>';
+            HTML +=
+                '<h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>';
         }
 
         document.getElementById("offers-container").innerHTML = HTML;
