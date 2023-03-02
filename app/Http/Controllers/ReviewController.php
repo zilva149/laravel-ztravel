@@ -27,6 +27,16 @@ class ReviewController extends Controller
     }
 
     public function update(Request $request, Review $review) {
-        return 'updating a review';
+        $incomingFields = $request->validate([
+            'rating' => ['required'],
+            'desc' => ['nullable'],
+        ]);
+
+        $incomingFields['desc'] = strip_tags($incomingFields['desc']);
+
+        $review->update($incomingFields);
+
+        $id = $review->order->id;
+        return redirect("/orders#$id")->with('success', 'Atsiliepimas sėkmingai atnaujintas!')->with('id', $id);
     }
 }
