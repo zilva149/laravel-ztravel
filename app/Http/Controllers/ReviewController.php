@@ -14,8 +14,6 @@ class ReviewController extends Controller
         $incomingFields = $request->validate([
             'rating' => ['required'],
             'desc' => ['nullable'],
-            'user_id' => ['required', Rule::in(User::all()->pluck('id'))],
-            'order_id' => ['required', Rule::in(Order::all()->pluck('id'))],
         ]);
 
         $incomingFields['desc'] = strip_tags($incomingFields['desc']);

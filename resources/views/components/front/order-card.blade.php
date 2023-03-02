@@ -33,9 +33,11 @@
                 </div>
             </div>
             <div class="md:w-[20%] flex gap-6 justify-end items-center">
-                <div class="flex items-center">
-                    <x-front.rate-order :$isReviewed :$orderID />
-                </div>
+                @if ($statusOptions[$order->status] == 'Patvirtinta')    
+                    <div class="flex items-center">
+                        <x-front.rate-order :$isReviewed :$orderID />
+                    </div>
+                @endif
                 <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
                     <i class="fa-solid fa-info"></i>
                 </div>
@@ -79,3 +81,8 @@
         </div>
     </div>
 </article>
+@if (session()->has('success') && session('id') == $order->id)
+    <div class="message mb-4" style="background-color: var(--green)">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
