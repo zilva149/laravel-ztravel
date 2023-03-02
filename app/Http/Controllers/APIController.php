@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use App\Models\Offer;
+use App\Models\Review;
 use App\Models\Country;
 use App\Models\Destination;
 use Illuminate\Http\Request;
@@ -108,5 +109,10 @@ class APIController extends Controller
         }
 
         return $offers;
+    }
+
+    public function fetchReview(Review $review)
+    {
+        return $review;
     }
 }

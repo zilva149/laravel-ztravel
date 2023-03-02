@@ -25,7 +25,8 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::post('/orders/review/edit/{review}', [ReviewController::class, 'update'])->middleware('roles:Customer')->name('review-update');
 
     Route::get('/api/offers', [APIController::class, 'filterOffers'])->name('api-filter-offers');
-    Route::get('/api/reviews/{hotel}', [APIController::class, 'fetchHotelReviews'])->name('api-hotel-reviews');
+    Route::get('/api/reviews/{review}', [APIController::class, 'fetchReview'])->name('api-review');
+    Route::get('/api/hotel/reviews/{hotel}', [APIController::class, 'fetchHotelReviews'])->name('api-hotel-reviews');
 });
 
 Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->group(function() {

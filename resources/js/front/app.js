@@ -65,8 +65,8 @@ if (openRatingBtns) {
     const overlay = document.getElementById("overlay");
 
     openRatingBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            modal.innerHTML = appendInnerModal(
+        btn.addEventListener("click", async (e) => {
+            modal.innerHTML = await appendInnerModal(
                 e.currentTarget.dataset.modalOperation,
                 e.currentTarget.dataset.modalRoute
             );
@@ -97,22 +97,44 @@ if (openRatingBtns) {
     });
 }
 
-function appendInnerModal(operation, route) {
+async function appendInnerModal(operation, route) {
     const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+    let review = null;
+    if (operation === "update") {
+        const id = route.split("/").pop();
+        review = await fetchReview(id);
+        console.log(review);
+    }
 
     return `<form action="${route}" method="POST" class="w-full py-2 px-4 flex flex-col gap-4">
                 <div class="flex justify-center items-center">${ratingStars}</div>
-                <div class="rating-inner w-full py-4 hidden flex-col gap-6 justify-center">
+                <div class="rating-inner w-full py-4 ${
+                    operation == "store" ? "hidden" : "flex"
+                } flex-col gap-6 justify-center">
                     <input type="hidden" name="_token" id="csrf-token" value="${csrf}"/>
-                    <textarea class="w-full px-3 py-1.5 text-gray-700 resize-none border border-solid border-[var(--green)] rounded-md transition ease-in-out focus:border-[var(--green)] focus:outline-none focus:ring-2 focus:ring-[var(--dgreen)]" name="desc" rows="6" placeholder="Apibūdinkite savo patirtį..."></textarea>
+                    <textarea class="w-full px-3 py-1.5 text-gray-700 resize-none border border-solid border-[var(--green)] rounded-md transition ease-in-out focus:border-[var(--green)] focus:outline-none focus:ring-2 focus:ring-[var(--dgreen)]" name="desc" rows="6" placeholder="Apibūdinkite savo patirtį...">${
+                        review ? review.desc : ""
+                    }</textarea>
                     <div class="flex gap-2 justify-center">
                         <button type="submit" class="btn-primary text-lg">
-                                Vertinti
+                                ${
+                                    operation == "store"
+                                        ? "Vertinti"
+                                        : "Atnaujinti"
+                                }
                         </button>
                         <button type="button" class="btn-primary bg-gray-400 hover:bg-gray-500 text-lg" data-close-modal="modal">Atšaukti</button>
                     </div>
                 </div>
             </form>`;
+}
+
+async function fetchReview(id) {
+    const resp = await fetch(`/api/reviews/${id}`);
+    const data = await resp.json();
+
+    return data;
 }
 
 // ********** FILTERS ***********
