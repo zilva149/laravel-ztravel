@@ -8,6 +8,18 @@ Alpine.plugin(collapse);
 
 Alpine.start();
 
+// ********** MESSAGES TIMEOUT ***********
+
+const messages = document.querySelectorAll(".message");
+
+if (messages) {
+    messages.forEach((message) => {
+        setTimeout(() => {
+            message.remove();
+        }, 3000);
+    });
+}
+
 // *********** ACCORDIONS ***********
 
 const expandBtns = document.querySelectorAll("*[data-id='btn-expand']");

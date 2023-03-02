@@ -2,7 +2,13 @@
 
 @php
     $isReviewed = $order->isReviewed;
-    $orderID = $order->id;
+    if ($isReviewed) {
+        $ID = $order->review->id;
+        $rating = $order->review->rating;
+    } else {
+        $ID = $order->id;
+        $rating = 0;
+    }
 @endphp
 
 <article class="border border-solid border-slate-200 rounded-md shadow-md" id="{{ $order->id }}">
@@ -35,7 +41,7 @@
             <div class="md:w-[20%] flex gap-6 justify-end items-center">
                 @if ($statusOptions[$order->status] == 'Patvirtinta')    
                     <div class="flex items-center">
-                        <x-front.rate-order :$isReviewed :$orderID />
+                        <x-front.rate-order :$isReviewed :$ID :$rating />
                     </div>
                 @endif
                 <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
