@@ -9,6 +9,7 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\ReviewController;
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
 
@@ -20,8 +21,11 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::get('/offers/{offer}/payment/success', [FrontController::class, 'successPayment'])->name('payment-success');
 
     Route::get('/orders', [FrontController::class, 'showOrders'])->middleware('roles:Customer')->name('orders');
+    Route::post('/orders/review/create/{order}', [ReviewController::class, 'store'])->middleware('roles:Customer')->name('review-store');
+    Route::post('/orders/review/edit/{review}', [ReviewController::class, 'update'])->middleware('roles:Customer')->name('review-update');
 
     Route::get('/api/offers', [APIController::class, 'filterOffers'])->name('api-filter-offers');
+    Route::get('/api/reviews/{hotel}', [APIController::class, 'fetchHotelReviews'])->name('api-hotel-reviews');
 });
 
 Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->group(function() {
