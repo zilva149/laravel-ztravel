@@ -71,6 +71,14 @@ if (openRatingBtns) {
                 e.currentTarget.dataset.modalRoute
             );
 
+            modal.querySelectorAll(".star-label").forEach((star) => {
+                star.addEventListener("click", () => {
+                    modal.querySelectorAll(".star-label").forEach((x) => {
+                        x.style.color = "";
+                    });
+                });
+            });
+
             modal
                 .querySelector("button[data-close-modal]")
                 .addEventListener("click", (e) => {
