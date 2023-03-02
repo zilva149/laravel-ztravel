@@ -104,11 +104,12 @@ async function appendInnerModal(operation, route) {
     if (operation === "update") {
         const id = route.split("/").pop();
         review = await fetchReview(id);
-        console.log(review);
     }
 
     return `<form action="${route}" method="POST" class="w-full py-2 px-4 flex flex-col gap-4">
-                <div class="flex justify-center items-center">${ratingStars}</div>
+                <div class="flex justify-center items-center">${ratingStars(
+                    review
+                )}</div>
                 <div class="rating-inner w-full py-4 ${
                     operation == "store" ? "hidden" : "flex"
                 } flex-col gap-6 justify-center">
