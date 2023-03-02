@@ -1,5 +1,10 @@
 @props(['order', 'statusOptions'])
 
+@php
+    $isReviewed = $order->isReviewed;
+    $orderID = $order->id;
+@endphp
+
 <article class="border border-solid border-slate-200 rounded-md shadow-md" id="{{ $order->id }}">
     <div class="p-4 flex flex-col">
         <div class="flex flex-col md:flex-row gap-2 justify-between items-center relative">
@@ -29,7 +34,7 @@
             </div>
             <div class="md:w-[20%] flex gap-6 justify-end items-center">
                 <div class="flex items-center">
-                    <x-front.rate-order />
+                    <x-front.rate-order :$isReviewed :$orderID />
                 </div>
                 <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
                     <i class="fa-solid fa-info"></i>

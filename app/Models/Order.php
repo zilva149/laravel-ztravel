@@ -15,6 +15,7 @@ class Order extends Model
         'address',
         'email',
         'status',
+        'isReviewed',
         'user_id',
         'offer_id',
         'destination_id',
