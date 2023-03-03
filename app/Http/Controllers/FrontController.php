@@ -40,7 +40,9 @@ class FrontController extends Controller
     public function showOffers(Request $request)
     {
         $pageTitle = 'Pasiūlymai';
-        $offers = Offer::withCount('orders')->where('id', '>', 0)->get()->sortByDesc('orders_count');     
+        $offers = Offer::withCount(['orders as approved_orders_count' => function ($query) {
+            $query->where('status', '1');
+        }])->where('id', '>', 0)->get()->sortByDesc('approved_orders_count');     
         $countries = Country::all();
         $continents = Country::select('continent')->distinct()->get();
         $sortOptions = Offer::SORT;

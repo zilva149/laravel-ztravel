@@ -29,13 +29,17 @@ class APIController extends Controller
                                 ->join('destinations', 'destinations.id', 'offers.destination_id')
                                 ->join('countries', 'countries.id', 'offers.country_id')
                                 ->join('hotels', 'hotels.id', 'offers.hotel_id')
-                                ->withCount('orders');
+                                ->withCount(['orders as approved_orders_count' => function ($query) {
+                                    $query->where('status', '1');
+                                }]);
             } else {
                 $offers = Offer::where('offers.id', '>', 0)
                                 ->join('destinations', 'destinations.id', 'offers.destination_id')
                                 ->join('countries', 'countries.id', 'offers.country_id')
                                 ->join('hotels', 'hotels.id', 'offers.hotel_id')
-                                ->withCount('orders');
+                                ->withCount(['orders as approved_orders_count' => function ($query) {
+                                    $query->where('status', '1');
+                                }]);
             }
 
             $searchWords = explode(' ', $request->s);
@@ -85,7 +89,9 @@ class APIController extends Controller
                             });
             }
         } else {
-            $offers = Offer::withCount('orders')->where('id', '>', 0);
+            $offers = Offer::withCount(['orders as approved_orders_count' => function ($query) {
+                                $query->where('status', '1');
+                            }])->where('id', '>', 0);
 
         }
 
@@ -94,7 +100,7 @@ class APIController extends Controller
         }
 
         $offers = match($request->sort ?? '') {
-            'popularity_desc' => $offers->orderBy('orders_count', 'DESC'),
+            'popularity_desc' => $offers->orderBy('approved_orders_count', 'DESC'),
             'price_desc' => $offers->orderBy('price', 'DESC'),
             'price_asc' => $offers->orderBy('price'),
             default => $offers,
