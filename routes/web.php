@@ -34,6 +34,7 @@ Route::middleware('roles:Admin|Manager')->prefix('/admin')->name('admin-')->grou
     Route::get('/orders', [BackController::class, 'showOrders'])->name('orders');
     Route::post('/orders/{order}', [BackController::class, 'updateOrder'])->name('order-update');
     Route::get('/users', [BackController::class, 'showUsers'])->name('users');
+    Route::get('/users/{user}/orders', [BackController::class, 'showUserOrders'])->name('user-orders');
     Route::get('/reviews', [BackController::class, 'showReviews'])->name('reviews');
 
     Route::get('/countries', [CountryController::class, 'index'])->name('countries');

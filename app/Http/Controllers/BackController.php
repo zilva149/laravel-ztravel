@@ -101,6 +101,25 @@ class BackController extends Controller
         return view('pages.back.users.users-admin', compact('pageTitle', 'users'));
     }
 
+    public function showUserOrders(User $user)
+    {
+        $pageTitle = "$user->name užsakymai";
+        
+        $orders = $user->orders->sortByDesc('updated_at')->sortBy('status');;
+
+        foreach($orders as $order) {
+            $start = Carbon::parse($order->offer->travel_start);
+            $end = Carbon::parse($order->offer->travel_end);
+
+            $duration = $start->diffInDays($end);
+            $order->duration = $duration;
+        }
+
+        $statusOptions = array_flip(Order::STATUS);
+
+        return view('pages.back.orders.user-orders', compact('pageTitle', 'user', 'orders', 'statusOptions'));
+    }
+
     public function showReviews()
     {
         $pageTitle = 'Atsiliepimai';

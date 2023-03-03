@@ -35,7 +35,7 @@
                     <span class="font-semibold">Išlaidos:</span>
                     <span>&euro;{{ number_format($user->sales, 2, '.', ',') }}</span>
                 </div>
-                <a href="#" class="btn-primary">Užsakymų istorija</a>
+                <a href="{{ route('admin-user-orders', $user->id) }}" class="btn-primary">Užsakymų istorija</a>
             </div>
         </div>
     </div>
