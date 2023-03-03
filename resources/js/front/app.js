@@ -8,6 +8,49 @@ Alpine.plugin(collapse);
 
 Alpine.start();
 
+// *********** NAVIGATION SIDEBAR **********
+
+const burgerOpenBtn = document.getElementById("burger-open");
+
+if (burgerOpenBtn) {
+    burgerOpenBtn.addEventListener("click", (e) => {
+        e.currentTarget.innerHTML =
+            "<i class='fa-solid fa-xmark text-3xl'></i>";
+
+        const sidebar = document.getElementById("front-sidebar");
+        const overlay = document.getElementById("overlay");
+
+        sidebar.style.transform = "translateX(0)";
+        overlay.classList.add("active");
+        overlay.style.zIndex = "699";
+
+        overlay.addEventListener("click", (e) => {
+            burgerOpenBtn.innerHTML =
+                "<i class='fa-solid fa-bars text-2xl'></i>";
+            sidebar.style.transform = "translateX(-100%)";
+            e.currentTarget.classList.remove("active");
+        });
+
+        const burgerCloseBtn = sidebar.querySelector("#burger-close");
+        burgerCloseBtn.addEventListener("click", () => {
+            burgerOpenBtn.innerHTML =
+                "<i class='fa-solid fa-bars text-2xl'></i>";
+            sidebar.style.transform = "translateX(-100%)";
+            overlay.classList.remove("active");
+        });
+
+        window.addEventListener("resize", () => {
+            const width = window.innerWidth;
+            if (width >= 992) {
+                burgerOpenBtn.innerHTML =
+                    "<i class='fa-solid fa-bars text-2xl'></i>";
+                sidebar.style.transform = "translateX(-100%)";
+                overlay.classList.remove("active");
+            }
+        });
+    });
+}
+
 // ********** MESSAGES TIMEOUT ***********
 
 const messages = document.querySelectorAll(".message");
