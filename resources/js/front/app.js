@@ -168,6 +168,7 @@ if (document.getElementById("filter")) {
 
         if (offers.length > 0) {
             for (const offer of offers) {
+                console.log(offer);
                 HTML += `<article class="shadow-md rounded-lg overflow-hidden">
                             <div>
                                 <img src="${

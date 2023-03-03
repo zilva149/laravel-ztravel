@@ -109,9 +109,10 @@ class APIController extends Controller
         $offers = $offers->get();
 
         foreach ($offers as $offer) {
-            $offer->hotel = Hotel::find($offer->hotel);
-            $offer->destination = Destination::find($offer->destination);
-            $offer->country = Country::find($offer->country);
+            $offer->hotel = $offer->hotel;
+            $offer->destination = $offer->destination;
+            $offer->country = $offer->country;
+            $offer->reviews = $offer->reviews;
         }
 
         return $offers;
