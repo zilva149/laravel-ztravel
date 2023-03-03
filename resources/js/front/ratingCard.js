@@ -1,4 +1,4 @@
-export function ratingCard(reviews = []) {
+export function ratingCard(offerID, reviews = []) {
     let ratings = [];
 
     for (const review of reviews) {
@@ -8,7 +8,7 @@ export function ratingCard(reviews = []) {
     let avgRating = ratings.reduce((a, b) => a + b, 0) / ratings.length;
     avgRating = avgRating.toFixed(1);
 
-    return `<button class="flex gap-2 items-center cursor-pointer" title="žiūrėti atsiliepimus" data-modal-open="rating" data-modal-operation="view" data-modal-route="">
+    return `<a href="/offers/${offerID}#opinions" class="flex gap-2 items-center cursor-pointer" title="žiūrėti atsiliepimus">
         <p class="font-bold text-yellow-600">${avgRating}</p>
         <div class="flex gap-0 pointer-events-none">
             <input type="radio" name="1" id="rate-1" class="hidden">
@@ -33,5 +33,5 @@ export function ratingCard(reviews = []) {
             } pointer-events-none"></label>
         </div>
         <p>(${ratings.length})</p>
-    </button>`;
+    </a>`;
 }

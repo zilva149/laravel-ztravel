@@ -105,7 +105,7 @@ if (openReviewsBtns) {
     });
 }
 
-async function appendInnerModal(operation, route) {
+async function appendInnerModal(operation, route = "") {
     const csrf = document.querySelector('meta[name="csrf-token"]').content;
 
     let review = null;
@@ -190,7 +190,10 @@ if (document.getElementById("filter")) {
                                     }</p>
                                     ${
                                         offer.reviews.length !== 0
-                                            ? ratingCard(offer.reviews)
+                                            ? ratingCard(
+                                                  offer.id,
+                                                  offer.reviews
+                                              )
                                             : ""
                                     }
                                 </div>
@@ -245,7 +248,10 @@ if (document.getElementById("filter")) {
                                     }</p>
                                     ${
                                         offer.reviews.length !== 0
-                                            ? ratingCard(offer.reviews)
+                                            ? ratingCard(
+                                                  offer.id,
+                                                  offer.reviews
+                                              )
                                             : ""
                                     }
                                 </div>
@@ -300,7 +306,10 @@ if (document.getElementById("filter")) {
                                     }</p>
                                     ${
                                         offer.reviews.length !== 0
-                                            ? ratingCard(offer.reviews)
+                                            ? ratingCard(
+                                                  offer.id,
+                                                  offer.reviews
+                                              )
                                             : ""
                                     }
                                 </div>

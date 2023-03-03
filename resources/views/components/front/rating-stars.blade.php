@@ -13,7 +13,7 @@
 @endphp
 
 @if (isset($avgRating))    
-    <button class="flex gap-2 items-center cursor-pointer" data-modal-open="reviews" data-modal-operation="view">
+    <a href="/offers/{{ $offer->id }}#opinions" class="flex gap-2 items-center cursor-pointer">
         <p class="font-bold text-yellow-600">{{ $avgRating }}</p>
         <div class="flex gap-0 pointer-events-none">
             <input type="radio" name="1" id="rate-1" class="hidden">
@@ -28,5 +28,5 @@
             <label for="rate-5" class="fas fa-star text-yellow-500 {{ round($avgRating) == 5 ? 'opacity-100' : 'opacity-40' }} pointer-events-none"></label>
         </div>
         <p>({{ count($ratings) }})</p>
-    </button>
+    </a>
 @endif

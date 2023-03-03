@@ -63,4 +63,29 @@
             </div>
         </div>
     </section>
+
+    <section class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center" id="opinions">
+        <h2
+            class="relative mb-16 text-3xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">
+            Atsiliepimai
+        </h2>
+
+        <div class="w-full p-6 grid grid-cols-3 gap-4">
+            @if (count($offer->reviews) != 0)
+                @foreach ($offer->reviews as $review)        
+                    <article class="px-4 shadow-md rounded-lg flex flex-col gap-4">
+                        <div class="py-4 flex justify-between border-b-2 border-solid">
+                            <p class="text-xl font-bold">{{ $review->user->name }}</p>
+                            <x-front.stars-review rating="{{ $review->rating }}" />
+                        </div>
+                        <div class="py-4">
+                            <p>{{ $review->desc }}</p>
+                        </div>
+                    </article>
+                @endforeach
+            @else
+                <h2 class="col-span-3 text-3xl text-center font-semibold">Nėra atsiliepimų</h2>
+            @endif
+        </div>
+    </section>
 </x-front-layout>
