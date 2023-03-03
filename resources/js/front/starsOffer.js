@@ -1,4 +1,4 @@
-export function ratingCard(offerID, reviews = []) {
+export function starsOffer(offerID, reviews = []) {
     let ratings = [];
 
     for (const review of reviews) {

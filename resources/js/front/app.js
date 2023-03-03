@@ -1,5 +1,5 @@
-import { ratingStars } from "./ratingStars";
-import { ratingCard } from "./ratingCard";
+import { starsRateOrder } from "./starsRateOrder";
+import { starsOffer } from "./starsOffer";
 
 import Alpine from "alpinejs";
 import collapse from "@alpinejs/collapse";
@@ -115,7 +115,7 @@ async function appendInnerModal(operation, route = "") {
     }
 
     return `<form action="${route}" method="POST" class="w-full py-2 px-4 flex flex-col gap-4">
-                <div class="flex justify-center items-center">${ratingStars(
+                <div class="flex justify-center items-center">${starsRateOrder(
                     review
                 )}</div>
                 <div class="rating-inner w-full py-4 ${
@@ -190,7 +190,7 @@ if (document.getElementById("filter")) {
                                     }</p>
                                     ${
                                         offer.reviews.length !== 0
-                                            ? ratingCard(
+                                            ? starsOffer(
                                                   offer.id,
                                                   offer.reviews
                                               )
@@ -248,7 +248,7 @@ if (document.getElementById("filter")) {
                                     }</p>
                                     ${
                                         offer.reviews.length !== 0
-                                            ? ratingCard(
+                                            ? starsOffer(
                                                   offer.id,
                                                   offer.reviews
                                               )
@@ -306,7 +306,7 @@ if (document.getElementById("filter")) {
                                     }</p>
                                     ${
                                         offer.reviews.length !== 0
-                                            ? ratingCard(
+                                            ? starsOffer(
                                                   offer.id,
                                                   offer.reviews
                                               )

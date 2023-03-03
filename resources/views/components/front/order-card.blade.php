@@ -41,7 +41,7 @@
             <div class="md:w-[20%] flex gap-6 justify-end items-center">
                 @if ($statusOptions[$order->status] == 'Patvirtinta')    
                     <div class="flex items-center">
-                        <x-front.rate-order :$isReviewed :$ID :$rating />
+                        <x-front.stars-order :$isReviewed :$ID :$rating />
                     </div>
                 @endif
                 <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">

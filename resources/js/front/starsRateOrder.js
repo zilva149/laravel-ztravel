@@ -1,4 +1,4 @@
-export function ratingStars(review = null) {
+export function starsRateOrder(review = null) {
     return `<div class="flex flex-row-reverse gap-0">
         <input type="radio" name="rating" value="5" id="rate-5" class="star">
         <label for="rate-5" class="fas fa-star star-label" style="${
