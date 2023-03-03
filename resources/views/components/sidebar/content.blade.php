@@ -57,7 +57,7 @@
 
         <x-sidebar.link title="Paskyra" href="{{ route('profile.edit') }}" :isActive="request()->routeIs('profile.edit')">
             <x-slot name="icon">
-                <i class="fa-solid fa-house-user w-6 text-center" aria-hidden="true"></i>
+                <i class="fa-regular fa-id-card w-6 text-center" aria-hidden="true"></i>
             </x-slot>
         </x-sidebar.link>
 
@@ -66,7 +66,7 @@
 
             <x-sidebar.link title="Atsijungti" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
                 <x-slot name="icon">
-                    <i class="fa-solid fa-house-user w-6 text-center" aria-hidden="true"></i>
+                    <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
                 </x-slot>
             </x-sidebar.link>
         </form>

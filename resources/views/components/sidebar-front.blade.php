@@ -14,23 +14,23 @@
     </div>
 
     <div class="pl-4 flex flex-col flex-1 gap-2 md:gap-4">
-        <a href="{{ route('index') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg bg-white text-[var(--green)] transition-all hover:bg-[var(--dgreen)] hover:text-white">
+        <a href="{{ route('index') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('index') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
             <i class="fa-solid fa-house-user w-6 text-center" aria-hidden="true"></i>
             Pradinis
         </a>
 
-        <a href="{{ route('customer-offers') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg bg-white text-[var(--green)] transition-all hover:bg-[var(--dgreen)] hover:text-white">
-            <i class="fa-solid fa-house-user w-6 text-center" aria-hidden="true"></i>
+        <a href="{{ route('customer-offers') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('customer-offers') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
+            <i class="fa-solid fa-plane-departure w-6 text-center" aria-hidden="true"></i>
             Pasiūlymai
         </a>
 
-        <a href="{{ route('index') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg bg-white text-[var(--green)] transition-all hover:bg-[var(--dgreen)] hover:text-white">
-            <i class="fa-solid fa-house-user w-6 text-center" aria-hidden="true"></i>
+        <a href="{{ route('index') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('customer-about-us') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
+            <i class="fa-solid fa-info w-6 text-center" aria-hidden="true"></i>
             Apie mus
         </a>
 
-        <a href="{{ route('index') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg bg-white text-[var(--green)] transition-all hover:bg-[var(--dgreen)] hover:text-white">
-            <i class="fa-solid fa-house-user w-6 text-center" aria-hidden="true"></i>
+        <a href="{{ route('index') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('customer-contacts') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
+            <i class="fa-solid fa-address-book w-6 text-center" aria-hidden="true"></i>
             Kontaktai
         </a>
     </div>
@@ -40,13 +40,13 @@
             <span>{{ auth()->user()->name }}</span>
         </div>
 
-        <a href="{{ route('profile.edit') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg bg-white text-[var(--green)] transition-all hover:bg-[var(--dgreen)] hover:text-white">
-            <i class="fa-solid fa-house-user w-6 text-center" aria-hidden="true"></i>
+        <a href="{{ route('profile.edit') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('profile.edit') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
+            <i class="fa-regular fa-id-card w-6 text-center"></i>
             Paskyra
         </a>
 
-        <a href="{{ route('customer-orders') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg bg-white text-[var(--green)] transition-all hover:bg-[var(--dgreen)] hover:text-white">
-            <i class="fa-solid fa-house-user w-6 text-center" aria-hidden="true"></i>
+        <a href="{{ route('customer-orders') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('customer-orders') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
+            <i class="fa-solid fa-cart-shopping w-6 text-center" aria-hidden="true"></i>
             Užsakymai
         </a>
 
@@ -54,7 +54,7 @@
             @csrf
 
             <a href="#" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg bg-white text-[var(--green)] transition-all hover:bg-[var(--dgreen)] hover:text-white" onclick="event.preventDefault(); this.closest('form').submit();">
-                <i class="fa-solid fa-house-user w-6 text-center" aria-hidden="true"></i>
+                <i class="fa-solid fa-right-from-bracket w-6 text-center"></i>
                 Atsijungti
             </a>
         </form>
