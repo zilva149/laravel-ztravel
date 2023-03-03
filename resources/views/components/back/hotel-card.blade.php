@@ -1,4 +1,4 @@
-<article class="bg-white border-2 border-solid border-white shadow-lg rounded-lg overflow-hidden">
+<article class="h-full bg-white border-2 border-solid border-white shadow-lg rounded-lg overflow-hidden dark:bg-dark-eval-1">
     <div>
         <img src="{{ $hotel->image ? $hotel->image : '/assets/img/no-image.jpg' }}" alt="hotel">
     </div>

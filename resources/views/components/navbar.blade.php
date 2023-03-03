@@ -6,7 +6,7 @@
     }">
 
     <div class="flex items-center gap-3">
-        <x-button type="button" class="md:hidden" icon-only variant="secondary" sr-text="Toggle dark mode"
+        <x-button type="button" class="md:hidden" icon-only variant="primary" sr-text="Toggle dark mode"
             x-on:click="toggleTheme">
             <x-heroicon-o-moon x-show="!isDarkMode" aria-hidden="true" class="w-6 h-6" />
 
@@ -67,7 +67,7 @@
     }">
     <!-- Dark Mode Button -->
     <div class="flex items-center gap-3">
-        <x-button type="button" class="md:hidden" icon-only variant="secondary" sr-text="Toggle dark mode"
+        <x-button type="button" class="md:hidden" icon-only variant="primary" sr-text="Toggle dark mode"
             x-on:click="toggleTheme">
             <x-heroicon-o-moon x-show="!isDarkMode" aria-hidden="true" class="w-6 h-6" />
 

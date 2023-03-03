@@ -17,7 +17,7 @@
         @endif
 
         @if (count($hotels) !== 0)
-            <section class="grid grid-cols-3 gap-6 justify-between items-center dark:bg-dark-eval-1">
+            <section class="p-4 rounded-md grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-between items-center dark:bg-dark-eval-1">
                 @foreach ($hotels as $hotel)
                     <x-back.hotel-card :$hotel />
                 @endforeach

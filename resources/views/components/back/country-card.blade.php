@@ -1,6 +1,6 @@
 @props(['country'])
 
-<article class="p-4 rounded-md shadow-md flex flex-wrap justify-between gap-y-4 bg-white">
+<article class="p-4 rounded-md shadow-md flex flex-wrap justify-between gap-y-4 bg-white dark:bg-dark-eval-1">
     <div class="2/5 md:w-1/5 flex flex-col gap-1">
         <span class="font-semibold">Šalis:</span>
         <span>{{ $country->name }}</span>
