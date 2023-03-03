@@ -10,8 +10,6 @@
         $avgRating = array_sum($ratings) / count($ratings);
         $avgRating = number_format($avgRating, 1, '.');
     }
-
-    $reviews = 8;
 @endphp
 
 @if (isset($avgRating))    

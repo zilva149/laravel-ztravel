@@ -168,7 +168,6 @@ if (document.getElementById("filter")) {
 
         if (offers.length > 0) {
             for (const offer of offers) {
-                console.log(offer);
                 HTML += `<article class="shadow-md rounded-lg overflow-hidden">
                             <div>
                                 <img src="${
@@ -189,7 +188,11 @@ if (document.getElementById("filter")) {
                                     <p class="font-semibold">&euro;${
                                         offer.price
                                     }</p>
-                                    ${ratingCard}
+                                    ${
+                                        offer.reviews.length !== 0
+                                            ? ratingCard(offer.reviews)
+                                            : ""
+                                    }
                                 </div>
                                 <a href="/offers/${
                                     offer.id
@@ -240,7 +243,11 @@ if (document.getElementById("filter")) {
                                     <p class="font-semibold">&euro;${
                                         offer.price
                                     }</p>
-                                    ${ratingCard}
+                                    ${
+                                        offer.reviews.length !== 0
+                                            ? ratingCard(offer.reviews)
+                                            : ""
+                                    }
                                 </div>
                                 <a href="/offers/${
                                     offer.id
@@ -291,7 +298,11 @@ if (document.getElementById("filter")) {
                                     <p class="font-semibold">&euro;${
                                         offer.price
                                     }</p>
-                                    ${ratingCard}
+                                    ${
+                                        offer.reviews.length !== 0
+                                            ? ratingCard(offer.reviews)
+                                            : ""
+                                    }
                                 </div>
                                 <a href="/offers/${
                                     offer.id
