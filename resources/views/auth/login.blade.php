@@ -9,7 +9,7 @@
             </h1>
         </header>
         <form method="POST" action="{{ route('login') }}"
-            class="relative p-6 rounded-lg border-2 shadow-lg bg-[rgba(21,34,56,0.4)] w-full max-w-lg z-99">
+            class="relative p-6 rounded-lg border-2 shadow-lg bg-[rgba(21,34,56,0.4)] w-[90%] max-w-lg z-99">
             @csrf
 
             @if (session()->has('success'))
