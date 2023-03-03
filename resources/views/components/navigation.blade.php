@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="absolute top-0 left-0 right-0 z-[999] bg-transparent">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-24">
             <div class="flex items-center w-[125px]">
                 <a href="{{ route('index') }}">
@@ -73,13 +73,24 @@
                     </div>
                 @endauth
             </div>
+        </div>
+    </div>
 
+    <!-- Responsive Navigation Menu -->
+    <div class="block lg:hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-24">
+            <!-- Logo -->
+            <div class="flex items-center w-[125px]">
+                <a href="{{ route('index') }}">
+                    <x-application-logo-light class="block h-9 w-auto fill-current text-gray-800" />
+                </a>
+            </div>
 
             <!-- Hamburger -->
-            <div class="-mr-2 flex items-center lg:hidden">
+            <div class="flex items-center">
                 <button @click="open = ! open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[var(--green)] focus:outline-none transition duration-150 ease-in-out">
+                    <svg class="h-8 w-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
@@ -89,51 +100,5 @@
                 </button>
             </div>
         </div>
-    </div>
-
-    <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                {{ __('Pradinis') }}
-            </x-responsive-nav-link>
-        </div>
-
-        @auth
-            <!-- Responsive Settings Options -->
-            <div class="pt-4 pb-1 border-t border-gray-200">
-                <div class="px-4">
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                </div>
-
-                <div class="mt-3 space-y-1">
-                    <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Paskyra') }}
-                    </x-responsive-nav-link>
-
-                    <x-dropdown-link :href="route('customer-orders')">
-                        {{ __('Užsakymai') }}
-                    </x-dropdown-link>
-
-                    <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-
-                        <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                            {{ __('Atsijungti') }}
-                        </x-responsive-nav-link>
-                    </form>
-                </div>
-            </div>
-        @else
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Prisijungti</a>
-                <a href="{{ route('register') }}"
-                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Registruotis</a>
-            </div>
-        @endauth
     </div>
 </nav>
