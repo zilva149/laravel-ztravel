@@ -93,10 +93,10 @@
                 </div>
             @else
                 <div class="flex gap-4">
-                    <x-nav-link :href="route('login')">
+                    <x-nav-link :href="route('login')" class="text-sm">
                         {{ __('Prisijungti') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('register')">
+                    <x-nav-link :href="route('register')" class="text-sm">
                         {{ __('Registruotis') }}
                     </x-nav-link>
                 </div>
