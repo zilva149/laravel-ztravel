@@ -29,7 +29,7 @@
 <body>
     <div x-data="mainState" class="font-sans antialiased" x-cloak>
         <!-- Stars rating and overlay -->
-        <div id="rating" class="modal"></div>
+        <div id="reviews" class="modal"></div>
         <div id="overlay" class="overlay"></div>
 
         <x-navigation />

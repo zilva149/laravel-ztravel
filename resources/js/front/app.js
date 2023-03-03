@@ -56,15 +56,15 @@ if (expandBtns) {
 
 // ************* RATING STARS ***************
 
-const openRatingBtns = document.querySelectorAll(
-    'button[data-modal-open="rating"]'
+const openReviewsBtns = document.querySelectorAll(
+    'button[data-modal-open="reviews"]'
 );
 
-if (openRatingBtns) {
-    const modal = document.getElementById("rating");
+if (openReviewsBtns) {
+    const modal = document.getElementById("reviews");
     const overlay = document.getElementById("overlay");
 
-    openRatingBtns.forEach((btn) => {
+    openReviewsBtns.forEach((btn) => {
         btn.addEventListener("click", async (e) => {
             modal.innerHTML = await appendInnerModal(
                 e.currentTarget.dataset.modalOperation,

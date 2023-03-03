@@ -1,6 +1,6 @@
 @props(['isReviewed', 'ID', 'rating'])
 
-<button class="flex gap-1 items-center cursor-pointer" title="vertinti" data-modal-open="rating" data-modal-operation="{{ $isReviewed ? 'update' : 'store' }}" data-modal-route="{{ $isReviewed ? route('customer-review-update', $ID) : route('customer-review-store', $ID) }}">
+<button class="flex gap-1 items-center cursor-pointer" title="vertinti" data-modal-open="reviews" data-modal-operation="{{ $isReviewed ? 'update' : 'store' }}" data-modal-route="{{ $isReviewed ? route('customer-review-update', $ID) : route('customer-review-store', $ID) }}">
     <div class="flex gap-0 pointer-events-none">
         <input type="radio" name="5" id="rate-5" class="hidden">
         <label for="rate-5" class="fas fa-star text-yellow-500 {{ $rating >= 1 ? 'opacity-100' : 'opacity-40' }} pointer-events-none"></label>
