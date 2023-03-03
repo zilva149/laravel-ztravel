@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class BackController extends Controller
@@ -102,6 +103,17 @@ class BackController extends Controller
 
     public function showReviews()
     {
-        return 'reviews page';
+        $pageTitle = 'Atsiliepimai';
+
+        $reviews = Review::all()->sortByDesc('id')->sortByDesc('updated_at');
+
+        foreach($reviews as $review) {
+            $review->destination = $review->order->destination;
+            $review->country = $review->order->destination->country;
+            $review->hotel = $review->order->hotel;
+            $review->offer = $review->order->offer;
+        }
+
+        return view('pages.back.reviews.reviews', compact('pageTitle', 'reviews'));
     }
 }
