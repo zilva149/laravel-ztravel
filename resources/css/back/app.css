@@ -94,4 +94,8 @@
     .form-date {
         @apply w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[var(--green)] ring-0 focus:ring-0 focus:outline-none;
     }
+
+    .empty-list {
+        @apply p-6 rounded-md shadow-lg bg-white w-full max-w-lg flex flex-col gap-4 items-center dark:bg-dark-eval-1 dark:text-white;
+    }
 }

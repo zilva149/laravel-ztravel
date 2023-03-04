@@ -9,32 +9,28 @@
 
     <section class="flex justify-center">
         <form action="{{ route('admin-offer-update', $offer->id) }}" method="POST"
-            class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg dark:bg-dark-eval-1 dark:text-white">
+            class="form">
             @csrf
             @method('PUT')
 
             @if (session()->has('success'))
-                <div class="message mb-4" style="background-color: var(--green)">
-                    <p>{{ session('success') }}</p>
-                </div>
+                <x-message size="lg" operation="success" :text="session('success')" />
             @endif
 
-            <div class="mb-6 flex flex-col gap-2">
+            <div class="form-input-container">
                 <label for="name">Pasiūlymo pavadinimas:</label>
                 <input type="text"
-                    class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                    class="form-text"
                     name="name" value="{{ old('name', $offer->name) }}" id="name">
                 @error('name')
-                    <div class="message-sm" style="background-color: #f01616">
-                        <p>{{ $message }}</p>
-                    </div>
+                    <x-message size="sm" operation="failure" :text="$message" />
                 @enderror
             </div>
 
-            <div class="mb-6 flex flex-col gap-2">
+            <div class="form-input-container">
                 <label for="country_id">Šalis:</label>
                 <select
-                    class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                    class="form-select"
                     aria-label="country" name="country_id" id="country_id">
                     <option selected disabled>-- Rinktis šalį</option>
                     @foreach ($countries as $country)
@@ -44,64 +40,93 @@
                     @endforeach
                 </select>
                 @error('country_id')
-                    <div class="message-sm" style="background-color: #f01616">
-                        <p>{{ $message }}</p>
-                    </div>
+                    <x-message size="sm" operation="failure" :text="$message" />
                 @enderror
             </div>
 
             <div id="destination_select_parent">
-                <div class="mb-6 flex flex-col gap-2">
+                <div class="form-input-container">
                     <label for="destination_id">Vietovė:</label>
                     <select
-                        class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                        class="form-select"
                         aria-label="destination" name="destination_id" id="destination_id">
                         <option selected disabled>-- Rinktis vietovę</option>
-                        @foreach ($destinations as $destination)
-                            @if ($destination->country_id == $offer->country_id)
-                                <option value="{{ $destination->id }}"
-                                    @if ($destination->id == old('destination_id', $offer->destination_id)) selected @endif>
-                                    {{ $destination->name }}
-                                </option>
-                            @endif
-                        @endforeach
+                        @if (old('country_id'))    
+                            @foreach ($destinations as $destination)
+                                @if ($destination->country_id == old('country_id'))
+                                    <option value="{{ $destination->id }}"
+                                        @if ($destination->id == old('destination_id')) selected @endif>
+                                        {{ $destination->name }}
+                                    </option>
+                                @endif
+                            @endforeach
+                        @else
+                            @foreach ($destinations as $destination)
+                                @if ($destination->country_id == $offer->country_id)
+                                    <option value="{{ $destination->id }}"
+                                        @if ($destination->id == $offer->destination_id) selected @endif>
+                                        {{ $destination->name }}
+                                    </option>
+                                @endif
+                            @endforeach
+                        @endif
                     </select>
                     @error('destination_id')
-                        <div class="message-sm" style="background-color: #f01616">
-                            <p>{{ $message }}</p>
-                        </div>
+                        <x-message size="sm" operation="failure" :text="$message" />
                     @enderror
                 </div>
             </div>
 
             <div id="hotel_select_parent">
-                <div class="mb-6 flex flex-col gap-2">
-                    <label for="hotel_id">Nakvynės vieta:</label>
-                    <select
-                        class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
-                        aria-label="hotel" name="hotel_id" id="hotel_id">
-                        <option selected disabled>-- Rinktis nakvynę</option>
-                        @foreach ($hotels as $hotel)
-                            @if ($hotel->destination_id == $offer->destination_id)
-                                <option value="{{ $hotel->id }}"
-                                    @if ($hotel->id == old('hotel_id', $offer->hotel_id)) selected @endif>
-                                    {{ $hotel->name }}
-                                </option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @error('hotel_id')
-                        <div class="message-sm" style="background-color: #f01616">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @enderror
-                </div>
+                @if (old('country_id') && !old('destination_id'))
+                    <div></div>
+                @elseif (old('destination_id'))                    
+                    <div class="form-input-container">
+                        <label for="hotel_id">Nakvynės vieta:</label>
+                        <select
+                            class="form-select"
+                            aria-label="hotel" name="hotel_id" id="hotel_id">
+                            <option selected disabled>-- Rinktis nakvynę</option>
+                                @foreach ($hotels as $hotel)
+                                    @if ($hotel->destination_id == old('destination_id'))
+                                        <option value="{{ $hotel->id }}"
+                                            @if ($hotel->id == old('hotel_id')) selected @endif>
+                                            {{ $hotel->name }}
+                                        </option>
+                                    @endif        
+                                @endforeach
+                        </select>
+                        @error('hotel_id')
+                            <x-message size="sm" operation="failure" :text="$message" />
+                        @enderror
+                    </div>
+                @else
+                    <div class="form-input-container">
+                        <label for="hotel_id">Nakvynės vieta:</label>
+                        <select
+                            class="form-select"
+                            aria-label="hotel" name="hotel_id" id="hotel_id">
+                            <option selected disabled>-- Rinktis nakvynę</option>
+                                @foreach ($hotels as $hotel)
+                                    @if ($hotel->destination_id == $offer->destination_id)
+                                        <option value="{{ $hotel->id }}"
+                                            @if ($hotel->id == $offer->hotel_id) selected @endif>
+                                            {{ $hotel->name }}
+                                        </option>
+                                    @endif        
+                                @endforeach
+                        </select>
+                        @error('hotel_id')
+                            <x-message size="sm" operation="failure" :text="$message" />
+                        @enderror
+                    </div>
+                @endif  
             </div>
 
-            <div class="mb-6 flex flex-col gap-2">
+            <div class="form-input-container">
                 <label for="travel_start">Kelionės pradžia:</label>
                 <input type="date"
-                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    class="form-date"
                     name="travel_start" value="{{ old('travel_start', $offer->travel_start) }}" id="travel_start"
                     @foreach ($countries as $country)
                         @if ($country->id == old('country_id', $offer->country_id))
@@ -110,16 +135,14 @@
                     @endforeach
                 />
                 @error('travel_start')
-                    <div class="message-sm" style="background-color: #f01616">
-                        <p>{{ $message }}</p>
-                    </div>
+                    <x-message size="sm" operation="failure" :text="$message" />
                 @enderror
             </div>
 
-            <div class="mb-6 flex flex-col gap-2">
+            <div class="form-input-container">
                 <label for="travel_end">Kelionės pabaiga:</label>
                 <input type="date"
-                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    class="form-date"
                     name="travel_end" value="{{ old('travel_end', $offer->travel_end) }}" id="travel_end"
                     @foreach ($countries as $country)
                         @if ($country->id == old('country_id', $offer->country_id))
@@ -128,21 +151,17 @@
                     @endforeach
                 />
                 @error('travel_end')
-                    <div class="message-sm" style="background-color: #f01616">
-                        <p>{{ $message }}</p>
-                    </div>
+                    <x-message size="sm" operation="failure" :text="$message" />
                 @enderror
             </div>
 
-            <div class="mb-6 flex flex-col gap-2">
+            <div class="form-input-container">
                 <label for="price">Kaina (EUR):</label>
                 <input type="text"
-                    class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                    class="form-text"
                     name="price" id="price" value="{{ old('price', $offer->price) }}">
                 @error('price')
-                    <div class="message-sm" style="background-color: #f01616">
-                        <p>{{ $message }}</p>
-                    </div>
+                    <x-message size="sm" operation="failure" :text="$message" />
                 @enderror
             </div>
 

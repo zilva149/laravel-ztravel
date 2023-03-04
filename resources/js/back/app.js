@@ -121,46 +121,50 @@ if (messages) {
 
 // ************* MODALS ***************
 
-const openModalBtns = document.querySelectorAll('button[data-modal-open="modal"]');
+const openModalBtns = document.querySelectorAll(
+    'button[data-modal-open="modal"]'
+);
 
-if(openModalBtns) {
-    const modal = document.getElementById('modal');
-    const overlay = document.getElementById('overlay');
+if (openModalBtns) {
+    const modal = document.getElementById("modal");
+    const overlay = document.getElementById("overlay");
 
     openModalBtns.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener("click", (e) => {
             modal.innerHTML = appendInnerModal(
                 e.currentTarget.dataset.modalOperation,
                 e.currentTarget.dataset.modalObject,
                 e.currentTarget.dataset.modalRoute
             );
 
-            modal.querySelector('button[data-close-modal]').addEventListener('click', (e) => {
-                modal.classList.remove('active');
-                overlay.classList.remove('active');
-            })
+            modal
+                .querySelector("button[data-close-modal]")
+                .addEventListener("click", (e) => {
+                    modal.classList.remove("active");
+                    overlay.classList.remove("active");
+                });
 
-            modal.classList.add('active');
-            overlay.classList.add('active');
+            modal.classList.add("active");
+            overlay.classList.add("active");
 
-            overlay.addEventListener('click', (e) => {
-                modal.classList.remove('active');
-                e.currentTarget.classList.remove('active');
-            })
+            overlay.addEventListener("click", (e) => {
+                modal.classList.remove("active");
+                e.currentTarget.classList.remove("active");
+            });
         });
-    })
+    });
 }
 
 function appendInnerModal(operation, object, route) {
-    let modalMessage = '';
+    let modalMessage = "";
     switch (operation) {
-        case 'delete':
+        case "delete":
             modalMessage = `Ar tikrai norite ištrinti ${object}?`;
             break;
-        case 'approve':
+        case "approve":
             modalMessage = `Ar tikrai norite patvirinti ${object}?`;
             break;
-        case 'cancel':
+        case "cancel":
             modalMessage = `Ar tikrai norite atšaukti ${object}?`;
             break;
         default:
@@ -175,7 +179,11 @@ function appendInnerModal(operation, object, route) {
                 <form action="${route}" method="POST">
                     <input type="hidden" name="_token" id="csrf-token" value="${csrf}" />
                     <button 
-                        ${operation === "approve" ? "name='status_approve'" : ""}
+                        ${
+                            operation === "approve"
+                                ? "name='status_approve'"
+                                : ""
+                        }
                         ${operation === "cancel" ? "name='status_cancel'" : ""}
                         value="1" type="submit" class="btn-primary text-lg">
                             Taip
@@ -221,7 +229,7 @@ if (document.getElementById("country_id")) {
             <div class="mb-6 flex flex-col gap-2">
                 <label for="destination_id">Vietovė:</label>
                 <select
-                    class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                    class="form-select"
                     aria-label="destination" name="destination_id" id="destination_id">
                     <option selected disabled>-- Rinktis vietovę</option>
         `;
@@ -254,7 +262,7 @@ if (document.getElementById("country_id")) {
                     <div class="mb-6 flex flex-col gap-2">
                         <label for="hotel_id">Nakvynės vieta:</label>
                         <select
-                            class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                            class="form-select"
                             aria-label="hotel" name="hotel_id" id="hotel_id">
                             <option selected disabled>-- Rinktis nakvynės vietą</option>
                 `;
@@ -289,7 +297,7 @@ if (document.getElementById("destination_id")) {
                     <div class="mb-6 flex flex-col gap-2">
                         <label for="hotel_id">Nakvynės vieta:</label>
                         <select
-                            class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                            class="form-select"
                             aria-label="hotel" name="hotel_id" id="hotel_id">
                             <option selected disabled>-- Rinktis nakvynės vietą</option>
                 `;

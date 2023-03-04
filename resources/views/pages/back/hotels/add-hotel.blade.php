@@ -10,7 +10,7 @@
     <section class="flex justify-center">
         @if (count($countries) === 0)
             <div
-                class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg flex flex-col gap-4 items-center dark:bg-dark-eval-1 dark:text-white">
+                class="empty-list">
                 <h2 class="text-lg font-semibold">Šalių sąrašas tuščias, prašome pridėti naują šalį</h2>
                 <div class="flex gap-2">
                     <a href="{{ route('admin-country-create') }}" class="btn-primary cursor-pointer">Pridėti šalį</a>
@@ -19,7 +19,7 @@
             </div>
         @elseif (count($destinations) === 0)
             <div
-                class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg flex flex-col gap-4 items-center dark:bg-dark-eval-1 dark:text-white">
+                class="empty-list">
                 <h2 class="text-lg font-semibold">Vietovių sąrašas tuščias, prašome pridėti naują vietovę</h2>
                 <div class="flex gap-2">
                     <a href="{{ route('admin-destination-create') }}" class="btn-primary cursor-pointer">Pridėti
@@ -29,19 +29,17 @@
             </div>
         @else
             <form action="{{ route('admin-hotel-store') }}" method="POST" enctype="multipart/form-data"
-                class="p-6 rounded-md shadow-lg bg-white w-full max-w-lg dark:bg-dark-eval-1 dark:text-white">
+                class="form">
                 @csrf
 
                 @if (session()->has('success'))
-                    <div class="message mb-4" style="background-color: var(--green)">
-                        <p>{{ session('success') }}</p>
-                    </div>
+                    <x-message size="lg" operation="success" :text="session('success')" />
                 @endif
 
-                <div class="mb-6 flex flex-col gap-2">
+                <div class="form-input-container">
                     <label for="country_id">Šalis:</label>
                     <select
-                        class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                        class="form-select"
                         aria-label="country" name="country_id" id="country_id">
                         <option selected disabled>-- Rinktis šalį</option>
                         @foreach ($countries as $country)
@@ -51,18 +49,16 @@
                         @endforeach
                     </select>
                     @error('country_id')
-                        <div class="message-sm" style="background-color: #f01616">
-                            <p>{{ $message }}</p>
-                        </div>
+                        <x-message size="sm" operation="failure" :text="$message" />
                     @enderror
                 </div>
 
                 <div id="destination_select_parent">
                     @if (old('country_id'))
-                        <div class="mb-6 flex flex-col gap-2">
+                        <div class="form-input-container">
                             <label for="destination_id">Vietovė:</label>
                             <select
-                                class="appearance-none w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                                class="form-select"
                                 aria-label="destination" name="destination_id" id="destination_id">
                                 <option selected disabled>-- Rinktis vietovę</option>
                                 @foreach ($destinations as $destination)
@@ -75,58 +71,48 @@
                                 @endforeach
                             </select>
                             @error('destination_id')
-                                <div class="message-sm" style="background-color: #f01616">
-                                    <p>{{ $message }}</p>
-                                </div>
+                                <x-message size="sm" operation="failure" :text="$message" />
                             @enderror
                         </div>
                     @endif
                 </div>
 
-                <div class="mb-6 flex flex-col gap-2">
+                <div class="form-input-container">
                     <label for="name">Nakvynės vietos pavadinimas</label>
                     <input type="text"
-                        class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                        class="form-text"
                         name="name" id="name" value="{{ old('name', '') }}">
                     @error('name')
-                        <div class="message-sm" style="background-color: #f01616">
-                            <p>{{ $message }}</p>
-                        </div>
+                        <x-message size="sm" operation="failure" :text="$message" />
                     @enderror
                 </div>
 
-                <div class="mb-6 flex flex-col gap-2">
+                <div class="form-input-container">
                     <label for="address">Adresas</label>
                     <input type="text"
-                        class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                        class="form-text"
                         name="address" id="address" value="{{ old('address', '') }}">
                     @error('address')
-                        <div class="message-sm" style="background-color: #f01616">
-                            <p>{{ $message }}</p>
-                        </div>
+                        <x-message size="sm" operation="failure" :text="$message" />
                     @enderror
                 </div>
 
-                <div class="mb-6 flex flex-col gap-2">
+                <div class="form-input-container">
                     <label for="people_limit">Žmonių limitas</label>
                     <input type="text"
-                        class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                        class="form-text"
                         name="people_limit" id="people_limit" value="{{ old('people_limit', '') }}">
                     @error('people_limit')
-                        <div class="message-sm" style="background-color: #f01616">
-                            <p>{{ $message }}</p>
-                        </div>
+                        <x-message size="sm" operation="failure" :text="$message" />
                     @enderror
                 </div>
 
-                <div class="mb-6">
+                <div class="form-input-container">
                     <input
-                        class="w-full px-3 py-1.5 text-gray-700 border border-solid border-gray-300 rounded-md transition ease-in-out focus:border-purple-500 focus:outline-none dark:bg-dark-eval-1 dark:text-white"
+                        class="form-text"
                         type="file" name="image">
                     @error('image')
-                        <div class="message-sm" style="background-color: #f01616">
-                            <p>{{ $message }}</p>
-                        </div>
+                        <x-message size="sm" operation="failure" :text="$message" />
                     @enderror
                 </div>
 
