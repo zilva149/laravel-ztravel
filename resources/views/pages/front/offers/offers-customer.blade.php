@@ -13,7 +13,7 @@
 
     <section class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center" id="destinations">
         <h2
-            class="relative mb-16 text-3xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">
+            class="relative mb-16 text-2xl lg:text-3xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">
             Pasiūlymai
         </h2>
 
@@ -75,7 +75,7 @@
                     </article>
                 @endforeach
             @else
-                <h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>
+                <h2 class="col-span-3 text-2xl lg:text-3xl text-center font-semibold">Nėra pasiūlymų</h2>
             @endif
         </div>
     </section>
