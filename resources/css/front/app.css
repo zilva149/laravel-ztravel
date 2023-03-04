@@ -92,4 +92,28 @@
     .star:checked ~ label.star-label {
         @apply text-yellow-400;
     }
+
+    .hero {
+        @apply relative min-h-[90vh] text-gray-900 bg-cover bg-center bg-fixed before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[#14261c] before:opacity-[0.6] flex justify-center items-center;
+    }
+
+    .hero-header {
+        @apply relative flex flex-col items-center bg-transparent z-[99];
+    }
+
+    .hero-subtitle {
+        @apply relative mb-12 text-white md:text-xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%];
+    }
+
+    .hero-title {
+        @apply mb-20 text-white text-4xl md:text-5xl font-semibold text-center;
+    }
+
+    .section {
+        @apply max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center;
+    }
+
+    .section-title {
+        @apply relative mb-16 text-2xl lg:text-3xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%];
+    }
 }
