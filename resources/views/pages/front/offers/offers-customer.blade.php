@@ -3,9 +3,9 @@
         class="relative min-h-[90vh] text-gray-900 bg-[url('/public/assets/img/hero-boat.jpg')] bg-cover bg-center bg-fixed before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[#14261c] before:opacity-[0.6] flex justify-center items-end"
         id="hero">
         <header class="relative mb-36 flex flex-col gap-16 items-center bg-transparent z-99">
-            <h1 class="text-white text-5xl font-semibold text-center">Mūsų pasiūlymai</h1>
+            <h1 class="text-white text-4xl lg:text-5xl font-semibold text-center">Mūsų pasiūlymai</h1>
             <a href="#destinations"
-                class="btn-action-link px-0 py-0 w-[70px] h-[70px] text-3xl text-white rounded-full flex justify-center items-center animate-pulse">
+                class="btn-action-link px-0 py-0 w-[60px] h-[60px] lg:w-[70px] lg:h-[70px] text-xl lg:text-3xl text-white rounded-full flex justify-center items-center animate-pulse">
                 <i class="fa-solid fa-chevron-down"></i>
             </a>
         </header>
@@ -18,32 +18,34 @@
         </h2>
 
         <div class="w-full max-w-[1000px] border-[3px] border-solid border-[var(--green)] rounded-lg px-12 py-8 mb-14">
-            <div class="w-full flex justify-between gap-6">
-                <div class="flex gap-3 justify-center items-center">
-                    <label class="font-semibold" for="filter">Šalys:</label>
-                    <select name="filter" id="filter"
-                    class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-4 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
-                        <option value="all" selected>Visos</option>
-                        @foreach ($continents as $continent)
-                            <optgroup label="{{ $continent->continent }}">
-                                @foreach ($countries as $country)
-                                @if ($country->continent === $continent->continent)
-                                <option value="{{ $country->id }}" @if ($request->filter && $request->filter == $country->id) selected  @endif>{{ $country->name }}</option>
-                                @endif
-                                @endforeach
-                            </optgroup>
-                        @endforeach
-                    </select>
-                </div>
-            
-                <div class="flex gap-3 justify-center items-center">
-                    <label class="font-semibold" for="sort">Rikiavimas:</label>
-                    <select name="sort" id="sort"
-                    class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-8 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
-                        @foreach ($sortOptions as $key => $value)
-                            <option value="{{ $key }}" @if ($request->sort && $request->sort == $key) selected  @endif>{{ $value }}</option>
-                        @endforeach
-                    </select>
+            <div class="w-full flex flex-col lg:flex-row justify-between items-center gap-6">
+                <div class="flex gap-4 lg:gap-8">
+                    <div class="w-1/2 lg:w-auto flex gap-3 items-center">
+                        <label class="hidden md:block font-semibold" for="filter">Šalys:</label>
+                        <select name="filter" id="filter"
+                        class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-4 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
+                            <option value="all" selected>Visos</option>
+                            @foreach ($continents as $continent)
+                                <optgroup label="{{ $continent->continent }}">
+                                    @foreach ($countries as $country)
+                                    @if ($country->continent === $continent->continent)
+                                    <option value="{{ $country->id }}" @if ($request->filter && $request->filter == $country->id) selected  @endif>{{ $country->name }}</option>
+                                    @endif
+                                    @endforeach
+                                </optgroup>
+                            @endforeach
+                        </select>
+                    </div>
+                
+                    <div class="w-1/2 lg:w-auto flex gap-3 items-center">
+                        <label class="hidden md:block font-semibold" for="sort">Rikiavimas:</label>
+                        <select name="sort" id="sort"
+                        class="border-2 border-solid border-[var(--green)] rounded-lg py-1 px-2 pr-8 focus:border-[var(--green)] focus:ring-[var(--green)] focus:ring-offset-0">
+                            @foreach ($sortOptions as $key => $value)
+                                <option value="{{ $key }}" @if ($request->sort && $request->sort == $key) selected  @endif>{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <div
