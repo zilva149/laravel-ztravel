@@ -165,7 +165,7 @@ async function appendInnerModal(operation, route = "") {
                     operation == "store" ? "hidden" : "flex"
                 } flex-col gap-6 justify-center">
                     <input type="hidden" name="_token" id="csrf-token" value="${csrf}"/>
-                    <textarea class="w-full px-3 py-1.5 text-gray-700 resize-none border border-solid border-[var(--green)] rounded-md transition ease-in-out focus:border-[var(--green)] focus:outline-none focus:ring-2 focus:ring-[var(--dgreen)]" name="desc" rows="6" placeholder="Apibūdinkite savo patirtį...">${
+                    <textarea class="form-text" name="desc" rows="6" placeholder="Apibūdinkite savo patirtį...">${
                         review ? review.desc : ""
                     }</textarea>
                     <div class="flex gap-2 justify-center">
@@ -247,8 +247,7 @@ if (document.getElementById("filter")) {
                         </article>`;
             }
         } else {
-            HTML +=
-                '<h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>';
+            HTML += '<h2 class="empty-list">Nėra pasiūlymų</h2>';
         }
 
         document.getElementById("offers-container").innerHTML = HTML;
@@ -305,8 +304,7 @@ if (document.getElementById("filter")) {
                         </article>`;
             }
         } else {
-            HTML +=
-                '<h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>';
+            HTML += '<h2 class="empty-list">Nėra pasiūlymų</h2>';
         }
 
         document.getElementById("offers-container").innerHTML = HTML;
@@ -363,8 +361,7 @@ if (document.getElementById("filter")) {
                         </article>`;
             }
         } else {
-            HTML +=
-                '<h2 class="col-span-3 text-3xl text-center font-semibold">Nėra pasiūlymų</h2>';
+            HTML += '<h2 class="empty-list">Nėra pasiūlymų</h2>';
         }
 
         document.getElementById("offers-container").innerHTML = HTML;
