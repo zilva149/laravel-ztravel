@@ -11,9 +11,7 @@
 
     <section class="mb-6 flex flex-col gap-6 dark:bg-dark-eval-0 dark:text-gray-200">
         @if (session()->has('success'))
-            <div class="message mb-4" style="background-color: var(--green)">
-                <p>{{ session('success') }}</p>
-            </div>
+            <x-message size="lg" operation="success" :text="session('success')" />
         @endif
         
         @if (count($countries) !== 0)
