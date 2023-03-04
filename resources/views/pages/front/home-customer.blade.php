@@ -19,10 +19,14 @@
             class="section-title">
             Populiariausios vietovės
         </h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 justify-between items-center">
-            @foreach ($topDestinations as $destination)
-                <x-front.destination-card :$destination />
-            @endforeach
+        <div class="offers-container">
+            @if (isset($topDestinations) && count($topDestinations) != 0)
+                @foreach ($topDestinations as $destination)
+                    <x-front.destination-card :$destination />
+                @endforeach
+            @else
+                <h2 class="empty-offers">Nėra vietovių</h2>
+            @endif
         </div>
     </section>
 </x-front-layout>
