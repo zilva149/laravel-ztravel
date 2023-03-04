@@ -1,6 +1,6 @@
 @props(['destination'])
 
-<article class="w-full max-w-[900px] rounded-md shadow-md bg-white flex flex-col dark:bg-dark-eval-1">
+<article class="w-full max-w-[900px] rounded-md shadow-md overflow-hidden bg-white flex flex-col dark:bg-dark-eval-1">
     <div class="flex flex-col md:flex-row gap-4 relative">
         <div class="w-full md:w-1/2">
             <img src="{{ $destination->image ? $destination->image : '/assets/img/no-image.jpg' }}"
