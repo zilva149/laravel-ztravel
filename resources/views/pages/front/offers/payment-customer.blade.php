@@ -4,13 +4,13 @@
         style="background-image: url('{{ $offer->hotel->image ? $offer->hotel->image : '/assets/img/hero-home.jpg' }}')"
         id="hero">
         <div class="bg-transparent h-[100px]"></div>
-        <div class="relative w-full max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8 flex gap-6 rounded-lg border-2 shadow-lg bg-[rgba(21,34,56,0.4)] z-10">
+        <div class="relative w-[90%] max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row gap-6 rounded-lg border-2 shadow-lg bg-[rgba(21,34,56,0.4)] z-10">
             <form method="POST" action="{{ route('customer-payment-store', $offer->id) }}"
-                class="w-3/5 p-6 grid grid-cols-4 gap-2">
+                class="w-full md:w-3/5 p-6 grid grid-cols-4 gap-2">
                 @csrf
     
                 <!-- Firstname -->
-                <div class="mb-6 flex flex-col gap-2 col-start-1 col-span-2">
+                <div class="mb-6 flex flex-col gap-2 col-start-1 col-span-4 lg:col-span-2">
                     <x-form.label for="firstname" :value="__('Vardas')" />
                     <x-form.input id="firstname" class="block w-full" type="text" name="firstname" :value="old('firstname')"
                         autofocus placeholder="{{ __('') }}" autofocus />
@@ -18,7 +18,7 @@
                 </div>
     
                 <!-- Lastname -->
-                <div class="mb-6 flex flex-col gap-2 col-start-3 col-span-2">
+                <div class="mb-6 flex flex-col gap-2 col-start-1 col-span-4 lg:col-start-3 lg:col-span-2">
                     <x-form.label for="lastname" :value="__('Pavardė')" />
                     <x-form.input id="lastname" class="block w-full" type="text" name="lastname" :value="old('lastname')"
                         autofocus placeholder="{{ __('') }}" autofocus />
@@ -26,7 +26,7 @@
                 </div>
     
                 <!-- Email Address -->
-                <div class="mb-6 flex flex-col gap-2 col-start-1 col-span-2">
+                <div class="mb-6 flex flex-col gap-2 col-start-1 col-span-4 lg:col-span-2">
                     <x-form.label for="email" :value="__('El. paštas')" />
                     <x-form.input id="email" class="block w-full" type="email" name="email" :value="old('email')"
                         placeholder="{{ __('') }}" autofocus />
@@ -34,7 +34,7 @@
                 </div>
     
                 <!-- Address -->
-                <div class="mb-6 flex flex-col gap-2 col-start-3 col-span-2">
+                <div class="mb-6 flex flex-col gap-2 col-start-1 col-span-4 lg:col-start-3 lg:col-span-2">
                     <x-form.label for="address" :value="__('Adresas')" />
                     <x-form.input id="address" class="block w-full" type="text" name="address" :value="old('address')"
                         placeholder="{{ __('') }}" autofocus />
@@ -42,7 +42,7 @@
                 </div>
     
                 <!-- Credit Card -->
-                <div class="mb-6 flex flex-col gap-2 col-start-1 col-span-2">
+                <div class="mb-6 flex flex-col gap-2 col-start-1 col-span-4 lg:col-span-2">
                     <x-form.label for="credit_card" :value="__('Kredito kortelė')" />
                     <x-form.input id="credir_card" class="block w-full" type="text" name="credit_card" :value="old('credit_card')"
                         placeholder="{{ __('') }}" autofocus />
@@ -50,7 +50,7 @@
                 </div>
     
                 <!-- MM/YY -->
-                <div class="mb-6 flex flex-col gap-2 col-start-3 col-span-1">
+                <div class="mb-6 flex flex-col gap-2 col-start-1 col-span-2 lg:col-start-3 lg:col-span-1">
                     <x-form.label for="mm_yy" :value="__('MM/YY')" />
                     <x-form.input id="mm_yy" class="block w-full" type="text" name="mm_yy" :value="old('mm_yy')"
                         placeholder="{{ __('') }}" autofocus />
@@ -58,7 +58,7 @@
                 </div>
     
                 <!-- CVC -->
-                <div class="mb-6 flex flex-col gap-2 col-start-4 col-span-1">
+                <div class="mb-6 flex flex-col gap-2 col-start-3 col-span-2 lg:col-start-4 lg:col-span-1">
                     <x-form.label for="cvc" :value="__('CVC')" />
                     <x-form.input id="cvc" class="block w-full" type="text" name="cvc" :value="old('cvc')"
                         placeholder="{{ __('') }}" autofocus />
@@ -71,7 +71,7 @@
                     <a href="{{ route('customer-single-offer', $offer->id) }}" class="btn-action-link text-lg flex items-center justify-center">Grįžti</a>
                 </div>
             </form>
-            <div class="w-2/5 p-6 text-white flex flex-col gap-4">
+            <div class="w-full md:w-2/5 p-6 text-white flex flex-col gap-4">
                 <div class="flex flex-col gap-1">
                     <span class="text-lg font-semibold">Vietovė:</span>
                     <span>{{ $offer->destination->name }}, {{ $offer->country->name }}</span>
