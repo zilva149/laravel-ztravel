@@ -4,20 +4,20 @@
         id="hero">
         <header class="relative flex flex-col items-center bg-transparent z-99">
             <h2
-                class="relative mb-12 text-white text-xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">
+                class="relative mb-12 text-white text-md md:text-xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">
                 Mėgaukites gamta su mumis
             </h2>
-            <h1 class="mb-20 text-white text-5xl font-semibold text-center">Svajonių kelionės</h1>
-            <a href="{{ route('customer-offers') }}" class="btn-action-link py-3 text-lg">Mūsų pasiūlymai</a>
+            <h1 class="mb-20 text-white text-4xl md:text-5xl font-semibold text-center">Svajonių kelionės</h1>
+            <a href="{{ route('customer-offers') }}" class="btn-action-link py-3">Mūsų pasiūlymai</a>
         </header>
     </section>
 
     <section class="p-16 bg-gray-200 flex flex-col gap-2 justify-center items-center">
-        <h2 class="relative text-xl">
-            <i class="fa-solid fa-quote-left text-white text-9xl absolute top-[-100%] left-[-200px]"></i>
+        <h2 class="w-4/5 max-w-[600px] m-auto relative text-md lg:text-xl text-center">
+            <i class="fa-solid fa-quote-left text-white text-6xl lg:text-9xl absolute top-[-100%] left-[-50px] lg:left-[-150px]"></i>
             "Tūkstančio žingsnių kelionė prasideda nuo pirmo žingsnio."
         </h2>
-        <h3 class="text-md">- Lao Tzu</h3>
+        <h3 class="text-sm lg:text-md">- Lao Tzu</h3>
     </section>
 
     <section class="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
@@ -25,7 +25,7 @@
             class="relative mb-16 text-3xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%]">
             Populiariausios vietovės
         </h2>
-        <div class="flex gap-6 justify-between items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 justify-between items-center">
             @foreach ($topDestinations as $destination)
                 <article class="shadow-md rounded-lg overflow-hidden">
                     <div>
