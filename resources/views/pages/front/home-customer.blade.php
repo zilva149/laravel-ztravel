@@ -19,13 +19,13 @@
             class="section-title">
             Populiariausios vietovės
         </h2>
-        <div class="offers-container">
+        <div class="cards-container">
             @if (isset($topDestinations) && count($topDestinations) != 0)
                 @foreach ($topDestinations as $destination)
                     <x-front.destination-card :$destination />
                 @endforeach
             @else
-                <h2 class="empty-offers">Nėra vietovių</h2>
+                <h2 class="empty-list">Nėra vietovių</h2>
             @endif
         </div>
     </section>

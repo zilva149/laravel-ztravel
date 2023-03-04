@@ -121,11 +121,11 @@
         @apply relative mb-16 text-2xl lg:text-3xl text-center before:content-[''] before:absolute before:left-[50%] before:bottom-[-14px] before:w-1/2 before:h-[3px] before:bg-[var(--green)] before:translate-x-[-50%];
     }
 
-    .offers-container {
-        @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 justify-between items-center;
+    .cards-container {
+        @apply w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 justify-center items-center;
     }
 
-    .empty-offers {
+    .empty-list {
         @apply col-span-3 text-2xl lg:text-3xl text-center font-semibold;
     }
 
@@ -159,5 +159,13 @@
 
     .filter-search-input {
         @apply w-full px-2 focus:outline-none;
+    }
+
+    .section-form {
+        @apply relative min-h-[90vh] pb-8 text-gray-900 bg-cover bg-center bg-fixed before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[#14261c] before:opacity-[0.6] flex flex-col justify-start items-center;
+    }
+
+    .form {
+        @apply relative p-6 rounded-lg border-2 shadow-lg bg-[rgba(21,34,56,0.4)] w-[90%] max-w-lg z-[99];
     }
 }

@@ -1,8 +1,8 @@
 @props(['destination', 'route'])
 
-<article class="shadow-md rounded-lg overflow-hidden">
+<article class="w-full max-w-[600px] m-auto shadow-md rounded-lg overflow-hidden">
     <div>
-        <img src="{{ $destination->image ? $destination->image : '/assets/img/no-image.jpg' }}" alt="hotel">
+        <img src="{{ $destination->image ? $destination->image : '/assets/img/no-image.jpg' }}" alt="hotel" class="w-full">
     </div>
     <div class="p-4 flex flex-col items-start">
         <p class="mb-1 text-gray-500">{{ $destination->country->name }}</p>

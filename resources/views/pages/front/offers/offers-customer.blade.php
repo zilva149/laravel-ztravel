@@ -19,13 +19,13 @@
 
         <x-front.filter-card :$continents :$countries :$request :$sortOptions />
 
-        <div class="offers-container" id="offers-container">
+        <div class="cards-container" id="offers-container">
             @if (isset($offers) && count($offers) != 0)
                 @foreach ($offers as $offer)        
                     <x-front.offer-card :$offer />
                 @endforeach
             @else
-                <h2 class="empty-offers">Nėra pasiūlymų</h2>
+                <h2 class="empty-list">Nėra pasiūlymų</h2>
             @endif
         </div>
     </section>
