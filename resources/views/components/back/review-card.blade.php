@@ -3,9 +3,9 @@
 <article class="rounded-md shadow-md">
     <div class="p-4 flex flex-col">
         <div class="flex flex-col md:flex-row gap-4 justify-between items-center relative">
-            <div class="flex flex-row gap-12 justify-start items-center">
+            <div class="w-full flex flex-row gap-12 justify-between md:justify-start items-center">
                 <span class="font-bold">{{ $review->user->name }}</span>
-                <span>{{ $review->destination->name }}, {{ $review->country->name }}</span>
+                <span class="text-end md:text-start">{{ $review->destination->name }}, {{ $review->country->name }}</span>
             </div>
             <div class="flex gap-12 items-center">
                 <x-back.stars-review-card rating="{{ $review->rating }}" />

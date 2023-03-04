@@ -13,17 +13,17 @@
 
 <article class="border border-solid border-slate-200 rounded-md shadow-md" id="{{ $order->id }}">
     <div class="p-4 flex flex-col">
-        <div class="flex flex-col md:flex-row gap-2 justify-between items-center relative">
-            <div class="md:w-[80%] flex flex-row justify-between gap-2">
+        <div class="flex flex-col xl:flex-row gap-4 justify-between items-center relative">
+            <div class="w-full xl:w-[80%] flex flex-col xl:flex-row justify-between gap-4">
                 <div
-                    class="md:w-[20%] flex justify-center items-center xl:flex-row xl:justify-start text-center md:text-start">
+                    class="w-full xl:w-[20%] flex justify-start items-center">
                     <span>{{ $order->firstname }} {{ $order->lastname }}</span>
                 </div>
-                <div class="md:w-[50%] flex justify-center items-center xl:flex-row xl:justify-start text-center md:text-start">
+                <div class="w-full xl:w-[50%] flex justify-start items-center">
                     <span>{{ $order->destination->name }}, {{ $order->destination->country->name }}</span>
                 </div>
                 <div
-                    class="md:w-[30%] flex flex-col justify-center items-center gap-3 xl:flex-row xl:justify-start text-center md:text-start">
+                    class="w-full xl:w-[30%] flex justify-start items-center gap-3">
                     <span class="font-semibold">Statusas:</span>
                     <span class="w-[130px] py-2 text-center rounded-md font-semibold text-white
                     @php
@@ -38,13 +38,13 @@
                     ">{{ $statusOptions[$order->status] }}</span>
                 </div>
             </div>
-            <div class="md:w-[20%] flex gap-6 justify-end items-center">
+            <div class="w-full xl:w-[20%] flex gap-6 xl:justify-end xl:items-center">
                 @if ($statusOptions[$order->status] == 'Patvirtinta')    
                     <div class="flex items-center">
                         <x-front.stars-order :$isReviewed :$ID :$rating />
                     </div>
                 @endif
-                <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer md:px-6" title="info" data-id="btn-expand">
+                <div class="btn-primary text-lg bg-[var(--lblue)] hover:bg-[var(--blue)] px-4 cursor-pointer ml-auto md:px-6" title="info" data-id="btn-expand">
                     <i class="fa-solid fa-info"></i>
                 </div>
             </div>

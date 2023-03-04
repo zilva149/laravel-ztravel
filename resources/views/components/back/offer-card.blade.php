@@ -1,6 +1,6 @@
 @props(['offer'])
 
-<article class="bg-white rounded-md shadow-md">
+<article class="bg-white rounded-md shadow-md dark:bg-dark-eval-1">
     <div class="p-4 flex flex-col">
         <div class="flex flex-col md:flex-row gap-4 justify-between items-center relative">
             <div>
