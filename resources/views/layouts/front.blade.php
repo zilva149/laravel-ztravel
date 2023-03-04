@@ -33,9 +33,7 @@
         <div id="overlay" class="overlay"></div>
 
         <x-navigation />
-        @auth
-            <x-sidebar-front />
-        @endauth
+        <x-sidebar-front />
 
         <main>
             {{ $slot }}

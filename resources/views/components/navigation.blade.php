@@ -84,23 +84,12 @@
                 </a>
             </div>
 
-            @auth
-                <div class="flex items-center">
-                    <button
-                        class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[var(--green)] focus:outline-none transition duration-150 ease-in-out" id="burger-open">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            @else
-                <div class="flex gap-4">
-                    <x-nav-link :href="route('login')" class="text-sm">
-                        {{ __('Prisijungti') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('register')" class="text-sm">
-                        {{ __('Registruotis') }}
-                    </x-nav-link>
-                </div>
-            @endauth
+            <div class="flex items-center">
+                <button
+                    class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-[var(--green)] focus:outline-none transition duration-150 ease-in-out" id="burger-open">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
         </div>
     </div>
 </nav>
