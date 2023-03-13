@@ -38,12 +38,12 @@
             Pasiūlymai
         </a>
 
-        <a href="{{ route('index') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('customer-about-us') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
+        <a href="{{ route('customer-about-us') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('customer-about-us') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
             <i class="fa-solid fa-info w-6 text-center" aria-hidden="true"></i>
             Apie mus
         </a>
 
-        <a href="{{ route('index') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('customer-contacts') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
+        <a href="{{ route('customer-contacts') }}" class="w-full p-2 flex gap-4 items-center shadow-lg rounded-l-lg {{ request()->routeIs('customer-contacts') ? 'bg-[var(--dgreen)] text-white' : 'bg-white text-[var(--green)]'}} transition-all hover:bg-[var(--dgreen)] hover:text-white">
             <i class="fa-solid fa-address-book w-6 text-center" aria-hidden="true"></i>
             Kontaktai
         </a>

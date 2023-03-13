@@ -120,4 +120,18 @@ class FrontController extends Controller
 
         return view('pages.front.orders.orders-customer', compact('pageTitle', 'orders', 'statusOptions'));
     }
+
+    public function showAboutUs()
+    {
+        $pageTitle = 'Apie mus';
+
+        return view('pages.front.about-us', compact('pageTitle'));
+    }
+
+    public function showContacts()
+    {
+        $pageTitle = 'Kontaktai';
+
+        return view('pages.front.contacts', compact('pageTitle'));
+    }
 }
