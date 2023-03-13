@@ -21,6 +21,8 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::post('/offers/{offer}/payment', [FrontController::class, 'storePayment'])->name('payment-store');
     Route::get('/offers/{offer}/payment/success', [FrontController::class, 'successPayment'])->name('payment-success');
 
+    Route::get('/destinations', [FrontController::class, 'showDestinations'])->name('destinations');
+
     Route::get('/about-us', [FrontController::class, 'showAboutUs'])->name('about-us');
     Route::get('/contacts', [FrontController::class, 'showContacts'])->name('contacts');
 

@@ -16,6 +16,9 @@
                     <x-nav-link :href="route('customer-offers')" :active="request()->routeIs('customer-offers')">
                         {{ __('Pasiūlymai') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('customer-destinations')" :active="request()->routeIs('customer-destinations')">
+                        {{ __('Vietovės') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('customer-about-us')" :active="request()->routeIs('customer-about-us')">
                         {{ __('Apie mus') }}
                     </x-nav-link>
@@ -67,8 +70,8 @@
                     </div>
                 @else
                     <div class="flex gap-4">
-                        <a href="{{ route('login') }}" class="btn-action-link">Log in</a>
-                        <a href="{{ route('register') }}" class="btn-action-link">Register</a>
+                        <a href="{{ route('login') }}" class="btn-nav-action-link">Log in</a>
+                        <a href="{{ route('register') }}" class="btn-nav-action-link">Register</a>
                     </div>
                 @endauth
             </div>

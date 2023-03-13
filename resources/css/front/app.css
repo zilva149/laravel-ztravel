@@ -32,6 +32,10 @@
         @apply px-6 py-2 text-white rounded-3xl bg-[var(--green)] hover:bg-[var(--dgreen)] transition-all ease-in-out;
     }
 
+    .btn-nav-action-link {
+        @apply btn-action-link text-sm px-4 xl:text-base xl:px-6;
+    }
+
     .btn-scroll-down {
         @apply btn-action-link px-0 py-0 w-[60px] h-[60px] lg:w-[70px] lg:h-[70px] text-xl lg:text-3xl text-white rounded-full flex justify-center items-center animate-pulse;
     }
