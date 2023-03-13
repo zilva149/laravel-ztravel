@@ -18,8 +18,8 @@
         </h2>
 
         <div class="w-full bg-[rgba(21,34,56,0.8)] p-6 text-white rounded-lg shadow-md mb-14 overflow-hidden">
-            <div class="flex flex-col gap-6 lg:flex-row">
-                <div class="p-2 lg:p-6 flex flex-col gap-4 justify-between">
+            <div class="w-full flex justify-between flex-col gap-6 lg:flex-row">
+                <div class="p-2 lg:p-6 flex flex-col gap-4">
                     <p class="flex flex-col gap-1">
                         <span class="font-semibold">El. paštas:</span>
                         pensininkų g. 14, Vilnius
@@ -34,10 +34,23 @@
                         <i class="fa-brands fa-twitter text-3xl cursor-pointer transition-all hover:text-[var(--green)]"></i>
                     </div>
                 </div>
+                <form class="form">
+                    <!-- Email Address -->
+                    <div class="mb-6">
+                        <input type="text" class="form-text" name="email" placeholder="El. paštas..." required />
+                    </div>
+    
+                    <!-- Message -->
+                    <div class="mb-6">
+                        <textarea class="form-text" name="desc" rows="6" placeholder="Palikite mums žinutę..."></textarea>
+                    </div>
+    
+                    <!-- Submit Button -->
+                    <div>
+                        <button type="submit" class="btn-action-link">Siųsti</button>
+                    </div>
+                </form>
             </div>
-            <form>
-                
-            </form>
         </div>
     </section>
 </x-front-layout>
