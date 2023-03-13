@@ -10,6 +10,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ReviewController;
+use App\View\Components\FrontLayout;
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
 
@@ -19,6 +20,9 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::get('/offers/{offer}/payment', [FrontController::class, 'showPayment'])->name('payment');
     Route::post('/offers/{offer}/payment', [FrontController::class, 'storePayment'])->name('payment-store');
     Route::get('/offers/{offer}/payment/success', [FrontController::class, 'successPayment'])->name('payment-success');
+
+    Route::get('/about-us', [FrontController::class, 'showAboutUs'])->name('about-us');
+    Route::get('/contacts', [FrontController::class, 'showContacts'])->name('contacts');
 
     Route::get('/orders', [FrontController::class, 'showOrders'])->middleware('roles:Customer')->name('orders');
     Route::post('/orders/review/create/{order}', [ReviewController::class, 'store'])->middleware('roles:Customer')->name('review-store');
