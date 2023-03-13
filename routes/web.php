@@ -25,6 +25,7 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
 
     Route::get('/about-us', [FrontController::class, 'showAboutUs'])->name('about-us');
     Route::get('/contacts', [FrontController::class, 'showContacts'])->name('contacts');
+    Route::post('/contacts', [FrontController::class, 'sendMessage'])->name('send-message');
 
     Route::get('/orders', [FrontController::class, 'showOrders'])->middleware('roles:Customer')->name('orders');
     Route::post('/orders/review/create/{order}', [ReviewController::class, 'store'])->middleware('roles:Customer')->name('review-store');

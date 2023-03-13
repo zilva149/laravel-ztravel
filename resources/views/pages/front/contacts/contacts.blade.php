@@ -40,7 +40,9 @@
                         </a>
                     </div>
                 </div>
-                <form class="w-full p-6 flex flex-col gap-4 border-2 border-solid border-white rounded-lg lg:max-w-[500px]">
+                <form action="{{ route('customer-send-message') }}" method="POST" class="w-full p-6 flex flex-col gap-4 border-2 border-solid border-white rounded-lg lg:max-w-[500px]">
+                    @csrf
+
                     <!-- Email Address -->
                     <div class="mb-6">
                         <input type="text" class="form-text" name="email" placeholder="El. paštas..." required />
