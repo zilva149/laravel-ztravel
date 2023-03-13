@@ -9,6 +9,8 @@ use App\Models\Order;
 use App\Models\Country;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use App\Mail\ContactsMessage;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class FrontController extends Controller
@@ -150,6 +152,12 @@ class FrontController extends Controller
         }
 
         $request->desc = strip_tags($request->desc);
+
+        
+        Mail::to('ztravel@gmail.com')->send(new ContactsMessage([
+            'email' => $request->email,
+            'desc' => $request->desc
+        ]));
 
         return redirect('/contacts#contacts-form')->with('success', 'Žinutė sėkmingai išsiųsta!');
     }

@@ -16,7 +16,7 @@ class ContactsMessage extends Mailable
 
     public $data;
     public $email;
-    public $message;
+    public $desc;
     public $user;
 
     /**
@@ -27,7 +27,7 @@ class ContactsMessage extends Mailable
     public function __construct($data)
     {
         $this->email = $data['email'];
-        $this->message = $data['desc'];
+        $this->desc = $data['desc'];
         $this->user = auth()->user()->name;
     }
 
@@ -52,9 +52,9 @@ class ContactsMessage extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.pages.front.contacts.contacts-message',
+            view: 'pages.front.contacts.contacts-message',
             with: [
-                'message' => $this->message,
+                'desc' => $this->desc,
             ],
         );
     }
