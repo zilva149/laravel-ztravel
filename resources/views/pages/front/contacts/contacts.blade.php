@@ -17,7 +17,7 @@
             Susisiekite su mumis
         </h2>
 
-        <div class="w-full bg-[rgba(21,34,56,0.8)] p-6 text-white rounded-lg shadow-md mb-14 overflow-hidden">
+        <div class="w-full bg-[rgba(21,34,56,0.8)] py-10 px-6 text-white rounded-lg shadow-md mb-14 overflow-hidden">
             <div class="w-full flex justify-between flex-col gap-6 lg:flex-row">
                 <div class="p-2 lg:p-6 flex flex-col gap-4">
                     <p class="flex flex-col gap-1">

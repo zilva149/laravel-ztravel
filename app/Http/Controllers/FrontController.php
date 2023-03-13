@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendContactsMessage;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Offer;
@@ -9,8 +10,6 @@ use App\Models\Order;
 use App\Models\Country;
 use App\Models\Destination;
 use Illuminate\Http\Request;
-use App\Mail\ContactsMessage;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class FrontController extends Controller
@@ -153,8 +152,8 @@ class FrontController extends Controller
 
         $request->desc = strip_tags($request->desc);
 
-        
-        Mail::to('ztravel@gmail.com')->send(new ContactsMessage([
+        dispatch(new SendContactsMessage([
+            'to' => 'ztravel@gmail.com',
             'email' => $request->email,
             'desc' => $request->desc
         ]));
