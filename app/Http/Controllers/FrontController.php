@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Country;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FrontController extends Controller
 {
@@ -133,5 +134,23 @@ class FrontController extends Controller
         $pageTitle = 'Kontaktai';
 
         return view('pages.front.contacts.contacts', compact('pageTitle'));
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => ['required', 'regex:/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/'],
+            'desc' => ['required'],
+        ]);
+ 
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect('/contacts#contacts-form')
+                        ->withErrors($validator);
+        }
+
+        $request->desc = strip_tags($request->desc);
+
+        return redirect('/contacts#contacts-form')->with('success', 'Žinutė sėkmingai išsiųsta!');
     }
 }

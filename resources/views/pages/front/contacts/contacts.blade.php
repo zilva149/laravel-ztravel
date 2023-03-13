@@ -40,17 +40,27 @@
                         </a>
                     </div>
                 </div>
-                <form action="{{ route('customer-send-message') }}" method="POST" class="w-full p-6 flex flex-col gap-4 border-2 border-solid border-white rounded-lg lg:max-w-[500px]">
+                <form action="{{ route('customer-send-message') }}" method="POST" class="w-full p-6 flex flex-col gap-4 border-2 border-solid border-white rounded-lg lg:max-w-[500px]" id="contacts-form">
                     @csrf
 
+                    @if (session()->has('success'))
+                        <x-message size="lg" operation="success" :text="session('success')" />
+                    @endif
+
                     <!-- Email Address -->
-                    <div class="mb-6">
-                        <input type="text" class="form-text" name="email" placeholder="El. paštas..." required />
+                    <div class="mb-6 flex flex-col gap-2">
+                        <input type="text" class="form-text" name="email" value="{{ old('email', '') }}" placeholder="El. paštas..." />
+                        @error('email')
+                            <x-message size="sm" operation="failure" :text="$message" />
+                        @enderror
                     </div>
     
                     <!-- Message -->
-                    <div class="mb-6">
-                        <textarea class="form-text" name="desc" rows="6" placeholder="Palikite mums žinutę..."></textarea>
+                    <div class="mb-6 flex flex-col gap-2">
+                        <textarea class="form-text" name="desc" rows="6" placeholder="Palikite mums žinutę...">{{ old('desc', '') }}</textarea>
+                        @error('desc')
+                            <x-message size="sm" operation="failure" :text="$message" />
+                        @enderror
                     </div>
     
                     <!-- Submit Button -->
