@@ -15,9 +15,6 @@ class ContactsMessage extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
-    public $email;
-    public $desc;
-    public $user;
 
     /**
      * Create a new message instance.
@@ -26,9 +23,8 @@ class ContactsMessage extends Mailable
      */
     public function __construct($data)
     {
-        $this->email = $data['email'];
-        $this->desc = $data['desc'];
-        $this->user = auth()->user()->name;
+        $this->data = $data;
+
     }
 
     /**
@@ -39,7 +35,7 @@ class ContactsMessage extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address($this->email, $this->user),
+            from: new Address($this->data['email']),
             subject: "Vartotojo žinutė",
         );
     }
@@ -54,7 +50,7 @@ class ContactsMessage extends Mailable
         return new Content(
             view: 'pages.front.contacts.contacts-message',
             with: [
-                'desc' => $this->desc,
+                'desc' => $this->data['desc'],
             ],
         );
     }

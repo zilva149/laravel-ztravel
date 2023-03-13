@@ -155,7 +155,7 @@ class FrontController extends Controller
         dispatch(new SendContactsMessage([
             'to' => 'ztravel@gmail.com',
             'email' => $request->email,
-            'desc' => $request->desc
+            'desc' => $request->desc,
         ]));
 
         return redirect('/contacts#contacts-form')->with('success', 'Žinutė sėkmingai išsiųsta!');

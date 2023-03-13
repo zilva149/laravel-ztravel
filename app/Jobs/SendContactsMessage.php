@@ -15,20 +15,16 @@ class SendContactsMessage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $to;    
-    public $email;    
-    public $desc;    
+    public $incoming;    
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($incoming)
     {
-        $this->to = $data['to'];
-        $this->email = $data['email'];
-        $this->desc = $data['desc'];
+        $this->incoming = $incoming;
     }
 
     /**
@@ -38,9 +34,9 @@ class SendContactsMessage implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->to)->send(new ContactsMessage([
-            'email' => $this->email,
-            'desc' => $this->desc
+        Mail::to($this->incoming['to'])->send(new ContactsMessage([
+            'email' => $this->incoming['email'],
+            'desc' => $this->incoming['desc'],
         ]));
     }
 }
