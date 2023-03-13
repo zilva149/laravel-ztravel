@@ -29,12 +29,18 @@
                         +370 61278149
                     </p>
                     <div class="flex gap-6 items-start">
-                        <i class="fa-brands fa-facebook text-3xl cursor-pointer transition-all hover:text-[var(--green)]"></i>
-                        <i class="fa-brands fa-instagram text-3xl cursor-pointer transition-all hover:text-[var(--green)]"></i>
-                        <i class="fa-brands fa-twitter text-3xl cursor-pointer transition-all hover:text-[var(--green)]"></i>
+                        <a href="#">
+                            <i class="fa-brands fa-facebook text-3xl cursor-pointer transition-all hover:text-[var(--green)]"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa-brands fa-instagram text-3xl cursor-pointer transition-all hover:text-[var(--green)]"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa-brands fa-twitter text-3xl cursor-pointer transition-all hover:text-[var(--green)]"></i>
+                        </a>
                     </div>
                 </div>
-                <form class="form">
+                <form class="w-full p-6 flex flex-col gap-4 border-2 border-solid border-white rounded-lg lg:max-w-[500px]">
                     <!-- Email Address -->
                     <div class="mb-6">
                         <input type="text" class="form-text" name="email" placeholder="El. paštas..." required />

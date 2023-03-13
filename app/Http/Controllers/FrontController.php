@@ -132,6 +132,6 @@ class FrontController extends Controller
     {
         $pageTitle = 'Kontaktai';
 
-        return view('pages.front.contacts', compact('pageTitle'));
+        return view('pages.front.contacts.contacts', compact('pageTitle'));
     }
 }
