@@ -17,9 +17,9 @@ Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::get('/offers', [FrontController::class, 'showOffers'])->name('offers');
     Route::get('/offers/{offer}', [FrontController::class, 'showSingleOffer'])->name('single-offer');
-    Route::get('/offers/{offer}/payment', [FrontController::class, 'showPayment'])->name('payment');
-    Route::post('/offers/{offer}/payment', [FrontController::class, 'storePayment'])->name('payment-store');
-    Route::get('/offers/{offer}/payment/success', [FrontController::class, 'successPayment'])->name('payment-success');
+    Route::get('/offers/{offer}/payment', [FrontController::class, 'showPayment'])->middleware('roles:Customer')->name('payment');
+    Route::post('/offers/{offer}/payment', [FrontController::class, 'storePayment'])->middleware('roles:Customer')->name('payment-store');
+    Route::get('/offers/{offer}/payment/success', [FrontController::class, 'successPayment'])->middleware('roles:Customer')->name('payment-success');
 
     Route::get('/destinations', [FrontController::class, 'showDestinations'])->name('destinations');
     Route::get('/destinations/{destination}', [FrontController::class, 'showSingleDestination'])->name('single-destination');

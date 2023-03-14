@@ -39,10 +39,16 @@
                         &euro;
                         {{ number_format($offer->price, 2, '.', ',') }}
                     </p>
-                    <a href="{{ route('customer-payment-store', $offer->id) }}" class="btn-action-link text-md lg:text-xl flex gap-4 justify-center items-center">
-                        Užsisakyti
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
+                    @if (auth()->check())    
+                        <a href="{{ route('customer-payment-store', $offer->id) }}" class="btn-action-link text-md lg:text-xl flex gap-4 justify-center items-center">
+                            Užsisakyti
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="btn-action-link text-md lg:text-xl flex gap-4 justify-center items-center">
+                            Prisijunkite
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
