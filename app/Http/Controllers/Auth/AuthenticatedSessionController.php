@@ -41,21 +41,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $userRole = auth()->user()->role;
-        $requestUrl = URL::previous();
-
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        if($userRole == User::ROLES['Admin']) {
-            return redirect('/');
-        } elseif($requestUrl == route('customer-orders') || $requestUrl == route('profile.edit') ) {
-            return redirect('/');
-        } else {
-            return redirect()->back();
-        }
+        return redirect('/');
     }
 }
