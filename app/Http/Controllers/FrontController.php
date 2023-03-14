@@ -27,13 +27,7 @@ class FrontController extends Controller
         $topDestinations = Destination::withCount('orders')->where('id', '>', 0)->get()->sortByDesc('orders_count')->take(3);
 
         foreach($topDestinations as $destination) {
-            $minPrice = 0;
-            foreach($destination->offers as $offer) {
-                if($offer->price > $minPrice) {
-                    $minPrice = $offer->price;
-                }
-            }
-            $destination->min_price = $minPrice;
+            $destination->min_price = Offer::where('destination_id', $destination->id)->min('price');
         }
 
         return view('pages.front.home-customer', compact('pageTitle', 'topDestinations'));
@@ -169,6 +163,10 @@ class FrontController extends Controller
         }])->where('id', '>', 0)->get()->sortByDesc('approved_orders_count');     
         $countries = Country::all();
         $continents = Country::select('continent')->distinct()->get();
+
+        foreach($destinations as $destination) {
+            $destination->min_price = Offer::where('destination_id', $destination->id)->min('price');
+        }
 
         return view('pages.front.destinations.destinations-customer', compact('pageTitle', 'destinations', 'countries', 'continents', 'request'));
     }

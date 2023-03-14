@@ -7,7 +7,13 @@
     <div class="p-4 flex flex-col items-start">
         <p class="mb-1 text-gray-500">{{ $destination->country->name }}</p>
         <p class="mb-4">{{ $destination->name }}</p>
-        <p class="mb-6 font-semibold">Nuo &euro;{{ $destination->min_price }}</p>
+        <p class="mb-6 font-semibold">
+            @if (isset($destination->min_price))
+                Nuo &euro;{{ $destination->min_price }}
+            @else
+                Pasiūlymų nėra
+            @endif
+        </p>
         
         <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
     </div>

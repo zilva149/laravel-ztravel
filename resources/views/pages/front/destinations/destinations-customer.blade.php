@@ -21,8 +21,8 @@
 
         <div class="cards-container" id="destinations-container">
             @if (isset($destinations) && count($destinations) != 0)
-                @foreach ($destinations as $destinations)        
-                    <x-front.destination-card :$destinations />
+                @foreach ($destinations as $destination)        
+                    <x-front.destination-card :$destination />
                 @endforeach
             @else
                 <h2 class="empty-list">Nėra vietovių</h2>
