@@ -119,6 +119,67 @@ class APIController extends Controller
         return $offers;
     }
 
+    public function filterDestinations(Request $request)
+    {
+        if($request->s && $request->s !== '') {
+            if($request->filter !== 'all') {
+                $destinations = Destination::where('countries.id', $request->filter)
+                                ->join('countries', 'countries.id', 'destinations.country_id');
+            } else {
+                $destinations = Destination::where('destinations.id', '>', 0)
+                                ->join('countries', 'countries.id', 'destinations.country_id');
+            }
+
+            $searchWords = explode(' ', $request->s);
+
+            if(count($searchWords) === 1) {
+                $destinations = $destinations->where(function($builder) use($searchWords) {
+                                $builder->where('destinations.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[0] . '%');
+                            });
+            }
+
+            if(count($searchWords) === 2) {
+                $destinations = $destinations->where(function($builder) use($searchWords) {
+                                $builder->where('destinations.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('destinations.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.name', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('destinations.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('destinations.desc', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('countries.name', 'like', '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[0] . '%' . $searchWords[1] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[1] . '%' . $searchWords[0] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[1] . '%')
+                                        ->orWhere('countries.continent', 'like', '%' . $searchWords[0] . '%');
+                            });
+            }
+        } else {
+            $destinations = Destination::where('id', '>', 0);
+
+        }
+
+        if($request->s == '' && $request->filter !== 'all') {
+            $destinations = $destinations->where('country_id', $request->filter);
+        }
+        
+        $destinations = $destinations->orderBy('name')->get();
+
+        foreach ($destinations as $destination) {
+            $destination->country = $destination->country;
+            $destination->min_price = Offer::where('destination_id', $destination->id)->min('price');
+        }
+
+        return $destinations;
+    }
+
     public function fetchReview(Review $review)
     {
         return $review;

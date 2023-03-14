@@ -29,4 +29,8 @@
             @endif
         </div>
     </section>
+
+    <script>
+        const page = 'destinations';
+    </script>
 </x-front-layout>

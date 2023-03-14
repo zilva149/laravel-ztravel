@@ -32,6 +32,7 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::post('/orders/review/edit/{review}', [ReviewController::class, 'update'])->middleware('roles:Customer')->name('review-update');
 
     Route::get('/api/offers', [APIController::class, 'filterOffers'])->name('api-filter-offers');
+    Route::get('/api/destinations', [APIController::class, 'filterDestinations'])->name('api-filter-destinations');
     Route::get('/api/reviews/{review}', [APIController::class, 'fetchReview'])->name('api-review');
     Route::get('/api/hotel/reviews/{hotel}', [APIController::class, 'fetchHotelReviews'])->name('api-hotel-reviews');
 });

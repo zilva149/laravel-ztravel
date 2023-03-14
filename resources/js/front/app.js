@@ -210,82 +210,141 @@ if (document.getElementById("filter")) {
     const sort = document.getElementById("sort");
     const search = document.getElementById("search");
 
-    filter.addEventListener("change", async (e) => {
-        const filterValue = e.currentTarget.value;
-        const sortValue = sort.value;
-        const searchValue = search.value;
+    if (filter) {
+        filter.addEventListener("change", async (e) => {
+            const filterValue = filter && e.currentTarget.value;
+            const sortValue = sort && sort.value;
+            const searchValue = search && search.value;
 
-        const offers = await fetchFilteredOffers(
-            filterValue,
-            sortValue,
-            searchValue
-        );
+            if (page === "offers") {
+                const offers = await fetchFilteredOffers(
+                    filterValue,
+                    sortValue,
+                    searchValue
+                );
 
-        let HTML = "";
+                let HTML = "";
 
-        if (offers.length > 0) {
-            for (const offer of offers) {
-                HTML += appendOfferCard(offer);
+                if (offers.length > 0) {
+                    for (const offer of offers) {
+                        HTML += appendOfferCard(offer);
+                    }
+                } else {
+                    HTML += '<h2 class="empty-list">Nėra pasiūlymų</h2>';
+                }
+
+                document.getElementById("offers-container").innerHTML = HTML;
             }
-        } else {
-            HTML += '<h2 class="empty-list">Nėra pasiūlymų</h2>';
-        }
 
-        document.getElementById("offers-container").innerHTML = HTML;
-    });
+            if (page === "destinations") {
+                const destinations = await fetchFilteredDestinations(
+                    filterValue,
+                    searchValue
+                );
 
-    sort.addEventListener("change", async (e) => {
-        const filterValue = filter.value;
-        const sortValue = e.currentTarget.value;
-        const searchValue = search.value;
+                let HTML = "";
 
-        const offers = await fetchFilteredOffers(
-            filterValue,
-            sortValue,
-            searchValue
-        );
+                if (destinations.length > 0) {
+                    for (const destination of destinations) {
+                        HTML += appendDestinationCard(destination);
+                    }
+                } else {
+                    HTML += '<h2 class="empty-list">Nėra vietovių</h2>';
+                }
 
-        let HTML = "";
-
-        if (offers.length > 0) {
-            for (const offer of offers) {
-                HTML += appendOfferCard(offer);
+                document.getElementById("destinations-container").innerHTML =
+                    HTML;
             }
-        } else {
-            HTML += '<h2 class="empty-list">Nėra pasiūlymų</h2>';
-        }
+        });
+    }
 
-        document.getElementById("offers-container").innerHTML = HTML;
-    });
+    if (sort) {
+        sort.addEventListener("change", async (e) => {
+            const filterValue = filter && filter.value;
+            const sortValue = sort && e.currentTarget.value;
+            const searchValue = search && search.value;
 
-    search.addEventListener("input", async (e) => {
-        const filterValue = filter.value;
-        const sortValue = sort.value;
-        const searchValue = e.currentTarget.value;
+            const offers = await fetchFilteredOffers(
+                filterValue,
+                sortValue,
+                searchValue
+            );
 
-        const offers = await fetchFilteredOffers(
-            filterValue,
-            sortValue,
-            searchValue
-        );
+            let HTML = "";
 
-        let HTML = "";
-
-        if (offers.length > 0) {
-            for (const offer of offers) {
-                HTML += appendOfferCard(offer);
+            if (offers.length > 0) {
+                for (const offer of offers) {
+                    HTML += appendOfferCard(offer);
+                }
+            } else {
+                HTML += '<h2 class="empty-list">Nėra pasiūlymų</h2>';
             }
-        } else {
-            HTML += '<h2 class="empty-list">Nėra pasiūlymų</h2>';
-        }
 
-        document.getElementById("offers-container").innerHTML = HTML;
-    });
+            document.getElementById("offers-container").innerHTML = HTML;
+        });
+    }
+
+    if (search) {
+        search.addEventListener("input", async (e) => {
+            const filterValue = filter && filter.value;
+            const sortValue = sort && sort.value;
+            const searchValue = search && e.currentTarget.value;
+
+            if (page === "offers") {
+                const offers = await fetchFilteredOffers(
+                    filterValue,
+                    sortValue,
+                    searchValue
+                );
+
+                let HTML = "";
+
+                if (offers.length > 0) {
+                    for (const offer of offers) {
+                        HTML += appendOfferCard(offer);
+                    }
+                } else {
+                    HTML += '<h2 class="empty-list">Nėra pasiūlymų</h2>';
+                }
+
+                document.getElementById("offers-container").innerHTML = HTML;
+            }
+
+            if (page === "destinations") {
+                const destinations = await fetchFilteredDestinations(
+                    filterValue,
+                    searchValue
+                );
+
+                let HTML = "";
+
+                if (destinations.length > 0) {
+                    for (const destination of destinations) {
+                        HTML += appendDestinationCard(destination);
+                    }
+                } else {
+                    HTML += '<h2 class="empty-list">Nėra vietovių</h2>';
+                }
+
+                document.getElementById("destinations-container").innerHTML =
+                    HTML;
+            }
+        });
+    }
 }
 
 async function fetchFilteredOffers(filter, sort, search) {
     const resp = await fetch(
         `/api/offers?filter=${filter}&sort=${sort}&s=${search}`
+    );
+    const data = await resp.json();
+
+    return data;
+}
+
+async function fetchFilteredDestinations(filter, search) {
+    const resp = await fetch(
+        `/api/destinations?filter=${filter}&sort&s=${search}`
     );
     const data = await resp.json();
 
@@ -318,4 +377,27 @@ function appendOfferCard(offer) {
             }" class="btn-action-link text-md">Sužinokite daugiau</a>
         </div>
     </article>`;
+}
+
+function appendDestinationCard(destination) {
+    return `<article class="w-full max-w-[600px] m-auto shadow-md rounded-lg overflow-hidden">
+    <div>
+        <img src="${
+            destination.image ? destination.image : "/assets/img/no-image.jpg"
+        }" alt="${destination.name}" class="w-full">
+    </div>
+    <div class="p-4 flex flex-col items-start">
+        <p class="mb-1 text-gray-500">${destination.country.name}</p>
+        <p class="mb-4">${destination.name}</p>
+        <p class="mb-6 font-semibold">
+            ${
+                destination.min_price
+                    ? "Nuo &euro;" + destination.min_price
+                    : "Pasiūlymų nėra"
+            }
+        </p>
+        
+        <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
+    </div>
+</article>`;
 }

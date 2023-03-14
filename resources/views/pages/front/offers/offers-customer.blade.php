@@ -29,4 +29,8 @@
             @endif
         </div>
     </section>
+
+    <script>
+        const page = 'offers';
+    </script>
 </x-front-layout>

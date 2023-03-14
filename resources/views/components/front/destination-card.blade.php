@@ -1,4 +1,4 @@
-@props(['destination', 'route'])
+@props(['destination'])
 
 <article class="w-full max-w-[600px] m-auto shadow-md rounded-lg overflow-hidden">
     <div>
