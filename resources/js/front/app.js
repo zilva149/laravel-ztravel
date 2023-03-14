@@ -51,6 +51,20 @@ if (burgerOpenBtn) {
     });
 }
 
+// ********** BACK TO TOP BUTTON *********
+
+const btnTop = document.getElementById("btn-back-to-top");
+
+window.addEventListener("scroll", () => {
+    const scrollHeight = window.pageYOffset;
+
+    if (scrollHeight > 200) {
+        btnTop.classList.add("show");
+    } else {
+        btnTop.classList.remove("show");
+    }
+});
+
 // ********** MESSAGES TIMEOUT ***********
 
 const messages = document.querySelectorAll(".message");
