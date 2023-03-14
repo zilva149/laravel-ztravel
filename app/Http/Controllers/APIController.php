@@ -112,7 +112,8 @@ class APIController extends Controller
             $offer->hotel = $offer->hotel;
             $offer->destination = $offer->destination;
             $offer->country = $offer->country;
-            $offer->reviews = $offer->reviews;
+            $offer->avg_rating = $offer->reviews->avg('rating');
+            $offer->count_rating = $offer->reviews->count();
         }
 
         return $offers;

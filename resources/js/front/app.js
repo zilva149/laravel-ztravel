@@ -1,5 +1,5 @@
-import { starsRateOrder } from "./starsRateOrder";
-import { starsOffer } from "./starsOffer";
+import { starsRateOrder } from "./stars";
+import { starsOffer } from "./stars";
 
 import Alpine from "alpinejs";
 import collapse from "@alpinejs/collapse";
@@ -311,11 +311,7 @@ function appendOfferCard(offer) {
     }</p>
             <div class="mb-6 w-full flex justify-between">
                 <p class="font-semibold">&euro;${offer.price}</p>
-                ${
-                    offer.reviews.length !== 0
-                        ? starsOffer(offer.id, offer.reviews)
-                        : ""
-                }
+                ${offer.reviews.length !== 0 ? starsOffer(offer) : ""}
             </div>
             <a href="/offers/${
                 offer.id
