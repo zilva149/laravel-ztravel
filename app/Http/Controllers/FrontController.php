@@ -43,6 +43,11 @@ class FrontController extends Controller
         $continents = Country::select('continent')->distinct()->get();
         $sortOptions = Offer::SORT;
 
+        foreach($offers as $offer) {
+            $offer->avg_rating = $offer->reviews->avg('rating');
+            $offer->count_rating = $offer->reviews->count();
+        }
+
         return view('pages.front.offers.offers-customer', compact('pageTitle', 'request', 'offers', 'countries', 'continents', 'sortOptions'));
     }
 

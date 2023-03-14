@@ -1,14 +1,8 @@
 @props(['offer'])
 
 @php
-    if(count($offer->reviews) > 0) {
-        $ratings = [];
-        foreach ($offer->reviews as $review) {
-            $ratings[] = $review->rating;
-        }
-
-        $avgRating = array_sum($ratings) / count($ratings);
-        $avgRating = number_format($avgRating, 1, '.');
+    if($offer->count_rating > 0) {
+        $avgRating = number_format($offer->avg_rating, 1, '.');
     }
 @endphp
 
@@ -27,6 +21,6 @@
             <input type="radio" name="5" id="rate-5" class="hidden">
             <label for="rate-5" class="fas fa-star text-yellow-500 {{ round($avgRating) == 5 ? 'opacity-100' : 'opacity-40' }} pointer-events-none"></label>
         </div>
-        <p>({{ count($ratings) }})</p>
+        <p>({{ $offer->count_rating }})</p>
     </a>
 @endif
