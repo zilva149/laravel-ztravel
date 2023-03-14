@@ -27,10 +27,13 @@
 </head>
 
 <body>
-    <div x-data="mainState" class="font-sans antialiased" x-cloak>
+    <div x-data="mainState" class="font-sans antialiased" id="top" x-cloak>
         <!-- Stars rating and overlay -->
         <div id="reviews" class="modal"></div>
         <div id="overlay" class="overlay"></div>
+        <a href="#top" id="btn-back-to-top" class="btn-back-to-top">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
 
         <x-navigation />
         <x-sidebar-front />
