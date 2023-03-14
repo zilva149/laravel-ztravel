@@ -24,7 +24,9 @@ class FrontController extends Controller
 
         $pageTitle = 'Pradinis';
 
-        $topDestinations = Destination::withCount('orders')->where('id', '>', 0)->get()->sortByDesc('orders_count')->take(3);
+        $topDestinations = Destination::withCount(['orders as approved_orders_count' => function ($query) {
+            $query->where('status', '1');
+        }])->where('id', '>', 0)->orderBy('approved_orders_count', 'DESC')->get()->take(3);
 
         foreach($topDestinations as $destination) {
             $destination->min_price = Offer::where('destination_id', $destination->id)->min('price');
@@ -38,7 +40,7 @@ class FrontController extends Controller
         $pageTitle = 'Pasiūlymai';
         $offers = Offer::withCount(['orders as approved_orders_count' => function ($query) {
             $query->where('status', '1');
-        }])->where('id', '>', 0)->get()->sortByDesc('approved_orders_count');     
+        }])->where('id', '>', 0)->orderBy('approved_orders_count', 'DESC')->get();     
         $countries = Country::all();
         $continents = Country::select('continent')->distinct()->get();
         $sortOptions = Offer::SORT;
@@ -165,7 +167,7 @@ class FrontController extends Controller
         $pageTitle = 'Vietovės';
         $destinations = Destination::withCount(['orders as approved_orders_count' => function ($query) {
             $query->where('status', '1');
-        }])->where('id', '>', 0)->get()->sortByDesc('approved_orders_count');     
+        }])->where('id', '>', 0)->orderBy('approved_orders_count', 'DESC')->get();     
         $countries = Country::all();
         $continents = Country::select('continent')->distinct()->get();
 

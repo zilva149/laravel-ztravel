@@ -123,11 +123,13 @@ class APIController extends Controller
     {
         if($request->s && $request->s !== '') {
             if($request->filter !== 'all') {
-                $destinations = Destination::where('countries.id', $request->filter)
-                                ->join('countries', 'countries.id', 'destinations.country_id');
+                $destinations = Destination::select('destinations.*')
+                                ->where('countries.id', $request->filter)
+                                ->leftJoin('countries', 'countries.id', 'country_id');
             } else {
-                $destinations = Destination::where('destinations.id', '>', 0)
-                                ->join('countries', 'countries.id', 'destinations.country_id');
+                $destinations = Destination::select('destinations.*')
+                                ->where('destinations.id', '>', 0)
+                                ->leftJoin('countries', 'countries.id', 'country_id');
             }
 
             $searchWords = explode(' ', $request->s);
@@ -170,7 +172,10 @@ class APIController extends Controller
             $destinations = $destinations->where('country_id', $request->filter);
         }
         
-        $destinations = $destinations->orderBy('name')->get();
+        $destinations = $destinations->withCount(['orders as approved_orders_count' => function ($query) {
+                                    $query->where('status', '1');
+                                }])
+                                ->orderBy('approved_orders_count', 'DESC')->get();
 
         foreach ($destinations as $destination) {
             $destination->country = $destination->country;
