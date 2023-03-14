@@ -4,14 +4,14 @@
         id="hero">
         <header class="hero-header mb-36">
             <h1 class="hero-title">Mūsų pasiūlymai</h1>
-            <a href="#destinations"
+            <a href="#offers"
                 class="btn-scroll-down">
                 <i class="fa-solid fa-chevron-down"></i>
             </a>
         </header>
     </section>
 
-    <section class="section" id="destinations">
+    <section class="section" id="offers">
         <h2
             class="section-title">
             Pasiūlymai

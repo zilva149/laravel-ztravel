@@ -20,15 +20,17 @@
                 </select>
             </div>
         
-            <div class="filter">
-                <label class="filter-label" for="sort">Rikiavimas:</label>
-                <select name="sort" id="sort"
-                class="filter-select pr-8">
-                    @foreach ($sortOptions as $key => $value)
-                        <option value="{{ $key }}" @if ($request->sort && $request->sort == $key) selected  @endif>{{ $value }}</option>
-                    @endforeach
-                </select>
-            </div>
+            @if (isset($sortOptions) && count($sortOptions) > 0)    
+                <div class="filter">
+                    <label class="filter-label" for="sort">Rikiavimas:</label>
+                    <select name="sort" id="sort"
+                    class="filter-select pr-8">
+                        @foreach ($sortOptions as $key => $value)
+                            <option value="{{ $key }}" @if ($request->sort && $request->sort == $key) selected  @endif>{{ $value }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
         </div>
 
         <div class="filter-search">

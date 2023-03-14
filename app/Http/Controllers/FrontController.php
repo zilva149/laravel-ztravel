@@ -160,4 +160,16 @@ class FrontController extends Controller
 
         return redirect('/contacts#contacts-form')->with('success', 'Žinutė sėkmingai išsiųsta!');
     }
+
+    public function showDestinations(Request $request)
+    {
+        $pageTitle = 'Vietovės';
+        $destinations = Destination::withCount(['orders as approved_orders_count' => function ($query) {
+            $query->where('status', '1');
+        }])->where('id', '>', 0)->get()->sortByDesc('approved_orders_count');     
+        $countries = Country::all();
+        $continents = Country::select('continent')->distinct()->get();
+
+        return view('pages.front.destinations.destinations-customer', compact('pageTitle', 'destinations', 'countries', 'continents', 'request'));
+    }
 }
