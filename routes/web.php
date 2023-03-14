@@ -22,6 +22,7 @@ Route::middleware('roles:Guest|Customer')->name('customer-')->group(function() {
     Route::get('/offers/{offer}/payment/success', [FrontController::class, 'successPayment'])->name('payment-success');
 
     Route::get('/destinations', [FrontController::class, 'showDestinations'])->name('destinations');
+    Route::get('/destinations/{destination}', [FrontController::class, 'showSingleDestination'])->name('single-destination');
 
     Route::get('/about-us', [FrontController::class, 'showAboutUs'])->name('about-us');
     Route::get('/contacts', [FrontController::class, 'showContacts'])->name('contacts');

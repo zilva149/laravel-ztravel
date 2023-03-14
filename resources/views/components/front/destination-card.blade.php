@@ -15,6 +15,6 @@
             @endif
         </p>
         
-        <a href="#" class="btn-action-link text-md">Sužinokite daugiau</a>
+        <a href="{{ route('customer-single-destination', $destination->id) }}" class="btn-action-link text-md">Sužinokite daugiau</a>
     </div>
 </article>

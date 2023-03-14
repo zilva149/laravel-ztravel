@@ -177,4 +177,11 @@ class FrontController extends Controller
 
         return view('pages.front.destinations.destinations-customer', compact('pageTitle', 'destinations', 'countries', 'continents', 'request'));
     }
+
+    public function showSingleDestination(Destination $destination)
+    {
+        $pageTitle = 'Vietovė';     
+
+        return view('pages.front.destinations.single-destination', compact('pageTitle', 'destination'));
+    }
 }
