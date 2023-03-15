@@ -1,6 +1,6 @@
 <x-front-layout :$pageTitle>
     <section
-        class="hero bg-[url('/public/assets/img/hero-boat.jpg')] flex justify-center items-end"
+        class="hero bg-[url('/public/assets/img/hero-destinations.jpg')] flex justify-center items-end"
         id="hero">
         <header class="hero-header mb-36">
             <h1 class="hero-title">Mūsų vietovės</h1>
