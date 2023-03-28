@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'benia',
+            'name' => 'jonas',
             'role' => '1',
-            'email' => 'edvinas@gmail.com',
-            'password' => Hash::make('edvinas123'),
+            'email' => 'jonas@gmail.com',
+            'password' => Hash::make('jonas123'),
         ]);
 
         DB::table('countries')->insert([

@@ -1,6 +1,6 @@
 @props(['offer'])
 
-<div class="relative w-[90%] max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row gap-6 rounded-lg border-2 shadow-lg bg-[rgba(21,34,56,0.4)] z-10">
+<div class="form-xl">
     <form method="POST" action="{{ route('customer-payment-store', $offer->id) }}"
         class="w-full md:w-3/5 p-6 grid grid-cols-4 gap-2">
         @csrf
