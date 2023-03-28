@@ -59,12 +59,6 @@
                             {{ __('Atsiminti slaptažodį') }}
                         </span>
                     </label>
-    
-                    @if (Route::has('password.request'))
-                        <a class="text-sm text-[var(--green)] hover:underline" href="{{ route('password.request') }}">
-                            {{ __('Pamiršai slaptažodį?') }}
-                        </a>
-                    @endif
                 </div>
     
                 <!-- Submit Button -->
